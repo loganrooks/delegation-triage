@@ -28,6 +28,6 @@ the operator to relocate).
 
 | target | stamped | status |
 |---|---|---|
-| `~/.claude/agents/` | — | NOT YET — Stage-2 gated; the live copies are byte-identical to the candidates above as of 2026-07-10 (these hashes were computed FROM them) |
-| SEAS `harness/agents/` | — | stale 2026-06-12 roster; becomes a recorded deployment (or is archived) at Stage 2 per ADR-0022 A5 |
+| `~/.claude/agents/` | **2026-07-10 (Stage-2 deploy)** | roster: byte-identical to canonical at deploy (verified by hash — no copy needed; see stage2-before-snapshot); skill home `~/.claude/skills/delegation-triage/` received SKILL/ROUTES/STATE/WARRANTS/CONTRACT/EPISTEMICS + checks + probes/ from repo commit `14c3311`; old routing-table archived with pointer stub, Active: line retired; guard hook re-pointed to STATE.md |
+| SEAS `harness/agents/` | 2026-07-10 | superseded records (marked in-file per ADR-0010 convention); TRIAGE.md re-scoped to consumer-side pointer + overlay |
 | Cowork `delegation-roster` plugin (installed) | — | **UNRECONCILED FORK, discovered 2026-07-10:** a GPT-5.6-Pro repackaging of the PRE-package routing table + probe corpus (its routing-evidence.md cites the same bridgewright/prix-guesser/signal-layer records) — 7 agents (ours + an `advisor` @ fable/**xhigh**) + a skill with a routes/evidence split but **NO STATE layer** (volatile facts deliberately omitted → no expiry mechanism; its fable pins will silently outlive the 07-12 window — the C-012 failure mode in a third home). Stage-2 reconciliation owed: regenerate from canonical or diff-and-stamp; until then it is a live drifting copy in exactly the environment (Cowork) the proposal diagnosed as blind. |
