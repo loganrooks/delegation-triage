@@ -6,8 +6,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The canonical home of the `delegation-triage` package: evidence-graded routing doctrine for
 delegating work to subagents (model × effort routes), the canonical agent roster, and the
-package's own evidence loop. It is almost entirely Markdown plus two stdlib-only Python check
-scripts. There is no build, no dependencies, no test framework — the checks below are the CI.
+package's own evidence loop. It is almost entirely Markdown plus stdlib-only Python scripts
+(two checks + a multi-target installer). No dependencies, no test framework — the checks below
+are the CI. `dist/` is generated output (untracked).
 
 ## Commands
 
@@ -16,6 +17,9 @@ python3 check_state.py                  # fail (exit 1) on any expired STATE.md 
 python3 check_state.py --today 2026-07-12   # simulate a date (e.g. test a scheduled expiry)
 python3 check_wids.py                   # fail on dangling W-IDs, broken relative md links, or absolute/user-specific paths used as dependencies
 shasum -a 256 agents/*.md               # re-hash roster definitions for agents/MANIFEST.md stamps
+python3 install.py claude-code          # deploy to ~/.claude (then stamp MANIFEST + restart); --check diffs deployed vs canonical
+python3 install.py cowork               # build dist/delegation-roster-<ver>.plugin (deterministic zip; install via Cowork UI)
+python3 install.py codex --dest PATH    # emit the consumer guidance fragment (no --dest: stdout)
 ```
 
 Run both checks before committing any edit to the package's Markdown surfaces.

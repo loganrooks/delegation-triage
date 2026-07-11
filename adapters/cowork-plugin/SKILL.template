@@ -1,0 +1,45 @@
+---
+name: delegation-triage
+description: |
+  Per-spawn triage for ANY delegation in Cowork — solo agent or fan-out. Applies the delegation
+  test (whether to delegate at all), classifies the task, looks up the model × effort route
+  (references/ROUTES.md), degrades gracefully where volatile state is unreadable, picks the
+  packaged pin or a generic spawn, and states + records the fit.
+
+  TRIGGERS: which model should this agent use, what effort level, delegate this, spawn agents
+  for, fan out, model routing, triage this delegation, should this be fable/opus/sonnet, roster
+  pick, review gate model, sweep tier, strategy checkpoint, advisor.
+
+  Does NOT do: editing roster pins (regenerate the plugin from the canonical package instead);
+  trusting a UI model label over the transcript.
+---
+
+# Delegation triage (Cowork build)
+
+Generated from the canonical `delegation-triage` package — version {{VERSION}}, source commit
+{{COMMIT}}. **Do not edit in place**; regenerate via `install.py cowork` and reinstall.
+
+One decision, six steps (full contract in [references/CONTRACT.md](references/CONTRACT.md)):
+
+1. **Whether:** the delegation test (CONTRACT §1). No new information channel, no parallelism,
+   no isolation need → do it in-session; fixed steps → script.
+2. **Classify** the task to a [references/ROUTES.md](references/ROUTES.md) row; split
+   delegations that span classes.
+3. **Volatile state — graceful degradation.** This plugin ships NO volatile state by design
+   (dates go stale inside an artifact; the rule doesn't). If the consuming project carries a
+   readable delegation-triage `STATE.md` or skill overlay, read it — an entry past its
+   `valid_until` is **Unchecked, never true**. Where no readable STATE exists, or a premium
+   route's availability/scarcity is Unchecked, **take the row's Fallback column.** Never assume
+   a premium window is open because a pin names the model.
+4. **Surface:** packaged roster pins deliver model + effort via frontmatter; a generic spawn
+   inherits the session's effort — state "effort: session-inherited" per spawn. If the route's
+   effort ≠ session effort and no pin matches, that is a reason to take the fallback, not a
+   caveat to state (CONTRACT §3).
+5. **Fit + record:** one line per spawn — agent/type · model · effort (+ how it arises) ·
+   surface · task class · why, citing the ROUTES row or W-ID
+   ([references/WARRANTS.md](references/WARRANTS.md), load on demand). Honor the warrant:
+   Contested/Conjecture/CANDIDATE/PARKED rows are probes to run, not priors to trust.
+6. **Post-mortems** belong to the canonical package (its `probes/`), not this artifact — note
+   the outcome and carry it home.
+
+Label vocabulary: [references/EPISTEMICS.md](references/EPISTEMICS.md).

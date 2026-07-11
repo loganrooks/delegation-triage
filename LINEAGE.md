@@ -23,8 +23,12 @@ discoverable-by-accident.
 
 ## adapters/ (platform packaging — core stays platform-agnostic)
 
+All three targets deploy via the multi-target installer (`install.py`, added 2026-07-10:
+`claude-code` | `cowork` | `codex`, each with `--check`/`--dry-run`); deploys remain recorded
+deployments stamped in `agents/MANIFEST.md`.
+
 | adapter | target | status |
 |---|---|---|
-| `adapters/claude-code/` | skill + agents + guard hook install into `~/.claude` | Stage-2: documented manual install (INSTALL.md) |
-| `adapters/cowork-plugin/` | plugin build (plugin.json + agents/ + skills/) — replaces the 2026-07-10 GPT-5.6-Pro fork as the Cowork surface | Stage-3: build owed; requirements noted |
-| `adapters/codex/` | consumer guidance ("read ROUTES/STATE before delegating to Claude") | Stage-3: note owed |
+| `adapters/claude-code/` | skill + agents install into `~/.claude` (guard hook pre-existing) | scripted (`install.py claude-code`; INSTALL.md documents) |
+| `adapters/cowork-plugin/` | generated plugin zip — replaces the 2026-07-10 GPT-5.6-Pro fork as the Cowork surface; ships no volatile state (graceful degradation, project-side STATE) | built (`install.py cowork` → `dist/`; 0.3.0) |
+| `adapters/codex/` | consumer guidance fragment ("read ROUTES/STATE before delegating to Claude") | built (`install.py codex`; template in-dir) |

@@ -51,7 +51,8 @@ those repos; the quoted excerpts freeze the warrant base and new evidence then c
 
 - **Claude Code:** load as a skill (SKILL.md wrapper); roster deploys to `agents/`; the
   spawn-triage guard reads STATE.md. Roster changes register at session START — deploys require a
-  restart to take effect.
+  restart to take effect. Deploy via `python3 install.py claude-code` (also: `cowork` builds the
+  plugin, `codex` emits the consumer fragment; every deploy stamps `agents/MANIFEST.md`).
 - **Cowork / sandboxed sessions:** user-level skills and roster pins do not load; read
   ROUTES/STATE/CONTRACT as project files, run `check_state.py` from the shell, and state per spawn
   that generic-spawn effort inherits the session (CONTRACT §3).

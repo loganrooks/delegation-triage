@@ -1,0 +1,21 @@
+# Delegation-triage consumer note (Codex / non-Claude drivers)
+
+Generated from the canonical delegation-triage package at `{{PACKAGE_HOME}}` — regenerate via
+`python3 install.py codex` when the package moves.
+
+Before delegating work to a Claude executor:
+
+1. Read `{{PACKAGE_HOME}}/ROUTES.md` (task class → model × effort route | fallback) and
+   `{{PACKAGE_HOME}}/STATE.md` (active profile, scarcity mode, expiry).
+2. Run `python3 {{PACKAGE_HOME}}/check_state.py` — any expired entry is **Unchecked, never
+   true**: re-verify it or route on the ROUTES Fallback column.
+3. Pick a spawn surface that can actually deliver the route's model × effort pair —
+   `{{PACKAGE_HOME}}/CONTRACT.md` §3's table names which knobs each surface can pin. If your
+   surface cannot pin effort, state "effort: session-inherited" and treat effort-critical
+   routes as fallback cases.
+4. State the fit, one line per spawn: agent/type · model · effort (+ how it arises) · surface ·
+   task class · why, citing the ROUTES row or W-ID.
+5. Rows marked Contested / Conjecture / CANDIDATE / PARKED are probes to run, not priors to
+   trust — read the cited W-record in `{{PACKAGE_HOME}}/WARRANTS.md` first.
+6. Record outcomes; post-mortems edit the canonical package's surfaces and append to its
+   `probes/` in the same pass.
