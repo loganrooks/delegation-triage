@@ -19,6 +19,7 @@ target, re-hash (`shasum -a 256 agents/*.md`), update the deployments table, res
 | implementer.md | opus × xhigh | 1d28f514220af29a0fb50df367eac0cf8edfec29913323fd4ef6bafdd1420fa2 | W-004 |
 | implementer-light.md | opus × high | f2f1d3355500523275f0567038889b33b02c2ea670b24aaee1edaba5aced36fa | W-005; sonnet demotion probe open (count 1/3) |
 | orchestrator.md | fable × high | 39bcd0c45edb246dd75cd9baa32614ff4aaeceaed300bc654d6c7a55161aff14 | minted 2026-07-10 after the effort-inheritance firing; post-window pin adjudication OWED (STATE.md) |
+| advisor.md | fable × xhigh, tool-less | 6f1811a5b7f46a36444d66db7da2d0e12e15a216734f6ce8a94ff20485598250 | adopted 2026-07-10 from the Cowork `delegation-roster` fork 0.2.2 (its advisor.md sha `3d3eae34…76e766`), operator-claimed design; route R15 (CANDIDATE, W-022). Basis: subagent advisor = plaintext on any model (tool caveats out of scope); xhigh reason: single bounded turn, judgment-dense checkpoint. Disconfirmer: R15's owed local probe (incl. high-vs-xhigh pair) grading advice quality/actionability — parity at high demotes the pin. Window management is project-side (graceful degradation, operator 2026-07-10): no dates in the definition |
 
 Excluded from the roster migration: `knowledge-store.md` (a reference specification that was
 sitting in the deployment directory, not an agent definition — left where it lives; flagged for

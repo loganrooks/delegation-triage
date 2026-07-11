@@ -25,6 +25,7 @@ a roster pin or a per-call `{model, effort}` surface — generic spawns inherit 
 | R12 | Browser-automation legs (hostile web surfaces) | **CANDIDATE — Class B, unadjudicated:** sonnet-5 high, extended thinking ON | session model (current practice stands) | W-012 |
 | R13 | Multi-lane wave orchestration (design + synthesis of a delegated wave) | **fable high** (`orchestrator` pin; enumerated class) | opus xhigh + reviewer gate on the synthesis, stated reason | W-002 |
 | R14 | Advisor-augmented executor lanes (long-horizon lanes where most turns are mechanical but the plan is crucial) | **CANDIDATE — unadjudicated, no local probe:** sonnet executor + **opus-4.8 advisor** (plaintext = auditable advice; a fable advisor via the advisor TOOL is encrypted — fails transcript-ground-truth unless the advice is expendable; scope: the tool only — an advisor SUBAGENT returns plaintext on any model, W-022) | run the lane per its base class row | W-022 |
+| R15 | Strategy checkpoint (advice-only, curated snapshot, single bounded turn) | **CANDIDATE — fable xhigh** (`advisor` pin; subagent → plaintext on any model, distinct from R14's tool; xhigh reason: single turn pays effort once, judgment-dense; local probe owed, incl. a high-vs-xhigh pair) | opus xhigh | W-022 |
 
 **Class discriminator (R1 vs R7):** R1 = a VERDICT on a finished artifact (gate); R7 =
 verification embedded in a reading/synthesis task. "Adversarially verify X" where X ships → R1;
