@@ -1,7 +1,9 @@
 # LINEAGE — where this repo comes from, and what stays behind
 
 **Minted:** 2026-07-10, Stage-2 execution of SEAS ADR-0022 (operator A4 GO + same-day home
-decision; amending record: SEAS ADR-0024). Canonical home for the `delegation-triage` package:
+decision; amending record: SEAS ADR-0024). **Origin:** `loganrooks/delegation-triage` (GitHub,
+public + MIT since 2026-07-10) — identity = name + origin per the KNOWN-REPOS convention; the
+local working copy is a clone, not the identity. Canonical home for the `delegation-triage` package:
 routing doctrine (ROUTES/STATE/WARRANTS/CONTRACT/EPISTEMICS), roster (`agents/`), evidence loop
 (`probes/`), checks (`check_state.py`, `check_wids.py`).
 

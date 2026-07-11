@@ -7,8 +7,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 The canonical home of the `delegation-triage` package: evidence-graded routing doctrine for
 delegating work to subagents (model × effort routes), the canonical agent roster, and the
 package's own evidence loop. It is almost entirely Markdown plus stdlib-only Python scripts
-(two checks + a multi-target installer). No dependencies, no test framework — the checks below
-are the CI. `dist/` is generated output (untracked).
+(two checks + a multi-target installer). No dependencies, no test framework — the check scripts
+ARE the CI (`.github/workflows/ci.yml` runs them as build gates on every push/PR to `main`;
+note an expired STATE.md entry fails CI by design). Public repo (`loganrooks/delegation-triage`,
+MIT); releases are tag-driven (`v*` → CI builds the Cowork plugin and attaches it). `dist/` and
+`.planning/` are untracked (generated output / maintainer drafts).
 
 ## Commands
 

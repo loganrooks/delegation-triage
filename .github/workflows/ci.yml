@@ -1,0 +1,29 @@
+name: checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Syntax
+        run: python3 -m py_compile check_state.py check_wids.py install.py
+      # STATE expiry is a BUILD FAILURE by design — the P-D5 escalation from
+      # convention to enforced gate (README dogfood block). An expired entry
+      # means the volatile surface lags reality; fix STATE, don't skip the check.
+      - name: State expiry gate
+        run: python3 check_state.py
+      - name: Evidence integrity
+        run: python3 check_wids.py
+      - name: Plugin build + determinism
+        run: |
+          python3 install.py cowork
+          python3 install.py cowork --check
+          python3 install.py claude-code --dry-run
+          python3 install.py codex > /dev/null
