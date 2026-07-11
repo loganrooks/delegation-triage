@@ -442,7 +442,12 @@ a row** [W-019].
   **fable/mythos advisors return ENCRYPTED advice** (`advisor_redacted_result` — the executor
   reads it server-side; the client/audit trail cannot); **opus-4.8 advisors return plaintext** —
   under this package's transcript-ground-truth discipline, an auditable opus advisor is preferred
-  wherever the advice is load-bearing. Measured vendor datum: *"pairing a Sonnet executor at
+  wherever the advice is load-bearing. **Scope (added 2026-07-10, operator-prompted):** these
+  encryption/reliability facts attach to the advisor **TOOL** (`advisorModel`, API/harness level)
+  ONLY — an advisor **subagent** (an agent pinned to the role, e.g. the Cowork fork's `advisor`)
+  returns ordinary plaintext agent output on ANY model, and is the functional equivalent where
+  the tool is unavailable or broken; do not extend tool caveats to agent-based advisors (a driver
+  made exactly that over-extension during the 2026-07-10 Cowork fork diff — operator-caught). Measured vendor datum: *"pairing a Sonnet executor at
   medium effort with an Opus advisor achieves intelligence comparable to Sonnet at default
   effort, at lower cost"* (feeds W-016's dial economics). Executor-specific steering: nudge
   +7 pp on Haiku, ≈0 on Sonnet, slightly negative on Opus — evidence that **routing/steering
