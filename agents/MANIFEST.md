@@ -13,7 +13,7 @@ target, re-hash (`shasum -a 256 agents/*.md`), update the deployments table, res
 
 | definition | model × effort | sha256 | provenance |
 |---|---|---|---|
-| reviewer.md | fable × high (SCHEDULED FLIP → opus × high at 2026-07-12, STATE.md) | a9b8d34381f7c25a9beb8942b5221e192e80506fd6a31b23f23864088c37f103 | adopted verbatim from the 2026-07-10 `~/.claude` state; pin per ADR-0022 A3 |
+| reviewer.md | fable × high (SCHEDULED FLIP → opus × high at 2026-07-19 <!--vf:fable-window-->, STATE.md) | a9b8d34381f7c25a9beb8942b5221e192e80506fd6a31b23f23864088c37f103 | adopted verbatim from the 2026-07-10 `~/.claude` state; pin per ADR-0022 A3 |
 | explorer.md | opus × high, read-only | abf2e469019ad052aca1011e16a660c3419bba3f705bb4c896ae905fc9290199 | carries the 2026-07-10 operator correction (facts + follow-ups, never judgments) |
 | explorer-light.md | sonnet × medium, read-only | 4389ba1abcc7f53113da1f6e46d65b990531fdd973fd2532e95e412e2f580413 | minted 2026-07-05 as the sonnet-medium probe instrument (W-006) |
 | implementer.md | opus × xhigh | 1d28f514220af29a0fb50df367eac0cf8edfec29913323fd4ef6bafdd1420fa2 | W-004 |

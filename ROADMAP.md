@@ -7,7 +7,7 @@ that path.)
 
 ## Near-term (window close)
 
-1. **2026-07-12 — reviewer pin flip** (SEAS ADR-0022 D3, first exercise of the scheduled-flip
+1. **2026-07-19 <!--vf:fable-window--> — reviewer pin flip** (SEAS ADR-0022 D3, first exercise of the scheduled-flip
    mechanism): `agents/reviewer.md` fable → opus at the fable-window close; scarcity mode →
    no-fable; ROUTES fable rows re-checked in the same pass; recorded in `probes/` as an
    availability event. *(STATE.md, Scheduled items.)*
