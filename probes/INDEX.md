@@ -38,3 +38,4 @@ the source of truth; a records→counter script check is deferred until first ob
 | [2026-07-05-sonnet-medium-sweep-probe](records/2026-07-05-sonnet-medium-sweep-probe.md) | sweeps (effort) | 07-05 | workflow journal + archived lanes |
 | [2026-07-10-survey-orchestrator-routing-postmortem](records/2026-07-10-survey-orchestrator-routing-postmortem.md) | R13 routing post-mortem (first `router:`-logged record) | 07-10 | run audit, operator-caught |
 | [2026-07-10-stage2-execution-routing-override](records/2026-07-10-stage2-execution-routing-override.md) | routing post-mortem | 07-10 | session transcript + operator messages |
+| [P-20260712-signal-layer-proposal-f-review-pair](records/P-20260712-signal-layer-proposal-f-review-pair.md) | review gates (cross-tier, deviated: author-adjudicator; operator-directed opus leg) | 07-12 | parent-session transcript + committed synthesis (signal-layer b3aea1b) |
