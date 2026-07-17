@@ -11,7 +11,7 @@ a roster pin or a per-call `{model, effort}` surface — generic spawns inherit 
 
 | # | Task class | Route | Fallback (no-fable) | Warrants |
 |---|---|---|---|---|
-| R1 | Review gates / adversarial verification | **fable high** (`reviewer` pin) — keep ≥2 independent lenses on high-stakes artifacts | opus high; xhigh per stated reason | W-001, W-019 |
+| R1 | Review gates / adversarial verification | **fable high** (`reviewer` pin) — keep ≥2 independent lenses on high-stakes artifacts · **cross-vendor lens CANDIDATE:** `sol-code-reviewer` (gpt-5.6-sol high) for code / `sol-design-reviewer` (xhigh) for design — gateway (`claudex`) sessions only; n=1 deviated known-answer datum (P-20260717-sol-b20: blind catch of the hardest MAJOR w/ executable repro, 0 false positives); operator-favored esp. under fable scarcity | opus high; xhigh per stated reason | W-001, W-019 |
 | R2 | Architecture / design / contract & rubric authoring | **fable high** | opus xhigh + reviewer gate | W-002 |
 | R3 | Front-end design | **fable high** | opus xhigh | W-003 |
 | R4 | Coding / agentic implementation | **opus xhigh** (`implementer` pin) | same | W-004, W-020 |

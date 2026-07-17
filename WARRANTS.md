@@ -69,9 +69,18 @@ a row** [W-019].
   variance stays high. Counter to date: approximately-met-but-confounded ×2 (07-03 gate; K1
   deviated) → NO demotion. Direction fable-vs-opus on this class: **Contested** pending the
   operator triage initiative (2026-07-03).
-- **Probe tally:** attested-clean 3 · attested-deviated 3 · self-reported 0 — scope: ALL probes
+- **Probe tally:** attested-clean 3 · attested-deviated 4 · self-reported 0 — scope: ALL probes
   feeding this warrant, incl. the within-tier regate pair; the demote counter in probes/INDEX.md
   scopes to cross-tier firings only (2 clean / 3 deviated) — reconciled 2026-07-10, review F1.
+  New 2026-07-17 (deviated: blinding breach + author-adjudicator): first cross-VENDOR datum on a
+  CODE-review artifact — `sol-code-reviewer` (gpt-5.6-sol high) known-answer test vs the B20
+  fable+codex ground truth (probes/records/P-20260717-sol-code-reviewer-b20-known-answer.md):
+  blind-clean catch of the hardest item (fable's cross-lane MAJOR, WITH an executable repro no
+  other lane produced) + the doc-drift minor; 0 false positives; 0/6 fable minors; the other
+  matches contaminated by a worktree-refs blinding breach. Thins the "code review thin" downgrade
+  by one datum; supports the independence>tier direction; NOT yet routing-changing (n=1,
+  deviated). Protocol lesson: known-answer trees must be `git archive` exports, never worktrees
+  (shared refs expose the answer via `git log --all`).
 
 ### W-002 — Architecture / design / contract & rubric authoring: fable high
 - **Claim:** Durable-artifact authoring (contracts, rubrics, designs) is where fable's judgment
