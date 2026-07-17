@@ -17,7 +17,7 @@ a roster pin or a per-call `{model, effort}` surface — generic spawns inherit 
 | R4 | Coding / agentic implementation | **opus xhigh** (`implementer` pin) | same | W-004, W-020 |
 | R5 | Mechanical, fully-specified edits | **opus high** (`implementer-light` pin); sonnet = open demotion probe | same | W-005 |
 | R6 | Sweeps / retrieval | **sonnet high** (`explorer-light` runs the medium probe); diverse lanes over higher tier | same | W-006 |
-| R7 | Deep-read / adversarial verify / synthesis | **opus high**; xhigh per stated reason | same | W-007, W-016 |
+| R7 | Deep-read / adversarial verify / synthesis | **sonnet high** default (`explorer` pin re-pointed 2026-07-17, operator ruling — sonnet-first, harness carries the discipline); escalate **opus high** per stated judgment-discrimination reason (adversarial refutation, methods adjudication, many-source conflicting synthesis); xhigh per stated reason. Escalation is evidence-driven: cheap-tier output failing review = the trigger | same | W-007, W-016, W-023 |
 | R8 | Hardest frontier forks | **fable xhigh**; `max` reserved | opus xhigh + multi-lens panel | W-008, W-017 |
 | R9 | Sonnet 5 at xhigh | **AVOID pending probe** (cost-efficiency posture, not a capability claim) | — | W-009 |
 | R10 | Structured epistemics compilation (claim → typed record) | **opus xhigh** or cross-vendor xhigh; sonnet candidate for kind-typing ONLY | same | W-010 |

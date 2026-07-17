@@ -496,3 +496,23 @@ a row** [W-019].
 - **Flip condition:** a methods read showing the theorem's idealizations exclude our setting, or
   domain-transfer failure evidence → downgrade the heuristic to taste and say so in CONTRACT §1.
 - **Probe tally:** n/a (design-basis record).
+
+### W-023 — R7 sonnet-first default (operator ruling)
+- **Claim:** deep-read/exploration lanes default to **sonnet high** (`explorer` pin re-pointed
+  from opus/high); opus is a per-call escalation requiring a stated judgment-discrimination
+  reason (adversarial refutation, methods adjudication, many-source conflicting synthesis) or
+  evidence (cheap-tier output failed review). The harness — the pin's claim-discipline contract
+  (source-per-claim, declared blind spots, facts-not-judgments) — is what carries baseline
+  quality, per the "default down, harness up" doctrine now applied to R7 itself.
+- **Label · grade:** Operator ruling (2026-07-17, Bridgewright session) · policy, not a
+  measured capability claim. Consistent with prior signal: W-006 (diverse sonnet lanes over
+  higher tier for sweeps) and the observed pattern that explorer-light (sonnet/medium) lanes
+  repeatedly survived main-loop spot-checks on load-bearing numbers (refresh #3/#4,
+  2026-07-10/17, bridgewright). No paired sonnet-vs-opus probe on the R7 class yet.
+- **Locators:** `~/.claude/agents/explorer.md` (pin frontmatter + description, 2026-07-17);
+  bridgewright refresh #4 spot-check record (`docs/competitive/2026-07-17-competitive-refresh-4.md`).
+- **Flip condition:** a sonnet R7 lane failing main-loop verification on a load-bearing claim
+  that a paired opus lane (identical harness) gets right → restore opus default or add a
+  class-specific carve-out; run the paired probe at the next naturally-arising deep-read
+  fan-out (no bespoke spend).
+- **Probe tally:** 0 paired on R7 proper; adjacent evidence only (explorer-light spot-checks).
