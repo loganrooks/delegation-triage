@@ -85,6 +85,15 @@ a row** [W-019].
   routing-changing (n=1, deviated). Protocol lessons: known-answer trees must be `git archive`
   exports, never worktrees (shared refs expose the answer via `git log --all`); paired review
   legs must run IDENTICAL prompt text or the minors axis is uninterpretable.
+  Second 2026-07-17 datum (deviated: author-adjudicator ONLY — blinding, prompt-parity, and
+  frozen-tree all clean): fable×sol paired review of B16 under a byte-identical charter
+  (probes/records/P-20260717-sol-fable-b16-paired-review.md): substance convergent on the top
+  MAJOR (both with own httpx probes), verdicts split on severity calibration only
+  (DO-NOT-SHIP vs SHIP-WITH-FIXES); **sol-unique second MAJOR fable missed** (version-suffix
+  parser mangling old-style arXiv ids), fable-unique subtler test/namespace defects; the B20
+  minors gap CONFIRMED prompt-caused (sol produced 5 polish-tier findings once in scope).
+  sol-code-reviewer n=2, zero false positives across both. Independence>tier further
+  corroborated cross-vendor at same tier/effort.
 
 ### W-002 — Architecture / design / contract & rubric authoring: fable high
 - **Claim:** Durable-artifact authoring (contracts, rubrics, designs) is where fable's judgment
