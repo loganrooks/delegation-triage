@@ -40,7 +40,7 @@
 | codex P2-2: shared `arxiv.Client` cross-thread `requests.Session` | YES (sol MAJOR-4) | **contaminated at repro time** (call 54 > 42); strong pre-42 evidence of independent pursuit: call 30 WebFetched the arxiv-py 2.4.0 source specifically for Client session/delay state — scored partial |
 | codex P2-3: README/CHANGELOG doc drift | YES (sol MINOR-5) | **CLEAN** — found at calls 38–41 (< 42); sol additionally cited the AGENTS.md changelog requirement, which codex did not |
 | codex round-2: lock must be held until worker exits (cancellation hole) | anticipated (sol MAJOR-3: orphaned `to_thread` worker survives handler cancellation; "keep an index-exclusion lock held until the worker—not merely the handler coroutine—actually exits") | **CONTAMINATED** — stated after reading `be329f4`, whose commit HEADLINE is literally "hold the reindex lock until the worker exits"; no pre-42 evidence. (Note the answer key excluded this one anyway: the specific hole was introduced by fix commit `e291eb5`. Sol's variant — no lock at all at `2c324ac`, so an orphaned worker overlaps anything — is real at the reviewed tree but largely subsumed by MAJOR-2.) |
-| fable minors 2–7 (6 items) | 0/6 reported | n/a — sol reported no equivalents |
+| fable minors 2–7 (6 items) | ~1/6: sol's MAJOR-4 IS the substantive core of fable's MINOR-4 (shared cross-thread `requests.Session`), elevated a tier; the other 5 unmatched | see the prompt-confound amendment below — the minors axis of this probe is CONFOUNDED |
 
 **Clean-catch summary: 2/5 answer-key items caught demonstrably blind (incl. the single
 hardest one, fable's MAJOR-1, with a working repro fable itself did not produce); 2 more
@@ -66,6 +66,28 @@ code reading; codex from inspection).
   2. Author-adjudicator (same session built the fixes being used as ground truth).
   3. Single leg, not paired; answer key stands in for the comparison legs.
   4. Cost leg unobservable (gateway token reporting absent).
+  5. **PROMPT CONFOUND on the minors axis (operator-caught, amended 2026-07-17).** The
+     sol prompt was NOT the fable prompt. Verbatim comparison (both prompts on disk —
+     fable's in the parent-session pre-compaction transcript, sol's in this record's
+     attestation) shows three asymmetries: (a) fable's prompt contained finding-grain
+     leading questions that directly cue ≥3 of its 6 minors — "is recording on
+     StopIteration/exception ever WRONG, e.g. double-counting when the library made zero
+     requests?" = NIT-7; tests "pin … single shared clock across lanes" = MINOR-2;
+     "client swap changing page_size behavior" cues MINOR-4's docstring half — sol got
+     an uncued 4-point charter; (b) sol's prompt SUPPRESSED polish-tier findings by rule
+     ("every finding must carry … a CONCRETE failure scenario … No vague 'could be a
+     problem' findings") — docstring drift and cosmetic races cannot satisfy it; that
+     clause likely bought the 0-false-positive result AND the minors deficit; (c) fable
+     was ordered to rank on an explicit VITAL/MAJOR/MINOR/NIT ladder, sol's ladder was
+     mentioned once in passing. RESIDUAL non-prompt gap: fable's MINOR-3, MINOR-5, and
+     NIT-6 were uncued in fable's prompt too and sol matched none. The MAJORs axis is
+     NOT confounded in sol's favor — the leading questions, had they mattered there,
+     would cut the other way (fable's prompt also cued the concurrency attack surface).
+     **Scoring correction:** "0/6 fable minors" overstated — sol's MAJOR-4 is the
+     substantive core of fable's MINOR-4 elevated a tier, so ~1/6 matched, 5 unmatched
+     of which 3 are prompt-confounded. **Design rule for the next firing: IDENTICAL
+     prompt text across lanes (or the connector-style zero-shot floor for both); a
+     known-answer probe's minors axis is uninterpretable without it.**
 - record locator(s) + minimal verbatim excerpt(s):
   - Sol final verdict (from the transcript): "VERDICT: DO-NOT-SHIP … a forced interleaving
     reproduced a 0.000024s gap with a configured 0.300s interval."

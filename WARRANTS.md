@@ -76,11 +76,15 @@ a row** [W-019].
   CODE-review artifact — `sol-code-reviewer` (gpt-5.6-sol high) known-answer test vs the B20
   fable+codex ground truth (probes/records/P-20260717-sol-code-reviewer-b20-known-answer.md):
   blind-clean catch of the hardest item (fable's cross-lane MAJOR, WITH an executable repro no
-  other lane produced) + the doc-drift minor; 0 false positives; 0/6 fable minors; the other
-  matches contaminated by a worktree-refs blinding breach. Thins the "code review thin" downgrade
-  by one datum; supports the independence>tier direction; NOT yet routing-changing (n=1,
-  deviated). Protocol lesson: known-answer trees must be `git archive` exports, never worktrees
-  (shared refs expose the answer via `git log --all`).
+  other lane produced) + the doc-drift minor; 0 false positives; ~1/6 fable minors (amended —
+  sol's MAJOR-4 = fable's MINOR-4 elevated; the remaining minors gap is PROMPT-CONFOUNDED:
+  fable's prompt cued ≥3 of its minors via leading questions and sol's prompt suppressed
+  polish-tier findings by rule — operator-caught, record §deviations item 5); the other matches
+  contaminated by a worktree-refs blinding breach. Thins the "code review thin" downgrade
+  by one datum; supports the independence>tier direction on the MAJORs axis only; NOT yet
+  routing-changing (n=1, deviated). Protocol lessons: known-answer trees must be `git archive`
+  exports, never worktrees (shared refs expose the answer via `git log --all`); paired review
+  legs must run IDENTICAL prompt text or the minors axis is uninterpretable.
 
 ### W-002 — Architecture / design / contract & rubric authoring: fable high
 - **Claim:** Durable-artifact authoring (contracts, rubrics, designs) is where fable's judgment
