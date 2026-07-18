@@ -94,6 +94,15 @@ a row** [W-019].
   minors gap CONFIRMED prompt-caused (sol produced 5 polish-tier findings once in scope).
   sol-code-reviewer n=2, zero false positives across both. Independence>tier further
   corroborated cross-vendor at same tier/effort.
+  Third 2026-07-17 datum (SEQUENTIAL lanes, NOT paired — no dominance reading; lane-yield only;
+  probes/records/P-20260717-sol-fable-b23-sequential-lanes.md): B23 (model2vec backend swap +
+  index guards). sol on the round-1 tree: 7 findings incl. 2 VITAL (upsert TOCTOU w/ threaded
+  repro; same-dim model-switch space mixing), all accepted, **0 false positives — streak now
+  n=3**. fable on the cumulative round-2 tree: the sharpest catch (reindex clear=true deletes
+  the index before probing the model loads — data loss on the change's own remediation path)
+  + 1 refuted finding (0.8.0 floor, first-hand source check). codex connector: unique
+  force_download catch. Three-lane diversity again ≥1 unique accepted catch per lane. sol's
+  VITAL yield on concurrency/data-integrity surfaces now demonstrated twice.
 
 ### W-002 — Architecture / design / contract & rubric authoring: fable high
 - **Claim:** Durable-artifact authoring (contracts, rubrics, designs) is where fable's judgment
