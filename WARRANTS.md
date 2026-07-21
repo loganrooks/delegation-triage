@@ -546,4 +546,8 @@ a row** [W-019].
   that a paired opus lane (identical harness) gets right → restore opus default or add a
   class-specific carve-out; run the paired probe at the next naturally-arising deep-read
   fan-out (no bespoke spend).
-- **Probe tally:** 0 paired on R7 proper; adjacent evidence only (explorer-light spot-checks).
+- **Probe tally:** 0 paired on R7 proper; adjacent evidence only (explorer-light spot-checks;
+  + P-20260720 logs-verification triad — sonnet clears the claims-discipline bar at both medium
+  and high on an R7 filesystem-verification task, haiku fails it (overclaim + missed the one real
+  discrepancy) → floor stays sonnet, not haiku, for judgment-bearing R7; no opus leg, so the
+  sonnet-vs-opus flip tally is untouched).
