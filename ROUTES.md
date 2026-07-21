@@ -36,7 +36,12 @@ harness handles `stop_reason: refusal` or opts into fallback (W-013) · **any un
 handles refusal on ALL three models** — sonnet-5 has its own HTTP-200 refusal surface (W-013) ·
 ZDR / no-30-day-retention workloads ⇒ **fable excluded** (W-013) · every fable route and every
 ingested fable benchmark states its **fallback configuration** (W-014) · fixed-step
-transformations prefer scripts over agents (W-021; CONTRACT §2).
+transformations prefer scripts over agents (W-021; CONTRACT §2) · **judgment floors at sonnet:**
+where the deliverable is a claims-discipline verdict (R7 verification; the judgment layer of any
+task), do NOT route below sonnet — haiku carries coverage but fails the judgment layer
+(P-20260720 logs-verification triad, n=1 post-hoc: haiku overclaimed and missed the one
+load-bearing discrepancy, while both sonnet legs caught it and scoped what they could not check).
+Pure coverage / retrieval (R6) is not covered by this floor.
 
 **Cowork/consumer note:** where no pin or per-call effort surface exists (Cowork), the effort
 column is ADVISORY — generic spawns inherit session effort; state "effort: session-inherited" per
