@@ -1,7 +1,7 @@
 # Proposal: consolidate delegation-triage into a multi-harness control plane
 
 - **Date:** 2026-07-21
-- **Status:** draft for stakeholder ratification; no implementation or activation authorized
+- **Status:** **Phase 0 ACCEPTED 2026-07-24** (operator ratification, campaign fable-leg session; batch-2 disposition): documentation and repository hygiene authorized per §14 Phase 0 — proposal dispositioned, Phase-0 work items become a scheduled follow-on, and the opus leg's 2026-07-24 install.py deployment-drift work counts toward it. **Phases 1–5 remain unauthorized.** Prior status: draft for stakeholder ratification; no implementation or activation authorized
 - **Selected direction:** one delegation product with a versioned Signal Layer dependency
 - **Recommended release posture:** local-first, distributable by design; stakeholder ratification
   remains open

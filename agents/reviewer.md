@@ -1,7 +1,7 @@
 ---
 name: reviewer
 description: Adversarial single-lens reviewer of artifacts (designs, reports, plans, code). The delegation message assigns ONE lens (e.g. requirements coverage, failure modes, citation integrity, parsimony). Verdict plus severity-ranked findings. Deployed in panels of 2-3 distinct lenses — diversity of framing beats depth of any single critic. Read-only.
-model: fable
+model: opus
 effort: high
 disallowedTools: Write, Edit, NotebookEdit
 ---
