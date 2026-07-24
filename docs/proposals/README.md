@@ -18,7 +18,10 @@ The portfolio-level review is now the
 [2026-07-24 Fable portfolio decomposition review](../reviews/2026-07-24-portfolio-decomposition-fable-review.md):
 verdict REVISE (two products, not three artifacts), dispositions of the root session's
 recommendations R-A–R-F, four operator decisions (D-1…D-4), and the ordered next-phase
-decomposition. It awaits operator disposition; nothing in it is self-authorizing.
+decomposition. Disposition so far: **D-3 decided 2026-07-24 — the runtime moved to its own
+`delegation-runtime` repository** (see the review's addendum), which also resolved the D-6
+ci.yml coupling as "neither". D-1, D-2, and D-4 remain open; nothing else in it is
+self-authorizing.
 
 ## Orientation documents
 

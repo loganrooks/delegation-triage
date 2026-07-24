@@ -410,3 +410,21 @@ not another review round.
 4. **Packet §3.2's citation figure** (SG-2): a measurement without its method, inside a packet
    enforcing exactly that standard — small, and worth naming because the standard is the product
    (Q2).
+
+---
+
+## Addendum — dispositions received (2026-07-24, same day)
+
+- **D-3 (runtime home): DECIDED — own repo.** Operator disposition in-session; executed same
+  day. The untracked `adapters/codex/` runtime trees (8,935 Python lines) moved byte-identically
+  to the new `delegation-runtime` repository (KNOWN-REPOS prefix `delegation-runtime:`; local
+  hint in the WARRANTS key), first commit `ede6467`, all 307 tests green at the new location
+  (223 claude + 10 antigravity + 74 policy; the antigravity suite is layout-sensitive —
+  `parents[4]` root computation — so the `adapters/codex/` prefix is preserved there,
+  flatten registered as that repo's first refactor). **D-6 thereby resolved "neither"** per
+  item C-2: the uncommitted `ci.yml` adapter-step edit was reverted here and the step lives in
+  the new repo's CI. C-1 (runtime charter) seeded as that repo's README, including the
+  operator's 2026-07-24 vision register (multi-target bindings, fleet-affordance profile,
+  minimal-roster projections).
+- **D-1, D-2, D-4: still open.**
+- Doc corpus + this review landed on `main` at `7f88591` (same day).

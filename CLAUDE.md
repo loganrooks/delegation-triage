@@ -101,11 +101,13 @@ manifest table in the same commit.
   and `references/routing-table.md` are exempt from W-ID/link checks (archives + stubs).
 - **Profile ↔ pin coupling:** a profile delta that changes a pinned route also needs the pin's
   frontmatter edited — flip both in one commit.
-- **Commit coupling — tracked changes that depend on untracked trees (review D-6):** `ci.yml`'s
-  adapter-test step requires `adapters/codex/**`, which is untracked. Committing the tracked set
-  alone lands a CI step whose test directory does not exist and breaks `main`. **Land them in one
-  commit or neither.** Generally: before committing, check whether a tracked change references a
-  path `git ls-files` does not return.
+- **Commit coupling — tracked changes that depend on untracked trees (review D-6, RESOLVED
+  2026-07-24 as "neither"):** the instance — an uncommitted `ci.yml` adapter-test step requiring
+  the untracked `adapters/codex/**` runtime trees — was resolved by operator decision D-3: the
+  runtime moved to its own repo (`delegation-runtime:` in the WARRANTS KNOWN-REPOS key) taking
+  the CI step with it; the `ci.yml` edit was reverted here. The general rule stands: before
+  committing, check whether a tracked change references a path `git ls-files` does not return —
+  land them in one commit or neither.
 - **Deploy classification (review D-8):** `install.py <target> --check` reports `OK` / `BEHIND` /
   `DRIFT?` / `DIVERGED` / `MISSING` / `EXTRA` and exits non-zero **only on `DIVERGED`**.
   `BEHIND` (deployed bytes existed at some commit) and `MISSING` (never deployed) are normal lag

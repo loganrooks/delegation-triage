@@ -26,6 +26,7 @@ a row** [W-019].
 | `SEAS:` | loganrooks/SelfEvolvingAgentialSystems | ~/Projects/SelfEvolvingAgentialSystems |
 | `claude-user-dir:` | (untracked user dir — deployment target, weakest provenance class) | ~/.claude |
 | `routing-evidence:` | (no remote — local-only, flagged) | ~/Projects/routing-evidence |
+| `delegation-runtime:` | (no remote yet — local-only, flagged; Product 2 of the 2026-07-24 split, moved out per portfolio-review D-3) | ~/Projects/delegation-runtime |
 
 ---
 
