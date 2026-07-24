@@ -34,3 +34,9 @@ the operator to relocate).
 | `~/.claude/agents/` (superseded) | 2026-07-10 @ `0fa9ee8` (install.py claude-code — first scripted deploy) | roster: 7 definitions incl. `advisor` (new; hashes = canonical table above); skill home `~/.claude/skills/delegation-triage/` current @ `0fa9ee8` (31 files, `install.py claude-code --check` clean); **restart pending at stamp time** — advisor registers at next session START. History: Stage-2 deploy from `14c3311` same day (routing-table archived, guard re-pointed to STATE.md); ROUTES+WARRANTS interim re-sync @ `cf95ea1` |
 | SEAS `harness/agents/` | 2026-07-10 | superseded records (marked in-file per ADR-0010 convention); TRIAGE.md re-scoped to consumer-side pointer + overlay |
 | Cowork `delegation-roster` plugin (installed) | — | **UNRECONCILED FORK, discovered 2026-07-10:** a GPT-5.6-Pro repackaging of the PRE-package routing table + probe corpus (its routing-evidence.md cites the same bridgewright/prix-guesser/signal-layer records) — 7 agents (ours + an `advisor` @ fable/**xhigh**) + a skill with a routes/evidence split but **NO STATE layer** (volatile facts deliberately omitted → no expiry mechanism; its fable pins will silently outlive the 07-12 window — the C-012 failure mode in a third home). Stage-2 reconciliation owed: regenerate from canonical or diff-and-stamp; until then it is a live drifting copy in exactly the environment (Cowork) the proposal diagnosed as blind. |
+
+## Recorded deployments
+
+| date | artifact | sha256 | source commit | notes |
+|---|---|---|---|---|
+| 2026-07-24 | dist/delegation-roster-0.3.0.plugin (Cowork) | e21a552c19828b4f7b8d2c66414668e31815456da4c1c06f383f2c866d6d5798 | 29c4461 | rebuilt post R1-reroute + fable-permanent; carries the 15-row ROUTES incl. R14/R15; stale opus-4-8 references gone (verified by unpack-grep). Delivered to operator for Cowork-UI install — INSTALL PENDING, sessions pick it up after install |

@@ -72,3 +72,5 @@ worth having.
 R4's default effort and the `implementer` pin frontmatter must flip **in the same commit** if this
 probe ever moves the row (CLAUDE.md, profile ↔ pin coupling). The pin is what actually spawns;
 ROUTES is what is read.
+
+**Schedule note (fable leg, 2026-07-24, operator batch-2 disposition):** the paired high-vs-xhigh renewal run (P-20260724-B in the opus-5 proposal, W-016 renewal) is SCHEDULED — surface: Cowork Workflow agent() (per-call model AND effort, the only dual-knob surface per CONTRACT §3), next Cowork session. Recorded schedule = closure per the campaign termination rule; running it converts W-004/W-016 from Unchecked-for-opus-5 to measured.
