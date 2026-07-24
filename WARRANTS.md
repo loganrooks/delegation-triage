@@ -628,4 +628,11 @@ a row** [W-019].
   [W-019]. Registered as probe P-20260724-r4-effort-frontier. R13 and the fable rows are
   **blocked** from moving by C13 and by (d) respectively. STATE gains an Opus 5 price row from
   C16; that is a volatile-fact update, not a route change.
+  **UPDATE 2026-07-24 (same day, operator ruling — supersedes the bullet above in effect, not
+  in evidence):** R4 re-pointed `opus xhigh → medium` and R5 `opus high → low` by operator
+  ruling (P-20260724-r4-r5-reroute-opus5-effort) — a *policy adoption* of the medium leg of
+  question (c), labeled **Provisional**, NOT an evidence flip: (c) stays Contested, the local
+  tally stays 0, and the registered probe now tests the incumbent (medium) against the xhigh
+  challenger. R1's same-day fable→opus re-route is the separate ruling record
+  P-20260724-r1-reroute-opus.
 - **Probe tally:** 0 local. All evidence is vendor-side; the local tally opens with the R4 probe.

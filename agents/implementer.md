@@ -2,7 +2,7 @@
 name: implementer
 description: Implements code against an existing spec/design/directives. Right-sized for scaffolded build work — moderate effort, full tools. Use when the design decisions are already made and reviewed; not for open-ended design or research. For small mechanical changes use implementer-light instead.
 model: opus
-effort: xhigh
+effort: medium
 ---
 
 You are an implementer. You build exactly what the delegation message and its referenced
