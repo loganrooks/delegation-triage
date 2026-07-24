@@ -428,3 +428,16 @@ not another review round.
   minimal-roster projections).
 - **D-1, D-2, D-4: still open.**
 - Doc corpus + this review landed on `main` at `7f88591` (same day).
+- **B-5 executed (same day, evening):** the Codex leg is now measured
+  ([P-20260724-codex-telemetry-substrate](../../probes/records/P-20260724-codex-telemetry-substrate.md)) —
+  `~/.codex` **exists** (superseding this review's §0 "absent" verification leg) and already
+  operates a `schema_version`'d routing-intent ledger (orchestration-learning: route_planned ×23
+  fields, disposition ×12) plus a requested-vs-observed delegations record with `costUSD`.
+  **R-B's ACCEPT stands; its "union is small (~14 fields)" note is amended by measurement to
+  ≈25–30 union fields**, and B-3 changes shape: reconcile the three existing schemas (platform
+  OTel, spawn ledger, Codex orchestration-learning) into one crosswalk rather than minting a
+  fresh record format.
+- **R4/R5 re-routed by operator ruling (same day):** implementer opus medium, implementer-light
+  opus low (P-20260724-r4-r5-reroute-opus5-effort, Provisional; frontier probe now tests the
+  medium incumbent). First live medium spawn accepted first-pass (n=1 observation in that
+  record).

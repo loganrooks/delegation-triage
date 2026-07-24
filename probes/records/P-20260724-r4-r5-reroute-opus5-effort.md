@@ -51,3 +51,12 @@ Opus 5 pricing: sonnet-5 intro $2/$10 vs opus-5 $5/$25 — sonnet is now the che
   gates (`check_wids`, `check_state`) green at commit.
 - **tally:** feeds W-024 claim (c) context only — count after this record: **0 local**
   (a ruling is not a probe; the counter opens when the first frontier leg runs).
+
+## Same-day observation (n=1, moves no counter)
+
+First live R4 spawn at the new route, same session: the delegation-runtime layout flatten
+(multi-file refactor vs settled spec) at **opus/medium via Workflow per-call pinning** —
+**accepted first-pass** after the parent re-ran all 307 tests firsthand; the agent's report
+correctly distinguished the one path-computation that needed fixing from four that did not.
+18 tool uses / ~140s / ~62k harness-reported subagent tokens. A single unpaired observation:
+consistent with PH-1's direction, evidence of nothing beyond that.
