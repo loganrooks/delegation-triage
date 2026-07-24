@@ -1,0 +1,51 @@
+model,task,effort,score,source,extraction_method
+Opus 5,DeepSWE 1.1,Low,57.7,"Opus 5 system card p.150, Fig. 8.3.A",manual transcription from labeled figure
+Opus 5,FrontierCode Main,Low,41.9,"Opus 5 system card p.151, Fig. 8.4.A",manual transcription from labeled figure
+Opus 5,FrontierCode Extended,Low,55.8,"Opus 5 system card p.151, Fig. 8.4.B",manual transcription from labeled figure
+Opus 5,"HLE, no tools",Low,47.8,"Opus 5 system card p.158, Fig. 8.10.1.B",manual transcription from labeled figure
+Opus 5,"BrowseComp, 10M",Low,84.4,"Opus 5 system card p.160, Fig. 8.10.2.B",manual transcription from labeled figure
+Opus 5,DeepSWE 1.1,Medium,66.9,"Opus 5 system card p.150, Fig. 8.3.A",manual transcription from labeled figure
+Opus 5,FrontierCode Main,Medium,53.4,"Opus 5 system card p.151, Fig. 8.4.A",manual transcription from labeled figure
+Opus 5,FrontierCode Extended,Medium,63.6,"Opus 5 system card p.151, Fig. 8.4.B",manual transcription from labeled figure
+Opus 5,"HLE, no tools",Medium,54.2,"Opus 5 system card p.158, Fig. 8.10.1.B",manual transcription from labeled figure
+Opus 5,"BrowseComp, 10M",Medium,88.9,"Opus 5 system card p.160, Fig. 8.10.2.B",manual transcription from labeled figure
+Opus 5,DeepSWE 1.1,High,68.0,"Opus 5 system card p.150, Fig. 8.3.A",manual transcription from labeled figure
+Opus 5,FrontierCode Main,High,48.0,"Opus 5 system card p.151, Fig. 8.4.A",manual transcription from labeled figure
+Opus 5,FrontierCode Extended,High,58.5,"Opus 5 system card p.151, Fig. 8.4.B",manual transcription from labeled figure
+Opus 5,"HLE, no tools",High,56.0,"Opus 5 system card p.158, Fig. 8.10.1.B",manual transcription from labeled figure
+Opus 5,"BrowseComp, 10M",High,90.2,"Opus 5 system card p.160, Fig. 8.10.2.B",manual transcription from labeled figure
+Opus 5,DeepSWE 1.1,XHigh,69.7,"Opus 5 system card p.150, Fig. 8.3.A",manual transcription from labeled figure
+Opus 5,FrontierCode Main,XHigh,43.6,"Opus 5 system card p.151, Fig. 8.4.A",manual transcription from labeled figure
+Opus 5,FrontierCode Extended,XHigh,56.9,"Opus 5 system card p.151, Fig. 8.4.B",manual transcription from labeled figure
+Opus 5,"HLE, no tools",XHigh,56.4,"Opus 5 system card p.158, Fig. 8.10.1.B",manual transcription from labeled figure
+Opus 5,"BrowseComp, 10M",XHigh,90.7,"Opus 5 system card p.160, Fig. 8.10.2.B",manual transcription from labeled figure
+Opus 5,DeepSWE 1.1,Max,68.8,"Opus 5 system card p.150, Fig. 8.3.A",manual transcription from labeled figure
+Opus 5,FrontierCode Main,Max,48.0,"Opus 5 system card p.151, Fig. 8.4.A",manual transcription from labeled figure
+Opus 5,FrontierCode Extended,Max,58.9,"Opus 5 system card p.151, Fig. 8.4.B",manual transcription from labeled figure
+Opus 5,"HLE, no tools",Max,56.3,"Opus 5 system card p.158, Fig. 8.10.1.B",manual transcription from labeled figure
+Opus 5,"BrowseComp, 10M",Max,90.8,"Opus 5 system card p.160, Fig. 8.10.2.B",manual transcription from labeled figure
+Fable/Mythos 5,DeepSWE 1.1,Low,59.6,"Opus 5 system card p.150, Fig. 8.3.A",manual transcription from labeled figure
+Fable/Mythos 5,FrontierCode Main,Low,48.0,"Opus 5 system card p.151, Fig. 8.4.A",manual transcription from labeled figure
+Fable/Mythos 5,FrontierCode Extended,Low,60.8,"Opus 5 system card p.151, Fig. 8.4.B",manual transcription from labeled figure
+Fable/Mythos 5,"HLE, no tools",Low,50.3,"Opus 5 system card p.158, Fig. 8.10.1.B",manual transcription from labeled figure
+Fable/Mythos 5,"BrowseComp, 10M",Low,83.0,"Opus 5 system card p.160, Fig. 8.10.2.B",manual transcription from labeled figure
+Fable/Mythos 5,DeepSWE 1.1,Medium,65.4,"Opus 5 system card p.150, Fig. 8.3.A",manual transcription from labeled figure
+Fable/Mythos 5,FrontierCode Main,Medium,49.8,"Opus 5 system card p.151, Fig. 8.4.A",manual transcription from labeled figure
+Fable/Mythos 5,FrontierCode Extended,Medium,62.8,"Opus 5 system card p.151, Fig. 8.4.B",manual transcription from labeled figure
+Fable/Mythos 5,"HLE, no tools",Medium,53.6,"Opus 5 system card p.158, Fig. 8.10.1.B",manual transcription from labeled figure
+Fable/Mythos 5,"BrowseComp, 10M",Medium,87.1,"Opus 5 system card p.160, Fig. 8.10.2.B",manual transcription from labeled figure
+Fable/Mythos 5,DeepSWE 1.1,High,68.6,"Opus 5 system card p.150, Fig. 8.3.A",manual transcription from labeled figure
+Fable/Mythos 5,FrontierCode Main,High,52.7,"Opus 5 system card p.151, Fig. 8.4.A",manual transcription from labeled figure
+Fable/Mythos 5,FrontierCode Extended,High,64.2,"Opus 5 system card p.151, Fig. 8.4.B",manual transcription from labeled figure
+Fable/Mythos 5,"HLE, no tools",High,54.4,"Opus 5 system card p.158, Fig. 8.10.1.B",manual transcription from labeled figure
+Fable/Mythos 5,"BrowseComp, 10M",High,87.3,"Opus 5 system card p.160, Fig. 8.10.2.B",manual transcription from labeled figure
+Fable/Mythos 5,DeepSWE 1.1,XHigh,69.9,"Opus 5 system card p.150, Fig. 8.3.A",manual transcription from labeled figure
+Fable/Mythos 5,FrontierCode Main,XHigh,53.5,"Opus 5 system card p.151, Fig. 8.4.A",manual transcription from labeled figure
+Fable/Mythos 5,FrontierCode Extended,XHigh,64.9,"Opus 5 system card p.151, Fig. 8.4.B",manual transcription from labeled figure
+Fable/Mythos 5,"HLE, no tools",XHigh,57.8,"Opus 5 system card p.158, Fig. 8.10.1.B",manual transcription from labeled figure
+Fable/Mythos 5,"BrowseComp, 10M",XHigh,88.0,"Opus 5 system card p.160, Fig. 8.10.2.B",manual transcription from labeled figure
+Fable/Mythos 5,DeepSWE 1.1,Max,69.7,"Opus 5 system card p.150, Fig. 8.3.A",manual transcription from labeled figure
+Fable/Mythos 5,FrontierCode Main,Max,51.6,"Opus 5 system card p.151, Fig. 8.4.A",manual transcription from labeled figure
+Fable/Mythos 5,FrontierCode Extended,Max,63.6,"Opus 5 system card p.151, Fig. 8.4.B",manual transcription from labeled figure
+Fable/Mythos 5,"HLE, no tools",Max,56.5,"Opus 5 system card p.158, Fig. 8.10.1.B",manual transcription from labeled figure
+Fable/Mythos 5,"BrowseComp, 10M",Max,88.0,"Opus 5 system card p.160, Fig. 8.10.2.B",manual transcription from labeled figure

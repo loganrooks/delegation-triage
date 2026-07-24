@@ -13,6 +13,19 @@ note an expired STATE.md entry fails CI by design). Public repo (`loganrooks/del
 MIT); releases are tag-driven (`v*` → CI builds the Cowork plugin and attaches it). `dist/` and
 `.planning/` are untracked (generated output / maintainer drafts).
 
+## Active initiative handoff
+
+Before planning or implementing the multi-harness control-plane initiative, read the
+[`2026-07-24 Claude initiative handoff`](docs/handoffs/2026-07-24-claude-control-plane-initiative-handoff.md)
+and the [`docs/proposals` status map](docs/proposals/README.md). The first task is proposal review,
+not implementation. The immediate product horizon is Claude Code + Codex: one citable evidence
+base, provider/harness-specific route projections, governed learning from delegation outcomes, and
+installable, drift-checked integrations. A new model release is a candidate and re-review trigger,
+never an automatic route replacement.
+
+The handoff does not authorize installation, activation, paid probes, cleanup, commits, or pushes.
+Use the authority recorded by the later stakeholder disposition and implementation plan.
+
 ## Commands
 
 ```bash
@@ -88,5 +101,25 @@ manifest table in the same commit.
   and `references/routing-table.md` are exempt from W-ID/link checks (archives + stubs).
 - **Profile ↔ pin coupling:** a profile delta that changes a pinned route also needs the pin's
   frontmatter edited — flip both in one commit.
+- **Commit coupling — tracked changes that depend on untracked trees (review D-6):** `ci.yml`'s
+  adapter-test step requires `adapters/codex/**`, which is untracked. Committing the tracked set
+  alone lands a CI step whose test directory does not exist and breaks `main`. **Land them in one
+  commit or neither.** Generally: before committing, check whether a tracked change references a
+  path `git ls-files` does not return.
+- **Deploy classification (review D-8):** `install.py <target> --check` reports `OK` / `BEHIND` /
+  `DRIFT?` / `DIVERGED` / `MISSING` / `EXTRA` and exits non-zero **only on `DIVERGED`**.
+  `BEHIND` (deployed bytes existed at some commit) and `MISSING` (never deployed) are normal lag
+  for a package that appends evidence continuously and deploys occasionally. `DIVERGED` — clean
+  source, yet deployed bytes appear in no commit — means a hand-edited deployment, the failure mode
+  that silently forks doctrine; a plain re-deploy DISCARDS it, so reconcile deliberately and back
+  up first. **`DRIFT?` is the undecidable case: the source file is dirty, so "never in history"
+  proves nothing** — a deploy taken mid-edit puts never-committed but genuinely canonical bytes in
+  the target. It reports, it does not accuse, and it does not fail the gate. (The check produced
+  this false positive against itself one commit after it was written; the distinction is why the
+  fourth state exists.) `EXTRA` names deployed roster definitions the package does not own; a
+  re-deploy will not remove them.
+- **A deploy from a dirty worktree is a preview, not a release** — its bytes are not reconstructable
+  from the stamped commit. Say so in the `agents/MANIFEST.md` stamp.
 - Known open items live in `STATE.md` (Scheduled items) and `agents/MANIFEST.md` (e.g. the
-  unreconciled Cowork-plugin fork); check both before touching roster or scarcity entries.
+  unreconciled Cowork-plugin fork, and the unowned deployed `sol-*` definitions); check both before
+  touching roster or scarcity entries.

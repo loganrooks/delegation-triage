@@ -25,6 +25,7 @@ a row** [W-019].
 | `workflow-gate:` | loganrooks/workflow-gate | ~/Development/workflow-gate |
 | `SEAS:` | loganrooks/SelfEvolvingAgentialSystems | ~/Projects/SelfEvolvingAgentialSystems |
 | `claude-user-dir:` | (untracked user dir — deployment target, weakest provenance class) | ~/.claude |
+| `routing-evidence:` | (no remote — local-only, flagged) | ~/Projects/routing-evidence |
 
 ---
 
@@ -128,6 +129,11 @@ a row** [W-019].
 - **Probe tally:** attested 0 · self-reported 0.
 
 ### W-004 — Coding / agentic implementation: opus xhigh
+- **Opus-5 status (2026-07-24, proposal F3 applied by fable leg):** `Unchecked for opus-5` —
+  measured on Opus 4.8; vendor guidance says effort ladders do not carry over ("run a fresh
+  effort sweep… rather than reusing settings", S3). Unrenewed, not falsified. Vendor
+  "start with xhigh for coding/agentic" is `Concordant` for this row's direction, not
+  corroboration. Renewal path: P-20260724-r4-effort-frontier local pair [W-024].
 - **Claim:** Coding/agentic implementation defaults to the capability-bound tier at xhigh;
   mis-routing cost is high there.
 - **Label · grade:** Reported · Moderate — vendor literal guidance (*"Start with xhigh for coding
@@ -146,6 +152,10 @@ a row** [W-019].
 - **Probe tally:** attested 0 · self-reported 0.
 
 ### W-005 — Mechanical, fully-specified edits: opus high; sonnet demotion probe OPEN
+- **Opus-5 status (2026-07-24, proposal F3 applied by fable leg):** `Unchecked for opus-5` —
+  effort-shaped evidence measured on Opus 4.8; unrenewed, not falsified (vendor: effort settings
+  do not carry over, S3). Note vendor says low/medium strengthened on Opus 5 — the direction that
+  favors the open demotion probe.
 - **Claim:** implementer-light work survives review at sonnet-high under a fully-specified
   contract; the opus-high pin is provisionally held pending the demotion count.
 - **Label · grade:** Corroborated · Low (n=1; imprecision).
@@ -256,6 +266,10 @@ a row** [W-019].
   self-reported 0.
 
 ### W-010 — Structured epistemics compilation: opus/cross-vendor xhigh; sonnet kind-typing only
+- **Opus-5 status (2026-07-24, proposal F3 applied by fable leg):** `Unchecked for opus-5` —
+  the xhigh half of this row is effort-shaped and was measured pre-Opus-5; unrenewed, not
+  falsified (S3). The kind-typing/composition split is model-behavioral, not effort-shaped, and
+  is not re-graded by this pass.
 - **Claim:** Claim→typed-record compilation needs the top tier for composed dispositions; sonnet
   matches xhigh-level kind-typing agreement but under-reproduces composed dispositions.
 - **Label · grade:** Corroborated · Moderate (one attested 3-leg blinded probe, frozen fixtures,
@@ -349,6 +363,12 @@ a row** [W-019].
 - **Probe tally:** attested 1 (K1 token rider) · external-reported 1 (Huryn).
 
 ### W-016 — Effort-dial shape: monotone in score, steep top-tier cost cliff; high = sweet spot
+- **Opus-5 status (2026-07-24, proposal F3 applied by fable leg):** `Unchecked for opus-5` — the
+  single most load-bearing effort claim in the table, and the vendor's statement is specifically
+  that the LOWER rungs improved on Opus 5 — the direction that would move the sweet spot if it
+  moved. All underlying measurements are pre-Opus-5. Unrenewed, not falsified. Renewal =
+  P-20260724-r4-effort-frontier / P-20260724-B paired high-vs-xhigh on the existing rubric
+  [W-024].
 - **Claim:** On real agentic work the dial is monotone-in-score with a steep top-tier COST cliff;
   high ≈ the cost-quality sweet spot; top tiers for high-risk work only.
 - **Label · grade:** Provisional · Low — cross-source synthesis (stet.sh GPT-5.5 26 real PRs:
@@ -378,6 +398,9 @@ a row** [W-019].
 - **Probe tally:** attested 0 local · self-reported 0.
 
 ### W-017 — Non-monotonicity is task-class-conditional; per-step effort is efficiency-only
+- **Opus-5 status (2026-07-24, proposal F3 applied by fable leg):** `Unchecked for opus-5` —
+  literature scoping was established against pre-Opus-5 effort ladders; unrenewed, not falsified
+  (S3). Direction unknown pending the local pair [W-024].
 - **Claim:** The literature's "more effort hurts" results are scoped: tool/function-SELECTION
   degradation (2604.02155) is hypothesis-only for reasoning-trained models; the "3–7-turn
   plateau" (2602.18998) is RETIRED as worded (paper measures a ~96–112K-token context ceiling);
@@ -551,3 +574,57 @@ a row** [W-019].
   and high on an R7 filesystem-verification task, haiku fails it (overclaim + missed the one real
   discrepancy) → floor stays sonnet, not haiku, for judgment-bearing R7; no opus leg, so the
   sonnet-vs-opus flip tally is untouched).
+
+### W-024 — Opus 5 effort-cost frontier: medium dominates Opus 4.8's top effort; medium-vs-xhigh shape is Contested (vendor evidence, 2026-07-24)
+- **Claim (four separable claims, deliberately not fused):**
+  - **(a) Cross-model dominance.** On three official Anthropic agentic-coding charts, **Opus 5
+    medium beats Opus 4.8 max on score AND cost** — Frontier-Bench v0.1 ≈35.0@$8.50 vs ≈18.8@$16;
+    CursorBench ≈64.3@$3.20 vs ≈62.3@$5.80; AA Coding Agent Index ≈63.5@$3.80 vs ≈60.5@$7.50.
+    The operator's initial framing was "equivalent"; the charts show strict improvement at ≈half
+    cost. **NOT established:** any Opus-4.8 *effort-curve* comparison from the system cards — the
+    audit bundle contains no Opus 4.8 effort ladder.
+  - **(b) Low lags, sometimes.** Opus 5 **low** clears 4.8's max on Frontier-Bench (≈25.7 vs 18.8)
+    but falls below it on the AA Index (≈56.8 vs 60.5); CursorBench (≈62.8 vs 62.3) is inside
+    reading error and is recorded **unresolved**, not as a tie.
+  - **(c) Medium-vs-xhigh shape is CONTESTED across sources.** O5-SC p. 151 FrontierCode is sharply
+    non-monotonic — Main `Low 41.9 · Medium 53.4 · High 48.0 · XHigh 43.6 · Max 48.0`; Extended
+    `55.8 · 63.6 · 58.5 · 56.9 · 58.9`. The 2026-07-24 charts show the opposite: monotonic rise
+    through xhigh with a slight max regression. **`Frontier-Bench v0.1` (mini-SWE-agent harness,
+    GKE backend) is NOT `FrontierCode` Main/Extended** despite the near-identical name. Neither
+    source is licensed to settle the other.
+  - **(d) Fable is cost-dominated on coding, unmeasured on its claimed strengths.** Opus 5's curve
+    sits above-and-left of Fable's on all three charts; Anthropic's own text says Opus 5 lands
+    "within 0.5% of Fable 5's peak score" on CursorBench "at half the cost" — so Fable's *endpoint*
+    is marginally higher there (≈70.4 vs ≈70.0) while its *frontier* is worse. All three are
+    **coding** benchmarks; Fable's asserted edge (sustained orchestration, review judgment) is
+    **not measured by any of them**.
+- **Label · grade:** `Concordant` · Low–Moderate. Vendor-produced throughout — a model-card or
+  vendor-chart number is Concordant/Reported, **never** Corroborated [EPISTEMICS]. Downgrades:
+  (i) single vendor, no independent replication; (ii) chart values read by eye at ≈±0.5 pts —
+  the `chart-series-conflation` hazard, read first-hand by the root session, not relayed;
+  (iii) **stated confound** — the Frontier-Bench footnote says Opus 4.8 "served as fallback on
+  safety-classifier refusals for Opus 5 and Fable 5," so O5/Fable scores there embed
+  Opus-4.8 output on refused items at an unstated rate (W-013 territory, inside the evidence);
+  (iv) O5-SC multi-agent sections used a **pre-release model and an unreleased effort config**
+  (C13), so nothing here speaks to *orchestration* effort; (v) benchmark harnesses are not ours.
+- **Locators + excerpts:** `routing-evidence:2026-07-24-opus5-fable5-routing-audit/` (bundle,
+  71 MB; three system-card PDFs SHA-256-verified 2026-07-24); vendored text +
+  provenance at [`docs/research/external/2026-07-24-opus5-fable5-routing-audit/`](docs/research/external/2026-07-24-opus5-fable5-routing-audit/PROVENANCE.md).
+  Charts: [anthropic.com/news/claude-opus-5](https://www.anthropic.com/news/claude-opus-5),
+  "Performance and cost-effectiveness," published + fetched 2026-07-24. Claim ledger C01–C18 with
+  per-claim scope and revision triggers is vendored verbatim. Report's own words on the limit
+  that matters most: *"'Opus 5 Medium is the best orchestrator' is not established."*
+- **Flip condition (one per claim — no single test moves all four):**
+  - (a) a local paired probe on OUR harness where Opus 5 medium fails a task Opus 4.8 max passes
+    → downgrade to benchmark-local;
+  - (b) low clearing 4.8-max on a third independent suite → promote low as a budget rung;
+  - (c) **resolves, not flips:** one effort sweep on a single harness covering medium→xhigh on a
+    task family we actually route (R4-shaped) → replaces the Contested label with a direction;
+  - (d) any orchestration or review-judgment benchmark holding workers constant → speaks to the
+    fable rows; coding charts never will.
+- **Route impact: NONE YET — deliberately.** R4 (`opus xhigh`) is the row this bears on and it
+  **does not move**: (c) is Contested, the evidence is vendor-only, and n=1 never flips a row
+  [W-019]. Registered as probe P-20260724-r4-effort-frontier. R13 and the fable rows are
+  **blocked** from moving by C13 and by (d) respectively. STATE gains an Opus 5 price row from
+  C16; that is a volatile-fact update, not a route change.
+- **Probe tally:** 0 local. All evidence is vendor-side; the local tally opens with the R4 probe.

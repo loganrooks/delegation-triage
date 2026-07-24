@@ -80,6 +80,51 @@
   it still yields item-level data (verdict divergence, unique-catch yield per leg —
   both legs contributed adopted uniques: Leg A #7/#8/#9 and Leg B §2b/§3.1/§3.2 all
   land in rev.3).
-- operator adjudication: (pending — counsel-assisted; three pre-registered questions
-  outstanding)
-- tally: (pending)
+- **operator adjudication (2026-07-17, counsel-assisted, CLOSED):**
+  - Q1 (most decision-changing item): no independent operator ruling; the author's
+    severity-weighted analysis named Leg A #7 (DF-2 precedence inversion — verified
+    against `signal.py:182`) the highest-severity unique catch, and the demand test
+    (convergent; B led, A raised independently) the biggest frame-shift.
+  - Q2 (uniques changing the ratification): YES on both sides — Leg B's §3.1/§3.2/§2b
+    restructured what rev.3 ratifies (DF-1 demotion, DF-2 extraction, R8); Leg A's #7
+    corrected the extracted fix itself, #8/#9 hardened the gate.
+  - Q3 (preference): **operator ruling: prefer Leg A — by explicit adoption of the
+    author's disclosed recommendation** ("I'll go with your recommendation and prefer
+    Leg A"), after stating they lacked domain familiarity to rule independently.
+    Author's reasoning (on record in the session): sole-reviewer counterfactual +
+    severity weighting — only-B world ships the precedence inversion (permanent
+    mis-attribution on an append-only ledger); only-A world keeps reversible governance
+    imperfections. Author biases disclosed BEFORE the ruling: unblinded (held the
+    sealed mapping) + same-lineage-as-Leg-A.
+- **UNSEALED:** Leg A = **fable** (`claude-fable-5`), Leg B = **opus**
+  (`claude-opus-4-8`) — measured from the subagent transcripts
+  (`subagents/agent-a2edcab22db58ec63.jsonl` / `…a3fe845cc1de63cf5.jsonl`), stamped
+  into both leg files.
+- **Symmetry caveat (found at stamping):** the fable leg's final message opened with
+  "The advisor endorsed the analysis and the ranking" — yet its transcript records
+  ZERO tool_use blocks. Server-side-and-invisible vs unsubstantiated: **Unchecked**,
+  not resolvable from the artifact. If real, the legs were not config-symmetric (the
+  opus lane has no advisor loop) and the fable leg's output benefited from an extra
+  review pass. Weakens any tier attribution of the preference beyond the deviations
+  already named.
+- **tally (framing-class row — NEW row, firing 1): NOT CLEAN** (counsel-assisted
+  adjudication; author-preference adopted; symmetry caveat above). Clean-firing count
+  stays **0** — no route change (W-019: ≥2 clean concordant firings required).
+  Direction-only yield: fable leg preferred on severity-weighted unique-catch yield;
+  **verdicts DIVERGED** (ratify-with-changes vs HOLD — first verdict-divergent pair in
+  the corpus); unique catches near-disjoint and BOTH sets adopted into the artifact →
+  **complementarity, not superiority, is the robust finding.** Token volumes
+  near-identical (delta 10).
+- **process lessons (feed ROUTES/WARRANTS next pass):**
+  1. Operator-adjudicated probes need domain scaffolding: pre-agree a scoring rubric,
+     or accept author-adjudication-with-disclosure at pre-registration time — don't
+     discover mid-probe that the adjudicator can't rule (this probe's actual failure
+     mode).
+  2. Tight-lens panels and open-contract framing reviews catch near-disjoint defect
+     sets: the six-review rev.1 panel (tight lenses) missed the precedence inversion an
+     open-contract leg caught; ratification gates should pair both contract types.
+  3. Findings alleging text-vs-code conflict get primary-source verification before
+     disposition (done here; it's what made Leg A #7 load-bearing).
+  4. Snapshot-only legs should have their raw final messages hashed at relay time, and
+     preamble/deliverable boundaries pre-declared — the "advisor endorsed" preamble
+     discovery shows verbatim-relay claims need mechanical backing.

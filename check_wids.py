@@ -32,8 +32,14 @@ def main(argv):
     for f in md_files:
         text = f.read_text(encoding="utf-8")
         rel = f.relative_to(pkg)
-        # Stage-2 validation 2026-07-10: archives + deployment stubs exempt
-        if "references/ARCHIVE" in str(rel) or str(rel) == "references/routing-table.md":
+        # Stage-2 validation 2026-07-10: archives + deployment stubs exempt.
+        # 2026-07-24: vendored EXTERNAL artifacts exempt too — they are byte-copies of
+        # third-party evidence, preserved verbatim, whose internal links resolve only in the
+        # companion evidence store (see each dir's PROVENANCE.md). Verbatim fidelity of an
+        # external record beats internal link resolution; corrections live in the citing W-record.
+        if ("references/ARCHIVE" in str(rel)
+                or str(rel) == "references/routing-table.md"
+                or str(rel).startswith("docs/research/external/")):
             continue
         if f.name != "WARRANTS.md":
             used |= set(WID_USE_RE.findall(text))

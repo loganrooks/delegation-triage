@@ -47,6 +47,25 @@ Supporting files: [`SKILL.md`](SKILL.md) (thin Claude Code procedure wrapper),
 [`LINEAGE.md`](LINEAGE.md) (provenance), [`ROADMAP.md`](ROADMAP.md) (development path),
 [`adapters/`](adapters/) (per-platform packaging behind `install.py`).
 
+Current design work: [cross-runtime routing and Codex-managed Claude delegation
+proposal](docs/proposals/2026-07-17-cross-runtime-routing-and-claude-delegation.md) and its
+[cold-reader handoff](docs/handoffs/2026-07-17-codex-claude-adapter-handoff.md). These artifacts
+authorize review and planning only; implementation and paid external model calls remain gated.
+The [deferred provider-neutral router proposal](docs/proposals/2026-07-20-provider-neutral-multi-harness-delegation-router-deferred.md)
+records the future Codex, Claude, and Antigravity extension seam without expanding the current
+release.
+The [minimal Codex-managed Antigravity adapter proposal](docs/proposals/2026-07-20-codex-managed-antigravity-gemini-flash-adapter.md)
+and [accelerated implementation plan](docs/superpowers/plans/2026-07-20-codex-antigravity-gemini-flash-adapter.md)
+now provide a manually selected temporary Gemini Flash bridge. It is installed as a user-level
+skill and has passed one real read-only task; automatic routing and exhaustive runtime capability
+certification remain deferred.
+For the current Claude Code transfer, start with the
+[proposal map](docs/proposals/README.md) and
+[2026-07-24 control-plane initiative handoff](docs/handoffs/2026-07-24-claude-control-plane-initiative-handoff.md).
+Claude's first task is to review and reconcile the proposals; the immediate product horizon is
+installable Claude Code and Codex integrations backed by one citable evidence base and governed
+learning loop.
+
 **A note on what you'll find in `probes/` and `STATE.md`.** This repo dogfoods its own
 methodology, and the evidence is published as recorded — including operational specifics
 (model-availability windows, budget stances) and verbatim operator interventions in post-mortem

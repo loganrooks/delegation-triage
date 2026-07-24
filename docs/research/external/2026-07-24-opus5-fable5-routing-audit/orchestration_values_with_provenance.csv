@@ -1,0 +1,12 @@
+model,configuration,accuracy_percent,source,extraction_method
+Opus 4.8,Single-agent 10M,84.3,"Opus 4.8 system card p.210, Fig. 8.11.1.A",manual transcription from labeled figure
+Opus 4.8,Async lead + subagents,83.0,"Opus 4.8 system card p.210, Fig. 8.11.1.A",manual transcription from labeled figure
+Opus 4.8,Best fixed peer team,85.4,"Opus 4.8 system card p.210, Fig. 8.11.1.A",manual transcription from labeled figure
+Opus 4.8,Blocking orchestrator,88.5,"Opus 4.8 system card p.210, Fig. 8.11.1.A",manual transcription from labeled figure
+Fable/Mythos 5,Single-agent 10M,88.0,"Fable/Mythos 5 system card p.272, Fig. 8.15.1.A",manual transcription from labeled figure
+Fable/Mythos 5,Async lead + subagents,93.3,"Fable/Mythos 5 system card p.272, Fig. 8.15.1.A",manual transcription from labeled figure
+Fable/Mythos 5,Best fixed peer team,92.2,"Fable/Mythos 5 system card p.272, Fig. 8.15.1.A",manual transcription from labeled figure
+Fable/Mythos 5,Blocking orchestrator,89.9,"Fable/Mythos 5 system card p.272, Fig. 8.15.1.A",manual transcription from labeled figure
+Opus 5,Single-agent 10M,90.5,"Opus 5 system card p.163, Fig. 8.11.1.A",manual transcription from labeled figure
+Opus 5,Async lead + subagents,93.4,"Opus 5 system card p.163, Fig. 8.11.1.A",manual transcription from labeled figure
+Opus 5,Best fixed peer team,93.6,"Opus 5 system card p.163, Fig. 8.11.1.A",manual transcription from labeled figure

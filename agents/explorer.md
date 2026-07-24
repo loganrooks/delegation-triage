@@ -1,7 +1,7 @@
 ---
 name: explorer
-description: Read-only exploration of codebases, corpora, filesystems, and document collections. Returns structured findings with a file path (and short quote) for every claim. Use for deep local exploration where conclusions matter more than file dumps. Cannot write or edit anything.
-model: opus
+description: Read-only exploration of codebases, corpora, filesystems, and document collections. Returns structured findings with a file path (and short quote) for every claim. Use for deep local exploration where conclusions matter more than file dumps. Cannot write or edit anything. DEFAULT sonnet/high (operator ruling 2026-07-17 — sonnet-first; the harness carries the discipline): pass `model: opus` per-call ONLY with a stated judgment-discrimination reason (adversarial verification, refuting a proof/methods dispute, synthesis across many conflicting sources) — the Agent tool's model param overrides this pin.
+model: sonnet
 effort: high
 disallowedTools: Write, Edit, NotebookEdit
 ---

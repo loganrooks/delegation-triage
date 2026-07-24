@@ -68,19 +68,86 @@ def claude_code_plan(root: Path):
     return pairs
 
 
+def in_history(rel: str, digest: str) -> bool:
+    """True if `digest` is the sha256 of this path at ANY commit — i.e. the deployed bytes
+    were once canonical and the deployment is merely BEHIND."""
+    try:
+        revs = subprocess.run(["git", "-C", str(PKG), "rev-list", "--all"],
+                              capture_output=True, text=True, check=True).stdout.split()
+        for rev in revs:
+            blob = subprocess.run(["git", "-C", str(PKG), "show", f"{rev}:{rel}"],
+                                  capture_output=True, check=False)
+            if blob.returncode == 0 and sha256(blob.stdout) == digest:
+                return True
+    except Exception:
+        pass
+    return False
+
+
+def source_dirty(rel: str) -> bool:
+    """True if the source file has uncommitted changes. Then 'not in history' CANNOT mean
+    hand-edited: a deploy taken mid-edit puts never-committed—but genuinely canonical—bytes in
+    the target. Asserting DIVERGED there would name a failure mode the evidence cannot
+    distinguish (this fired against itself on 2026-07-24, one commit after the check was
+    written). Undecidable is reported as DRIFT?, never as the accusation."""
+    try:
+        out = subprocess.run(["git", "-C", str(PKG), "status", "--porcelain", "--", rel],
+                             capture_output=True, text=True, check=True).stdout.strip()
+        return bool(out)
+    except Exception:
+        return True  # unknown git state ⇒ refuse to accuse
+
+
+def extra_deployed(root: Path, pairs):
+    """Deployed roster definitions the package does not own. --check is otherwise blind to
+    these by construction: it only inspects files it would itself write (review D-3)."""
+    owned = {dst.name for src, dst in pairs if dst.parent.name == "agents"}
+    agents_dir = root / "agents"
+    if not agents_dir.is_dir():
+        return []
+    return sorted(p for p in agents_dir.glob("*.md") if p.name not in owned)
+
+
 def run_claude_code(args):
-    pairs = claude_code_plan(Path(args.root).expanduser())
+    root = Path(args.root).expanduser()
+    pairs = claude_code_plan(root)
     if args.check or args.dry_run:
-        drift = 0
+        counts = {"OK": 0, "BEHIND": 0, "DRIFT?": 0, "DIVERGED": 0, "MISSING": 0}
         for src, dst in pairs:
-            state = ("MISSING" if not dst.exists()
-                     else "OK" if sha256(dst.read_bytes()) == sha256(src.read_bytes())
-                     else "DRIFT")
-            drift += state != "OK"
-            print(f"{state:8} {dst}")
+            if not dst.exists():
+                state = "MISSING"
+            elif sha256(dst.read_bytes()) == sha256(src.read_bytes()):
+                state = "OK"
+            else:
+                rel = str(src.relative_to(PKG))
+                if in_history(rel, sha256(dst.read_bytes())):
+                    state = "BEHIND"
+                elif source_dirty(rel):
+                    state = "DRIFT?"     # undecidable: dirty source, direction unknowable
+                else:
+                    state = "DIVERGED"   # clean source + bytes never in history ⇒ hand-edited
+            counts[state] += 1
+            print(f"{state:9} {dst}")
+        extras = extra_deployed(root, pairs)
+        for p in extras:
+            print(f"{'EXTRA':9} {p}")
         verb = "would deploy" if args.dry_run else "checked"
-        print(f"{verb} {len(pairs)} files: {drift} not current")
-        return 1 if (args.check and drift) else 0
+        print(f"\n{verb} {len(pairs)} files: "
+              + " · ".join(f"{k.lower()} {v}" for k, v in counts.items())
+              + f" · extra {len(extras)}")
+        if counts["DIVERGED"]:
+            print("DIVERGED = clean source, yet deployed bytes never existed in this repo "
+                  "(hand-edited). Reconcile deliberately; a plain re-deploy DISCARDS them.")
+        if counts["DRIFT?"]:
+            print("DRIFT?   = source file is dirty, so 'never in history' proves nothing — the "
+                  "deployed copy may be an earlier uncommitted canonical state. Direction is "
+                  "UNDECIDABLE until the source is committed; not an accusation.")
+        if extras:
+            print("EXTRA = deployed roster definitions the package does not own "
+                  "(not stamped in agents/MANIFEST.md; a re-deploy will NOT remove them).")
+        # exit 1 only on genuine divergence: lag is normal for a package that appends
+        # evidence continuously and deploys occasionally.
+        return 1 if (args.check and counts["DIVERGED"]) else 0
     for src, dst in pairs:
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
