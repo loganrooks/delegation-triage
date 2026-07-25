@@ -53,3 +53,7 @@ Conjecture-warrant policy (#12); D-3 sol-* adopt-or-drop.
 P-20260724-r4-effort-frontier (medium-incumbent vs xhigh-challenger — first run landed this session,
 see the record's Run 1); sonnet-high-vs-opus-low demotion (R5, 1/3); W-009 sonnet-xhigh; R10 effort
 pair if not demoted by ruling.
+
+## Rulings applied 2026-07-25 (post-audit decision panel)
+
+Batch A ruled "all four": #7 #8 #9 #10 APPLIED (R10 pin xhigh→high; R2/R3/R13/R15 fallbacks→high, Provisional). Batch B: #5 APPLIED (R14 tombstoned into R15). Batch C: #1 #3 SUPERSEDED (budget-conscious profile deleted until needed). Batch D: #16 APPLIED (cap-4 cross-class constraint). Record: probes/records/P-20260725-batch-tier-rulings.md.
