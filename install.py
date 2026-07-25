@@ -65,6 +65,10 @@ def claude_code_plan(root: Path):
     pairs = [(PKG / f, skill_home / f) for f in SKILL_FILES]
     pairs += [(p, skill_home / p.relative_to(PKG)) for p in probe_files()]
     pairs += [(p, root / "agents" / p.name) for p in agent_files()]
+    # ~/.claude/delegation.md is @-imported by the user's global CLAUDE.md (highest-precedence
+    # config surface): route values drifting there silently outvote ROUTES.md, so it deploys
+    # from canonical and --check diffs it (operator authorization 2026-07-24).
+    pairs.append((PKG / "adapters/claude-code/delegation.md", root / "delegation.md"))
     return pairs
 
 
