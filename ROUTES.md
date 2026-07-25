@@ -2,7 +2,7 @@
 
 This table is a curated, evidence-graded prior router by design — no learned router at our data
 scale [W-018]; effort defaults follow the dial's measured shape (high = sweet spot; top tiers per
-stated reason) [W-016, W-017]. Read together with [`STATE.md`](STATE.md) (active profile ·
+stated reason) [W-016, W-017; both `Unchecked for opus-5` since 2026-07-24 — renewal probes open]. Read together with [`STATE.md`](STATE.md) (active profile ·
 scarcity mode · expiry — expired state = Unchecked). Warrants load on demand from [`WARRANTS.md`](WARRANTS.md) by W-ID; a route whose
 warrant says Contested or Conjecture is a probe to run, not a prior to trust. Precedence:
 **project overlay > profile delta > this table** (CONTRACT §5). Route effort is delivered only by
@@ -11,7 +11,7 @@ a roster pin or a per-call `{model, effort}` surface — generic spawns inherit 
 
 | # | Task class | Route | Fallback (no-fable) | Warrants |
 |---|---|---|---|---|
-| R1 | Review gates / adversarial verification | **opus high** (`reviewer` pin re-pointed 2026-07-24, operator ruling: "opus 5 is now the model… you can get away with opus high for reviews" — fable retained for orchestration/decomposition/brainstorming classes, see R13) — keep ≥2 independent lenses on high-stakes artifacts · **cross-vendor lens CANDIDATE:** `sol-code-reviewer` (gpt-5.6-sol high) for code / `sol-design-reviewer` (xhigh) for design — gateway (`claudex`) sessions only; n=1 deviated known-answer datum (P-20260717-sol-b20: blind catch of the hardest MAJOR w/ executable repro, 0 false positives) | same; xhigh per stated reason; fable per stated operator request | W-001, W-019 |
+| R1 | Review gates / adversarial verification | **opus high** (`reviewer` pin re-pointed 2026-07-24, operator ruling: "opus 5 is now the model… you can get away with opus high for reviews" — fable retained for orchestration/decomposition/brainstorming/driving-long-horizon-work classes (operator clarification 2026-07-24), see R13) — keep ≥2 independent lenses on high-stakes artifacts · **cross-vendor lens CANDIDATE:** `sol-code-reviewer` (gpt-5.6-sol high) for code / `sol-design-reviewer` (xhigh) for design — gateway (`claudex`) sessions only; n=1 deviated known-answer datum (P-20260717-sol-b20: blind catch of the hardest MAJOR w/ executable repro, 0 false positives) | same; xhigh per stated reason; fable per stated operator request | W-001, W-019 |
 | R2 | Architecture / design / contract & rubric authoring | **fable high** | opus xhigh + reviewer gate | W-002 |
 | R3 | Front-end design | **fable high** | opus xhigh | W-003 |
 | R4 | Coding / agentic implementation | **opus medium** (`implementer` pin re-pointed 2026-07-24, operator ruling "opus medium for most things" — **Provisional**: adopts the O5-SC leg of a still-**Contested** vendor pair [W-024(c)]; xhigh/high per stated reason) — **effort-frontier probe stays OPEN (P-20260724), now testing incumbent medium vs xhigh challenger; the ruling does not close it** | same; xhigh per stated reason | W-004, W-020, W-024 |
@@ -24,8 +24,8 @@ a roster pin or a per-call `{model, effort}` surface — generic spawns inherit 
 | R11 | fable-medium as implementer | **PARKED** | — | W-011 |
 | R12 | Browser-automation legs (hostile web surfaces) | **CANDIDATE — Class B, unadjudicated:** sonnet-5 high, extended thinking ON | session model (current practice stands) | W-012 |
 | R13 | Multi-lane wave orchestration (design + synthesis of a delegated wave) | **fable high** (`orchestrator` pin; enumerated class) | opus xhigh + reviewer gate on the synthesis, stated reason | W-002 |
-| R14 | Advisor-augmented executor lanes (long-horizon lanes where most turns are mechanical but the plan is crucial) | **CANDIDATE — unadjudicated, no local probe:** sonnet executor + **opus-4.8 advisor** (plaintext = auditable advice; a fable advisor via the advisor TOOL is encrypted — fails transcript-ground-truth unless the advice is expendable; scope: the tool only — an advisor SUBAGENT returns plaintext on any model, W-022) | run the lane per its base class row | W-022 |
-| R15 | Strategy checkpoint (advice-only, curated snapshot, single bounded turn) | **CANDIDATE — fable xhigh** (`advisor` pin; subagent → plaintext on any model, distinct from R14's tool; xhigh reason: single turn pays effort once, judgment-dense; local probe owed, incl. a high-vs-xhigh pair) | opus xhigh | W-022 |
+| R14 | Advisor-augmented executor lanes (long-horizon lanes where most turns are mechanical but the plan is crucial) | **CANDIDATE — unadjudicated, no local probe:** sonnet executor + **opus advisor** (plaintext measured on opus-4.8; opus-5 advisor output format `Unchecked` 2026-07-24) (plaintext = auditable advice; a fable advisor via the advisor TOOL is encrypted — fails transcript-ground-truth unless the advice is expendable; scope: the tool only — an advisor SUBAGENT returns plaintext on any model, W-022) | run the lane per its base class row | W-022 |
+| R15 | Strategy checkpoint (advice-only, curated snapshot, single bounded turn) | **CANDIDATE — fable xhigh** (`advisor` pin; subagent → plaintext on any model, distinct from R14's tool; xhigh reason: single turn pays effort once, judgment-dense; local probe owed, incl. a high-vs-xhigh pair) | opus xhigh (tier ruling owed 2026-07-24: O5-SC HLE has opus xhigh only +0.4 over high — inside read error) | W-022 |
 
 **Class discriminator (R1 vs R7):** R1 = a VERDICT on a finished artifact (gate); R7 =
 verification embedded in a reading/synthesis task. "Adversarially verify X" where X ships → R1;
@@ -57,5 +57,5 @@ until a profile-flipper exists.
 | Profile | Deltas vs base |
 |---|---|
 | **balanced** | none |
-| **budget-conscious** | R6 → sonnet **medium** (runs the open probe; record outcomes) · R7 → opus **high**, xhigh per-spawn with stated reason · R5 → **sonnet high** (runs the demotion probe) — **session-scoped toggle: BYPASS the implementer-light pin with a generic sonnet spawn (state it); do NOT edit pin frontmatter mid-session (registers only at restart — review lens 2 F4)** · fable → R1 only; other enumerated classes need operator request · paired probes: keep only naturally-duplicable free ones |
+| **budget-conscious** | **[STALE 2026-07-24 — deltas predate opus-5 repricing and the R1/R4/R5/R7 re-routes; do not activate without re-derivation — see docs/reviews/2026-07-24-post-opus5-routing-issues.md #1–#3]** R6 → sonnet **medium** (runs the open probe; record outcomes) · R5 → **sonnet high** (runs the demotion probe) — **session-scoped toggle: BYPASS the implementer-light pin with a generic sonnet spawn (state it); do NOT edit pin frontmatter mid-session (registers only at restart — review lens 2 F4)** · fable → R1 only; other enumerated classes need operator request · paired probes: keep only naturally-duplicable free ones |
 | **quality-max** | define when first needed |
