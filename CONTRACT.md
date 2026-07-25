@@ -93,3 +93,14 @@ general ones.
    never lag what the ledger shows. Handoff/contract route prescriptions are checked against
    ROUTES at FIRST spawn; on conflict, surface both sources and state which governs before
    spawning (route-rule-inheritance guard, probes/KNOWN-WEAKNESSES.md).
+7. **Independent-verification rules (operator rulings 2026-07-24, both first-exercised same
+   day):** (a) *decisions get a review spread first* — anything needing an operator decision
+   runs through an independent panel (≥2 legs, distinct lenses, cross-vendor where the fleet
+   affords, structured CONCUR/CONCUR_WITH_CHANGES/OBJECT verdicts, conflicts disclosed) before
+   surfacing; the operator receives the five-point decision + spread + adjudication
+   (first exercise: `docs/reviews/2026-07-24-decision-panel-adjudication.md` — 4 MAJOR spec
+   errors caught pre-ratification). (b) *sampled evidence gets a remainder-read* — a W-record
+   graded from a partial read of its source gets a delegated adversarial deep-read of the
+   unread remainder before (or immediately after) the grade lands; supersede-in-place on
+   findings (first exercise: W-025 amendment — half-quote, mis-scope, phrase overclaim).
+   Skips allowed for trivially-reversible or time-critical calls, stated.

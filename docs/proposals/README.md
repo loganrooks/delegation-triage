@@ -18,10 +18,12 @@ The portfolio-level review is now the
 [2026-07-24 Fable portfolio decomposition review](../reviews/2026-07-24-portfolio-decomposition-fable-review.md):
 verdict REVISE (two products, not three artifacts), dispositions of the root session's
 recommendations R-A–R-F, four operator decisions (D-1…D-4), and the ordered next-phase
-decomposition. Disposition so far: **D-3 decided 2026-07-24 — the runtime moved to its own
-`delegation-runtime` repository** (see the review's addendum), which also resolved the D-6
-ci.yml coupling as "neither". D-1, D-2, and D-4 remain open; nothing else in it is
-self-authorizing.
+decomposition. Dispositions: **D-3 decided 2026-07-24** (runtime → its own `delegation-runtime`
+repository; D-6 resolved "neither") and **D-1, D-2, D-4 + the north star's §6-as-amended all
+RATIFIED 2026-07-24** after the two-leg review panel — see the
+[decision-panel adjudication](../reviews/2026-07-24-decision-panel-adjudication.md) for the
+binding conditions (compatibility contract, immutable instrument identity, rung-table spec
+gaps B-6a/c, §6 v2-migration constraints).
 
 ## Orientation documents
 
@@ -38,7 +40,7 @@ operator disposition alongside the portfolio review's decisions.
 
 | Proposal | Current role | Required disposition |
 |---|---|---|
-| [Consolidated multi-harness control plane](2026-07-21-consolidated-multi-harness-delegation-control-plane.md) | Leading product-boundary proposal. It joins provider-neutral policy, provider/harness adapters, deployment integrity, and orchestration learning. | Review and revise against the July 24 product direction before ratification. |
+| [Consolidated multi-harness control plane](2026-07-21-consolidated-multi-harness-delegation-control-plane.md) | **Superseded on product boundary (D-1 ratified 2026-07-24: two products — doctrine repo + delegation-runtime).** Its layer analysis and learning-plane design remain source material for B-2/B-3. | Mine for the demand+binding rewrite; do not treat its three-artifact boundary as current. |
 | [Cross-runtime routing and Codex-managed Claude delegation](2026-07-17-cross-runtime-routing-and-claude-delegation.md) | Accepted architectural lineage for Codex-managed Claude sessions, provenance, recovery, and bounded delegation. | Preserve its runtime invariants; identify which parts are absorbed by the consolidated product. |
 | [Composable Claude capability and scope policy](2026-07-20-composable-claude-capability-and-scope-policy.md) | Approved direction for provider-neutral policy identity plus Claude-specific compilation. Its C0 core is implemented but non-activating. | Preserve the pure-policy boundary; revise later cohorts around the immediate Claude Code and Codex product horizon. |
 | [Capability-based Claude execution profiles](2026-07-19-capability-based-claude-execution-profiles.md) | Historical profile and runtime-probe baseline, partially superseded by the composable policy. | Retain as evidence; do not treat its fixed profiles as the final public configuration model. |

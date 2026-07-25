@@ -95,3 +95,13 @@ Four yes/no items, each = "adopt the recommendation with the panel's conditions 
 above": **D-1 yes/no · D-2 yes/no · D-4 yes/no · §6-as-amended yes/no.** A "no" on any item
 names which condition fails. Until ratified, nothing here is doctrine; the §6 amendment and
 MANIFEST reclassification are reversible edits made to keep surfaces honest with this record.
+
+## RATIFIED — 2026-07-24, operator, all four
+
+Verbatim: "D-1 yes, D-2 yes, D-4 yes, §6-as-amended yes" (session transcript, fable campaign
+session). Everything above is doctrine as conditioned; the cascade executed in the ratification
+commit: proposals README retitle (D-1 C3) · MANIFEST sol-* row → RATIFIED · north star §6 marked
+bound · work items registered — **B-6a/b/c** (D-4's three spec gaps), **C-4** (181-reference
+stale-path sweep, D-1 C2), **C-5** (D-1 C1 compatibility contract: versioned schemas +
+conformance fixtures + runtime CI pinning), **B-1** absorbs D-2's R1
+immutable-instrument-identity rewrite. §6's amended constraints bind B-3 from this point.
