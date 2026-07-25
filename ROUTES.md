@@ -17,7 +17,7 @@ driving long-horizon work.
 
 | # | Task class | Route | Fallback (no-fable) | Warrants |
 |---|---|---|---|---|
-| R1 | Review gates / adversarial verification | **opus high** (`reviewer` pin); keep ≥2 independent lenses on high-stakes artifacts · cross-vendor lens CANDIDATE: gpt-5.6-sol high for code (`sol-code-reviewer`) / sol xhigh for design (`sol-design-reviewer`) — gateway (`claudex`) sessions only | same; xhigh per stated reason; fable per stated operator request | W-001, W-019 |
+| R1 | Review gates / adversarial verification | **opus high** (`reviewer` pin); keep ≥2 independent lenses on high-stakes artifacts · cross-vendor lens CANDIDATE (external overlay, D-2 RATIFIED): the sol code-review instrument (contract sha `ab115b5c…` high) / sol design-review instrument (contract sha `5eea6712…` xhigh) — **availability predicate: gateway (`claudex`) session AND instrument hash matches the W-record locator**; hashes + locations in WARRANTS "sol instrument identity" note under KNOWN-REPOS | same; xhigh per stated reason; fable per stated operator request | W-001, W-019 |
 | R2 | Architecture / design / contract & rubric authoring | **fable high** | opus high + reviewer gate (Provisional) | W-002 |
 | R3 | Front-end design | **fable high** | opus high (Provisional) | W-003 |
 | R4 | Coding / agentic implementation | **opus medium** (`implementer` pin; Provisional — W-024(c) Contested, effort-frontier probe open); xhigh/high per stated reason | same; xhigh per stated reason | W-004, W-020, W-024, W-025 |

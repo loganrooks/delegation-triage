@@ -28,6 +28,16 @@ a row** [W-019].
 | `routing-evidence:` | (no remote — local-only, flagged) | ~/Projects/routing-evidence |
 | `delegation-runtime:` | (no remote yet — local-only, flagged; Product 2 of the 2026-07-24 split, moved out per portfolio-review D-3) | ~/Projects/delegation-runtime |
 
+**Sol instrument identity (D-2 RATIFIED 2026-07-24 — external overlay, cited by hash, never by mutable name):**
+the three cross-vendor instruments live in the operator's Claude deployment dir (`claude-user-dir:agents/`),
+NOT in this package. Identity = content hash; a citing route's evidence holds only while the deployed
+file matches. Hashed 2026-07-24: sol-advisor `cfc513e22fe8fbb113172bc023a5364525563ac26bffc674690ccbe71a21fd5b` ·
+sol-code-reviewer `ab115b5c16a54c8b489ccbf867e98c7208023c93ab5e5ef35ec2240c3fa65726` ·
+sol-design-reviewer `5eea67122bac89e8f2b07d51742f23a70d50b0996e70031934c3e172b8a6ab4f`.
+Availability predicate: gateway (`claudex`) session; on hash mismatch the R1 candidate evidence reads
+Unchecked until re-verified (re-hash + re-record here). Future sol probe records hash the instrument
+at run time (panel D-2 condition c).
+
 ---
 
 ### W-001 — Review gates: fable-high with ≥2 independent lenses; neither Anthropic tier dominates
