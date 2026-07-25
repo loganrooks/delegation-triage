@@ -29,7 +29,7 @@ driving long-horizon work.
 | R10 | Structured epistemics compilation (claim → typed record) | **opus high** (Provisional) or cross-vendor xhigh; sonnet candidate for kind-typing ONLY | same | W-010 |
 | R11 | fable-medium as implementer | **PARKED** | — | W-011 |
 | R12 | Browser-automation legs (hostile web surfaces) | **CANDIDATE — Class B, unadjudicated:** sonnet-5 high, extended thinking ON | session model (current practice stands) | W-012 |
-| R13 | Multi-lane wave orchestration (design + synthesis of a delegated wave) | **fable high** (`orchestrator` pin; enumerated class) · scope-refinement CANDIDATE [W-025(b)], unexecuted: opus high for bounded fan-outs | opus high + reviewer gate on the synthesis (Provisional) | W-002, W-024, W-025 |
+| R13 | Multi-lane wave orchestration (design + synthesis of a delegated wave) | **fable high** (`orchestrator` pin; enumerated class) · scope-refinement CANDIDATE [W-025(b) as amended], unexecuted: opus high for bounded fan-outs — caveat: the external table's row closest to THIS class (RT-16, fable lead + opus-medium workers) is its weakest-graded | opus high + reviewer gate on the synthesis (Provisional) | W-002, W-024, W-025 |
 | R14 | *(merged into R15, 2026-07-25)* | Long-horizon executor lanes route on their base class row; the advisor-TOOL constraint lives in R15 | — | W-022 |
 | R15 | Strategy checkpoint (advice-only, curated snapshot, single bounded turn) | **CANDIDATE — fable xhigh** (`advisor` pin; SUBAGENT only — the advisor TOOL returns encrypted output and fails transcript-ground-truth, W-022); local probe owed, incl. a high-vs-xhigh pair | opus high (capability drop, not a substitution; Provisional) | W-022 |
 

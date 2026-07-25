@@ -683,3 +683,35 @@ a row** [W-019].
   inference status in either direction. For (a): our local R4 frontier probe (P-20260724) outranks
   this packet's reading the day it runs.
 - **Probe tally:** 0 local (documentary). Feeds nothing until a leg runs.
+
+**AMENDED 2026-07-24 (supersede-in-place) — adversarial deep-read of the unread remainder
+(explorer @ opus/high, R7 escalation; the record's author had read ~15% of the packet at
+grading time; leg findings spot-checked firsthand before this amendment):**
+- **(b) under-scoped:** fable-PRIMARY rows are **four**, not three — RT-16 (mixed-model team:
+  fable High/XHigh controller + opus Medium implementers, horizon "hours to days") is
+  structurally the closest row to our R13 and is the packet's weakest-graded row ("Evidence
+  strength: Low; plausible mixed policy, not controlled public result" — verified in
+  routing_table.csv). Fable also appears co-equal (not fallback) in RT-05/18/19/20. The R13
+  scope-refinement CANDIDATE must be framed against RT-16, not only RT-07/08/14.
+- **(c) told only the favorable half:** the same figure's normal-effort-worker async cell is
+  **93.4 — 1.4 pp ABOVE the 92.0 cheap-worker cell** (packet §4.2: "not enough to set a
+  universal worker effort"). Cheap workers beat solo, lose to normal workers; the R6
+  concordance claim survives only with both halves stated.
+- **(a) addition:** the medium peak is **opus-5-specific on that harness** — Fable 5's own
+  FrontierCode curve peaks at XHigh (Main 48.0/49.8/52.7/**53.5**/51.6, verified in
+  effort_curves.csv), and CursorBench is monotone for opus (packet's own contrary-evidence
+  column). "Medium-first" language must stay model-scoped in ROUTES text.
+- **Grade phrase corrected:** "zero new measurement" → **"zero model-performance
+  measurement."** The packet contains real first-party non-model measurement: 100
+  hand-transcribed data points from rendered figures (the transcription layer is itself an
+  error surface for our concordance claims — unverified against the source PDFs by either
+  reader), 10 audited recomputations, and an executed fixture-mode harness run.
+- **Flip-condition cost corrected:** the packet's harness ships **fixture-backend only**
+  (`run_eval.py --backend choices=['fixture']`, verified; `adapters/` and `fixtures/` empty)
+  — running "the packet's own harness" live requires WRITING the live adapter first. Not
+  low-cost; the fixture layer does prove the balance-check/analysis plumbing (all four
+  controller cells identical by construction).
+- **Locator fix:** the "vendor-supported inference" sentence is §1 (sole occurrence,
+  verified), not §2.2; §2.2 carries the same substance in different words.
+- Leg's declared blind spots inherited: transcribed numbers NOT re-checked against source
+  PDFs by either reader; xlsx/charts/evidence_pages/sources PDFs unread; harness not executed.
