@@ -1,5 +1,10 @@
 # Portfolio decomposition and recommendation attack — Fable review
 
+> **Path note (2026-07-24):** `adapters/codex/delegate-to-*` paths in this document refer to the
+> runtime trees as they lived in this repository's worktree at writing time. They moved to the
+> `delegation-runtime` repository (D-3, 2026-07-24) and were flattened to its root — read
+> `adapters/codex/X` as `X` there. Quoted paths are preserved verbatim.
+
 - **Date:** 2026-07-24
 - **Reviewer:** Claude Code (Fable 5), architect/decomposer session, per the
   [2026-07-24 Fable decomposition packet](../handoffs/2026-07-24-fable-decomposition-packet.md)

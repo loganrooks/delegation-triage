@@ -1,5 +1,10 @@
 # Fable correction-audit packet
 
+> **Path note (2026-07-24):** `adapters/codex/delegate-to-*` paths in this document refer to the
+> runtime trees as they lived in this repository's worktree at writing time. They moved to the
+> `delegation-runtime` repository (D-3, 2026-07-24) and were flattened to its root — read
+> `adapters/codex/X` as `X` there. Quoted paths are preserved verbatim.
+
 You are the independent correction auditor for a user-level Claude delegation policy and its
 first implementation plan. Your report will decide whether implementation may begin and what must
 change first. Review as a product architect, execution-policy/security reviewer, CLI/runtime

@@ -74,10 +74,11 @@ This intersects directly with live routes. **R4** (coding/agentic implementation
 also disabling thinking — carried over from an Opus 4.8-era template where disabling was the default
 posture — will now fail closed rather than degrade.
 
-Exposure in this repo is **plausible but unconfirmed**: `adapters/codex/delegate-to-claude/` passes
-`--effort xhigh` in at least 11 test sites. Whether any production path also sets a thinking-disabled
-flag was **not established** in this pass — the adapter directories are untracked and were not
-audited line by line.
+Exposure is **plausible but unconfirmed**, and now sits in the runtime repository rather than here:
+`delegation-runtime:delegate-to-claude/` (KNOWN-REPOS prefix `delegation-runtime:`; moved out of this
+repo per D-3, 2026-07-24, and flattened to that repo's root) passes `--effort xhigh` in at least 11
+test sites. Whether any production path also sets a thinking-disabled flag was **not established** in
+this pass — those trees were untracked here at audit time and were not audited line by line.
 
 `Reported` (vendor documentation, not independently exercised). **Flip condition:** a live xhigh call
 with thinking disabled that returns 200 would refute this.

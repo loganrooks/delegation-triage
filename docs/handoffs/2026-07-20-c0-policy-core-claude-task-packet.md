@@ -1,5 +1,10 @@
 # Task: implement the non-activating C0 policy core
 
+> **Path note (2026-07-24):** `adapters/codex/delegate-to-*` paths in this document refer to the
+> runtime trees as they lived in this repository's worktree at writing time. They moved to the
+> `delegation-runtime` repository (D-3, 2026-07-24) and were flattened to its root — read
+> `adapters/codex/X` as `X` there. Quoted paths are preserved verbatim.
+
 Invoke `$delegation-triage` before creating descendants. Descendants are forbidden for this run.
 You are not alone in the codebase: preserve all pre-existing and concurrent work and never revert
 or reformat files outside the ownership manifest.

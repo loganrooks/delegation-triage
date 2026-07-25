@@ -1,5 +1,10 @@
 # Composable Claude Policy Contract Core Implementation Plan
 
+> **Path note (2026-07-24):** `adapters/codex/delegate-to-*` paths in this document refer to the
+> runtime trees as they lived in this repository's worktree at writing time. They moved to the
+> `delegation-runtime` repository (D-3, 2026-07-24) and were flattened to its root — read
+> `adapters/codex/X` as `X` there. Quoted paths are preserved verbatim.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development
 > (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use
 > checkbox (`- [ ]`) syntax for tracking.

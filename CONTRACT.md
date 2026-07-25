@@ -104,3 +104,10 @@ general ones.
    unread remainder before (or immediately after) the grade lands; supersede-in-place on
    findings (first exercise: W-025 amendment — half-quote, mis-scope, phrase overclaim).
    Skips allowed for trivially-reversible or time-critical calls, stated.
+8. **North-star alignment lens (operator ruling 2026-07-24):** every review panel (§6.7a) and
+   every decision surfaced to the operator includes an explicit **commons-alignment check**
+   against the evidence-commons north star's design commitments (its §7) and worldings —
+   "does this move toward or away from the vision; does it foreclose any worlding?" Decisions
+   predating the north star (committed 2026-07-24) get re-reviewed under this lens on next
+   touch. The worldings grounding rule is the test: a design element serving no worlding is
+   suspect; a worlding no element serves marks a gap.

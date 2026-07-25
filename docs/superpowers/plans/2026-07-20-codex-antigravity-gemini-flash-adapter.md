@@ -1,5 +1,10 @@
 # Codex-managed Antigravity Gemini Flash adapter implementation plan
 
+> **Path note (2026-07-24):** `adapters/codex/delegate-to-*` paths in this document refer to the
+> runtime trees as they lived in this repository's worktree at writing time. They moved to the
+> `delegation-runtime` repository (D-3, 2026-07-24) and were flattened to its root — read
+> `adapters/codex/X` as `X` there. Quoted paths are preserved verbatim.
+
 > **For agentic workers:** use `superpowers:subagent-driven-development` or
 > `superpowers:executing-plans`. Give one implementation worker the entire adapter write set; the
 > lifecycle, budget, and reconciliation tasks share state and must not be edited concurrently.

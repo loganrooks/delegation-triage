@@ -1,5 +1,10 @@
 # Capability-Based Claude Profiles Corrective Implementation Plan
 
+> **Path note (2026-07-24):** `adapters/codex/delegate-to-*` paths in this document refer to the
+> runtime trees as they lived in this repository's worktree at writing time. They moved to the
+> `delegation-runtime` repository (D-3, 2026-07-24) and were flattened to its root — read
+> `adapters/codex/X` as `X` there. Quoted paths are preserved verbatim.
+
 > **Historical plan:** This plan records the work that produced and corrected the uninstalled
 > version-3 candidate. It is not authority for further implementation. Future work must follow the
 > [composable capability and scope policy proposal](../../proposals/2026-07-20-composable-claude-capability-and-scope-policy.md)
