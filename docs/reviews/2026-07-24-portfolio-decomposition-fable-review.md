@@ -456,3 +456,13 @@ not another review round.
   surfaced propagation debt this review's D-3 execution created: ~181 stale
   `adapters/codex/delegate-to-*` references across ~14 tracked md files (adjudicator-verified
   count) — registered as item C-4. Operator ratification of the four items is pending.
+- **B-3 panel outcome (same day, night) — and a sequencing claim in this review corrected.**
+  The B-3 crosswalk v0 went through its own two-leg panel (both `reviewer` @ opus/high,
+  OBJECT + CONCUR_WITH_CHANGES, 6 BLOCKERs — all firsthand-verified and accepted;
+  [`2026-07-24-b3-crosswalk-panel-adjudication.md`](2026-07-24-b3-crosswalk-panel-adjudication.md)).
+  The panel falsified this review's §Q3-derived line **"E-1 begins the day B-3 lands"**: all
+  five ROUTES-conformance fields (`route_id`, `warrant_ids`, `rung`, `surface`,
+  `harness_contract`) are ∅ in all three live sources, so E-1's routing-conformance question
+  is blocked on the **intent-writer** build item, not on B-3's landing — only the
+  outcome-side join begins at B-3. Corrected in crosswalk v0.2 §6.3; the intent-writer is
+  surfaced to the operator as a scoped decision with that draft.
