@@ -74,3 +74,33 @@ probe ever moves the row (CLAUDE.md, profile ↔ pin coupling). The pin is what 
 ROUTES is what is read.
 
 **Schedule note (fable leg, 2026-07-24, operator batch-2 disposition):** the paired high-vs-xhigh renewal run (P-20260724-B in the opus-5 proposal, W-016 renewal) is SCHEDULED — surface: Cowork Workflow agent() (per-call model AND effort, the only dual-knob surface per CONTRACT §3), next Cowork session. Recorded schedule = closure per the campaign termination rule; running it converts W-004/W-016 from Unchecked-for-opus-5 to measured.
+
+## Run 1 — 2026-07-25, Cowork Workflow agent() dual-knob (recorded by the fable leg)
+
+- **task:** naturally-arising R4 — `dio-offload` kit v1 (dionysus D6 durable-offload CLI), fully
+  specified packet, identical for both legs. No bespoke spend (the kit was needed regardless).
+- **configs:** opus-5 **medium** vs opus-5 **xhigh**, sequential for cost attribution; blind
+  labels fixed by author (A=xhigh, B=medium; judge instructed to evaluate A fully, then B, then
+  re-check A). Adjudicator: **non-author**, blind, opus-5 high, structured verdict, ran both test
+  suites itself.
+- **result:** **medium ACCEPT** (spec 9 · robustness 8 · safety 9; 0 MAJOR / 9 MINOR) vs
+  **xhigh REJECT** (9 · 7 · 8; **1 MAJOR** + 5 MINOR) — winner medium, margin *narrow*. The xhigh
+  MAJOR: silent wrong-host split-brain (`rsh()` hardcoded the host while rsync honored
+  `$DIO_REMOTE` and the README documented the override) — structurally untestable by its own
+  29-assertion suite, found only by the blind judge.
+- **PH-1** (medium not materially worse on first-pass acceptance): **SUPPORTED, n=1** — the
+  inverse of the falsifier occurred (medium passed review where xhigh failed).
+- **PH-2** (medium ≤60% cost): **Underdetermined as worded** — agent tokens medium 66,213 vs
+  xhigh 73,358 (~90%); on the pre-registered metric (total cost to *accepted* artifact) medium
+  reached accepted at 66k while xhigh never reached accepted.
+- **PH-3** (xhigh worse, not merely equal): directionally observed — n=1, one task class.
+- **deviations (named):** legs sequential, not parallel; first medium-leg attempt killed by a
+  session usage limit at 35,487 tokens (excluded; clean re-run); A/B assignment fixed, no RNG on
+  the surface; spec authored by the recording session.
+- **tokens:** medium 66,213 · xhigh 73,358 · judge 89,110 (workflow-reported).
+- **artifacts:** adopted kit = medium leg + 3 post-adjudication MINOR fixes (host-prefix
+  de-doubling in push/pull, BatchMode made non-overridable), tests 21/21; deployed
+  `~/Development/dio-offload` → apollo `~/bin/dio`; live smoke `dio-smoke2` **done rc=0** on
+  dionysus (survives disconnect — the assessment's load-test disconfirmer answered).
+- **tally:** W-024(c) local count → **1** (direction: medium ≥ xhigh). Per W-019 n=1 never
+  flips: R4 stays medium-Provisional; probe stays open, budget ~3/side.
