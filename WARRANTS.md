@@ -636,3 +636,50 @@ a row** [W-019].
   challenger. R1's same-day fable→opus re-route is the separate ruling record
   P-20260724-r1-reroute-opus.
 - **Probe tally:** 0 local. All evidence is vendor-side; the local tally opens with the R4 probe.
+
+### W-025 — GPT-5.6-Pro audit packet: routing taxonomy + effort curves, concordant with the 2026-07-24 re-routes; controller-isolation still missing (external documentary synthesis, 2026-07-24)
+- **Claim (three separable claims):**
+  - **(a) Effort non-monotonicity, second reading concordant with W-024.** The packet's transcription
+    of the same official figures reproduces the O5-SC FrontierCode medium peak (Main 53.4 at medium,
+    −9.8 pp at xhigh; Extended 63.6, −6.7) and adds the cross-benchmark shape W-024 lacked:
+    DeepSWE peaks at xhigh for BOTH opus and fable with slight max regressions; BrowseComp
+    near-plateaus by high for opus (90.2 vs 90.8 max). Effort curves are benchmark-shaped, not
+    monotonic — "start medium for contained implementation, high for judgment/controller work,
+    xhigh for recovery/replanning, never default max."
+  - **(b) Orchestration is a taxonomy, not one capability.** 12 orchestration families with distinct
+    routing implications; fable's premium hypothesis is scoped to persistent-async / dynamic-
+    decomposition / days-scale families (RT-07/08/14), with opus high as the *bounded*-orchestration
+    controller (RT-04/09). The packet is explicit that fable-as-better-controller is a
+    "vendor-supported inference, not a verified general fact" — no public benchmark isolates
+    controller quality with identical workers (its §2.2; concordant with W-024(d)).
+  - **(c) Worker-effort split.** Lead effort and worker effort are separate decisions; the only
+    public cell (O5-SC p.163: async with low-effort workers 92.0 vs 90.5 solo) shows cheap workers
+    can carry fan-out lanes — concordant with this package's sweeps-stay-sonnet posture (R6, W-006).
+- **Label · grade:** `Concordant` (with W-024 and the 2026-07-24 operator re-routes) · Low–Moderate.
+  Downgrades: (i) **documentary synthesis — the packet states "No live calls to Fable 5, Opus 5,
+  Sonnet 5, or GPT-5.6 Sol were available"; its local_eval fixtures are "not model-performance
+  evidence" (its README_FIRST.md)** — so it adds a careful second READING of vendor evidence, zero
+  new measurement; (ii) same underlying vendor sources as W-024 — concordance here is
+  reading-concordance, not source-independence; (iii) second same-day GPT-5.6-lineage audit
+  (Thinking prompt vs Pro packet) — one vendor lineage for independence accounting; (iv) its
+  RT-01..20 table is normative synthesis (its claim ledger labels these "Recommendation /
+  synthesis"), graded accordingly, never as observation.
+- **Locators + excerpts:** vendored text/CSV +
+  [`PROVENANCE.md`](docs/research/external/2026-07-24-fable-vs-opus5-audit-packet-gpt56pro/PROVENANCE.md)
+  at `docs/research/external/2026-07-24-fable-vs-opus5-audit-packet-gpt56pro/`; full 84 MB bundle
+  (system-card PDFs, charts, xlsx, evidence pages, pre-registered controller-isolation harness)
+  at `routing-evidence:2026-07-24-fable-vs-opus5-audit-packet-gpt56pro/`. Its five `sources/`
+  hashes verified against its own SHA256SUMS 2026-07-24 (value-wise; manifest paths are the
+  authoring sandbox's). Report's scope sentence: "This is a conditional routing judgment, not a
+  universal model ranking."
+- **Route impact:** annotations, not moves — R4 (opus medium) and R1 (opus high) gain a second
+  concordant reading; R13's scope refinement (bounded vs dynamic orchestration) is surfaced as an
+  operator decision via the standing panel process, NOT executed: fable-row moves stay blocked by
+  W-024(d)+(b-ii) — this packet adds no controller measurement, so the block stands by its own
+  admission. Its pre-registered controller-isolation harness (`local_eval/`) is the shape of the
+  probe that WOULD move those rows.
+- **Flip condition:** any run of a controller-isolation design (identical workers, fable vs opus
+  leads) on a task family we route — including the packet's own harness — supersedes claim (b)'s
+  inference status in either direction. For (a): our local R4 frontier probe (P-20260724) outranks
+  this packet's reading the day it runs.
+- **Probe tally:** 0 local (documentary). Feeds nothing until a leg runs.
