@@ -441,3 +441,13 @@ not another review round.
   opus low (P-20260724-r4-r5-reroute-opus5-effort, Provisional; frontier probe now tests the
   medium incumbent). First live medium spawn accepted first-pass (n=1 observation in that
   record).
+- **Panel adjudication (same day, late evening):** D-1/D-2/D-4/§6 went through the operator's
+  standing review-spread rule — two legs (sol-design-reviewer @ sol/xhigh with conflict
+  disclosed; reviewer-contract @ opus/xhigh), 8 verdicts, 0 OBJECT, adjudicated in
+  [`2026-07-24-decision-panel-adjudication.md`](2026-07-24-decision-panel-adjudication.md).
+  **Two enforcement-point claims in this review's §3 are corrected there** (the deployed guard
+  hook canNOT yet deliver the claimed zero-token rung check; CI has no frontmatter↔rung-image
+  comparator — both are build items for B-6, not existing capabilities). The panel also
+  surfaced propagation debt this review's D-3 execution created: ~181 stale
+  `adapters/codex/delegate-to-*` references across ~14 tracked md files (adjudicator-verified
+  count) — registered as item C-4. Operator ratification of the four items is pending.

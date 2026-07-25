@@ -96,17 +96,32 @@ Each entry: the problem, the design answer already in hand, and the open remaind
 ## 6. The one binding near-term constraint (proposed)
 
 Decomposition item **B-3** (intent/outcome record + sidecar) must design its schema
-**shareable by construction**:
+**shareable by construction**. *(As amended 2026-07-24 by the
+[decision-panel adjudication](../reviews/2026-07-24-decision-panel-adjudication.md) after both
+panel legs checked these constraints against the live Codex orchestration-learning schema —
+which B-5 discovered after this document was first committed.)*
 
-1. stable IDs (record, session, probe lineage) that survive leaving one machine;
+1. **stable IDs with defined scopes** (event / run / origin-namespace / project-pseudonym)
+   that survive leaving one machine — scope definitions and a pseudonym rekey/migration rule
+   come first; a machine-local-salted ID (the Codex `project_id` pattern) does not qualify
+   as-is;
 2. an explicit **harness-contract field** — which prompt/skill/gate discipline was in force;
-3. an explicit **attestation field** using the tiered vocabulary;
-4. **sensitive fields separated from routing-relevant fields at the schema level** — consent
-   to share must be legible as a field list, never as a scrubbing step;
+3. an explicit **attestation field** — the tiered vocabulary **must first be defined as an
+   enum** (today only free-form locators + `self-reported` exist; EPISTEMICS labels are
+   claim-grades, not attestation tiers);
+   *(2 and 3 are absent from the Codex v1 schema, whose strict validator rejects unknown
+   fields — they enter as a **v2 with dual-read migration**, never as appended fields)*;
+4. **sensitive fields separated from routing-relevant fields at the schema level** — a
+   **floor**: Codex v1's allowlist-plus-reject posture already exceeds it and must not be
+   weakened to meet it. Free-text routing fields (e.g. a `why`) violate this by construction —
+   use enumerated reason-codes + optional hash-referenced note;
 5. namespacing-ready (a record can later carry an origin without format change).
 
-Cost now: near zero — B-3 is being designed anyway. Retrofit cost later: high. This is the
-only sentence in this document that touches the current plan.
+Cost: **not near-zero** (corrected 2026-07-24 — the original sentence predated B-5): B-3 is
+now a three-schema crosswalk plus a v2 migration of a schema this package does not own;
+schema-change governance across the two products belongs to the D-1 compatibility contract.
+Retrofit cost later remains higher still. This section is the only part of this document that
+touches the current plan.
 
 ## 7. Design commitments
 

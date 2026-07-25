@@ -100,7 +100,7 @@ ROUTES is what is read.
 - **tokens:** medium 66,213 · xhigh 73,358 · judge 89,110 (workflow-reported).
 - **artifacts:** adopted kit = medium leg + 3 post-adjudication MINOR fixes (host-prefix
   de-doubling in push/pull, BatchMode made non-overridable), tests 21/21; deployed
-  `~/Development/dio-offload` → apollo `~/bin/dio`; live smoke `dio-smoke2` **done rc=0** on
+  from the operator's Development dir (env-specific: dio-offload) → apollo `bin/dio`; live smoke `dio-smoke2` **done rc=0** on
   dionysus (survives disconnect — the assessment's load-test disconfirmer answered).
 - **tally:** W-024(c) local count → **1** (direction: medium ≥ xhigh). Per W-019 n=1 never
   flips: R4 stays medium-Provisional; probe stays open, budget ~3/side.
