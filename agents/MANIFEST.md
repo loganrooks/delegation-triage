@@ -40,4 +40,5 @@ the operator to relocate).
 
 | date | artifact | sha256 | source commit | notes |
 |---|---|---|---|---|
+| 2026-07-25 | dist/delegation-roster-0.4.0.plugin (Cowork) | db3801f20394f55d59c38722e773c14369b49ee71f30bff97242510fab59a116 | a5d7eaa | rebuilt post R4/R5 re-route (implementer opus medium, implementer-light opus low) + post-opus5 mechanical pass (issues #2,4,6,10,12 in docs/reviews/2026-07-24-post-opus5-routing-issues.md); the packaged ROUTES' one remaining `opus-4.8` string is the R14 provenance note (intentional). Delivered in-conversation + ~/Development/delegation-roster-0.4.0.plugin — supersedes the same-day 0.3.0 rebuild; INSTALL PENDING (registers at next session start) |
 | 2026-07-24 | dist/delegation-roster-0.3.0.plugin (Cowork) | e21a552c19828b4f7b8d2c66414668e31815456da4c1c06f383f2c866d6d5798 | 29c4461 | rebuilt post R1-reroute + fable-permanent; carries the 15-row ROUTES incl. R14/R15; stale `opus-4-8` references gone (unpack-grep, hyphenated spelling only — R14's `opus-4.8` survived; corrected in ROUTES 2026-07-25 pass). Delivered to operator for Cowork-UI install — INSTALL PENDING, sessions pick it up after install |
