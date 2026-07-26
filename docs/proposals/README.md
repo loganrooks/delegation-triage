@@ -46,6 +46,7 @@ operator disposition alongside the portfolio review's decisions.
 | [Capability-based Claude execution profiles](2026-07-19-capability-based-claude-execution-profiles.md) | Historical profile and runtime-probe baseline, partially superseded by the composable policy. | Retain as evidence; do not treat its fixed profiles as the final public configuration model. |
 | [Deferred provider-neutral router](2026-07-20-provider-neutral-multi-harness-delegation-router-deferred.md) | Earlier decision to preserve an extension seam without building a router. Its reopening triggers now require reassessment. | Decide what the consolidated proposal supersedes and what adapter invariants remain. |
 | [Codex-managed Antigravity adapter](2026-07-20-codex-managed-antigravity-gemini-flash-adapter.md) | Implemented temporary provider slice and evidence about cross-provider reuse. | Treat as migration evidence and a later extension, not the immediate product center. |
+| [Gemini 3.6 Flash pilot](2026-07-26-gemini-flash-36-pilot.md) | **DRAFT v3, awaiting operator D-FP-1/2/3.** Two review rounds (Claude panel + cross-vendor sol) fully disposed; wave 1 feasibility-only, wave-2 paired incumbent trial is the sole routing-operative path. W-026 is its warrant. | The first live consumer of the intent-writer + crosswalk; its schema-level sol findings seed C-5's interchange-hardening list. |
 
 ## Supporting evidence
 

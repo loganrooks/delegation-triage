@@ -1,9 +1,12 @@
-# Gemini 3.6 Flash placement pilot — routing evidence from instrumented probes (v2, post-panel)
+# Gemini 3.6 Flash placement pilot — routing evidence from instrumented probes (v3, post-cross-vendor)
 
-**Status: DRAFT v2 — §6.7a panel run (2 legs opus/high: OBJECT + CONCUR_WITH_CHANGES, 7
-blockers, 25 findings ALL accepted, zero rejected); this revision disposes every finding.
-Spread + adjudication: [panel adjudication](../reviews/2026-07-26-flash-pilot-panel-adjudication.md).
-Surfaced for operator decision WITH that packet, per CONTRACT §6.7a.**
+**Status: DRAFT v3 — two review rounds, all findings accepted and disposed. Round 1: §6.7a
+panel, 2 legs opus/high (OBJECT + CONCUR_WITH_CHANGES, 25 findings —
+[adjudication](../reviews/2026-07-26-flash-pilot-panel-adjudication.md)). Round 2:
+cross-vendor design review, gpt-5.6-sol @ xhigh via native codex exec (OBJECT ×2, findings
+XV-1..10 — [adjudication](../reviews/2026-07-26-sol-design-wave1-adjudication.md)); its
+BLOCKERs re-scope wave 1 to feasibility-only. Surfaced for operator decision WITH both
+packets, per CONTRACT §6.7a.**
 **Warrant:** [W-026] (Unchecked — this pilot is its instrument).
 **Authority context:** operator direction 2026-07-26; the Day-3 revision request
 (`~/Downloads/day3_flash_routing_revision_request.md`) whose Q7/Q8 demand an in-work
@@ -29,9 +32,13 @@ prices the loop accordingly.
   harnesses. Scope limits stated up front (V-M1/V-M3): the wave's tasks come from ONE
   repository unless the task set is widened, so a clean sweep licenses a *repo-scoped*
   tractability-plus claim, not class-level competence; and the wave pairs *harnesses*, not
-  *models* — it answers "can Flash carry this" (absolute threshold), NOT "should Flash
-  displace opus-medium" (comparative, requiring a paired-incumbent probe that is a separate,
-  later instrument).
+  *models*. **Wave 1 is feasibility-only (XV-1): it produces NO overlay proposal under any
+  outcome.** The comparative question ("should any traffic move from opus-medium") is
+  answered only by the pre-registered **wave-2 paired substitution trial** — identical
+  frozen tasks run by Flash AND the incumbent under symmetric stopping rules, blinded
+  adjudication — which a passing wave 1 unlocks. This removes the asymmetric evidentiary
+  burden the cross-vendor review named: the incumbent faces the same tasks and the same
+  retirement criterion before any routing change is proposed.
 - **C-P2 (meta):** the delegation-triage learning loop produces decision-grade, auditable
   records from a third-vendor lane. **Falsifier (V-m3):** C-P2 is false if, at wave end, the
   D-FP-3 disposition cannot be made from the records alone (a reader must consult
@@ -49,8 +56,13 @@ A task enters only if ALL hold, recorded per-spawn as intent riders:
    FP-C interrogates — common-mode; use the Anthropic-native R1 reviewer or tests).
 2. **Reversibility:** failure costs one review cycle, nothing silent — version control, no
    sole-writer-of-record lanes, no unreviewed writes outside stated scope. Consequence:
-   rework is the EXPECTED path, so `accepted-after-rework` (with `rework_actor`) counts
-   toward promotion equally with `accepted` (F-8).
+   rework is the EXPECTED path, so `accepted-after-rework` counts as a positive executor
+   outcome — **within a pre-registered rework budget (XV-2):** `rework_actor: delegate`
+   within ONE review cycle counts positive; `rework_actor: root` is a NEGATIVE executor
+   outcome (root-salvage — the model's output did not carry the lane; this session's own
+   run-1 salvage is the specimen); rework beyond the per-task budget (cycles or a
+   pre-registered changed-line ceiling) is negative regardless of actor. Unbounded rework
+   credit would measure orchestration-level task closure, not the executor under test.
 3. **Pre-registered predictions, with named predictors (V-M10):** each prediction record
    carries `predictor`. The OPERATOR's own prediction is registered independently and before
    the run — Q8's calibration dimension is about *his* model of the model; a Claude session's
@@ -83,7 +95,11 @@ porting the doctrine stack to the native leg — a later, optional refinement.
 
 Task definitions remain a pending input (chatgpt-cli session, tasked 2026-07-26) and must
 pass §2 individually (V-M11); at least one task SHOULD come from a second repository, else
-the §1 repo-scope limit is stated in the promotion packet (V-M1).
+the §1 repo-scope limit is stated in the wave report (V-M1). **Task-set freeze (XV-6):** the
+task-set doc pre-registers the eligible task population and the selection rule (with
+exclusions logged), not just the chosen tasks. **FP-C execution conditions (XV-6):** each
+leg runs from its own clean worktree at the same commit and dependency state; cache state
+noted; leg order counterbalanced across tasks; patch adjudication vendor-blinded.
 
 ## 4. Preconditions (gates, in order — with minimum viable degradation, F-6)
 
@@ -138,20 +154,30 @@ in `probes/records/` with **`run_id` = probe_id** so records machine-join (F-11)
 - **Authoring ergonomics (F-7):** per-lane intent/outcome JSON templates ship in
   `probes/fixtures/flash-pilot/` before the first run; hand-authoring 15-field records
   per-spawn is the highest-probability quiet-non-compliance point.
+- **Oracle freeze (XV-5, wave-1 slice):** each task's oracle is pinned by content digest in
+  its probe record before the run (test files at a SHA; reviewer instructions verbatim) —
+  "the tests passed" must mean the SAME tests both legs and both waves see.
+- **Closure rule (XV-10, wave-1 slice):** every intent gets a terminal outcome by wave-end
+  review — a leg with no result by then is terminalized `abandoned` with a timeout friction
+  note, and the wave report's denominator is ALL intents, not completed ones.
 
 ## 6. Stopping rules, both directions (rewritten per V-B3/F-8/V-M5/V-M8)
 
-- **Promotion — to a PROPOSAL, not a row (V-B1):** ≥2 attested concordant positive terminal
-  outcomes in a lane (`accepted` or `accepted-after-rework`, F-8), oracle attestation ≥
-  third-party-verified, FP-0a resolved (V-M6), zero adjudicated severe events → a
-  lane-scoped CANDIDATE→Provisional overlay row is DRAFTED and surfaced as an operator
-  decision with this stated honestly (V-B3): **the ≥2 floor is a necessary condition the
-  package's evidence is consistent with but does not fix (WARRANTS.md); at pilot n, zero
-  severe events bounds the severe rate only weakly (rule-of-three: n=2 → ~78% upper bound at
-  95%; even n=8 → ~31%).** What promotion therefore licenses is "no evidence against, under
-  instrumented exposure of stated size" — the severe-rate bound tightens only with volume,
-  which is what the overlay row's own probationary tally is for. The reasoning is shown, as
-  Q7 demanded, rather than a number asserted.
+- **Wave-1 "promotion" = eligibility for the wave-2 paired trial, nothing more (XV-1,
+  supersedes the v2 overlay-proposal output):** ≥2 attested concordant positive terminal
+  outcomes in a lane (per the §2.2 rework-budget rule), oracle attestation ≥
+  third-party-verified, FP-0a resolved (V-M6), zero adjudicated severe events → the lane is
+  ELIGIBLE for the **wave-2 paired substitution trial**: identical frozen tasks run by both
+  `google:gemini-3.6-flash-high` and the incumbent `anthropic:opus-5@medium`, symmetric
+  stopping and retirement rules, order counterbalanced, patches vendor-blinded at
+  adjudication (per the standing frontier-probe pattern, P-20260724-r4-effort-frontier).
+  ONLY the wave-2 comparison can produce an overlay-row proposal, and even that is surfaced
+  as an operator decision, never applied by rule (V-B1). Stated honestly (V-B3): the ≥2
+  floor is a necessary condition the package's evidence is consistent with but does not fix
+  (WARRANTS.md); at wave-1 n, zero severe events bounds the severe rate only weakly
+  (rule-of-three: n=2 → ~78% upper bound at 95%; n=8 → ~31%) — wave 1 licenses
+  "tool-loop-viable, honest under ambiguity, no evidence against at stated exposure," which
+  is exactly the entry bar a comparative trial needs and nothing routing-operative.
 - **Retirement — single adjudicated event:** one **cause-adjudicated** severe event —
   fabricated completion, silent scope violation, undetected-at-the-time omission — retires
   the lane. **Cause adjudication first (V-M5):** the operator's own corpus holds two
@@ -186,20 +212,30 @@ validates.** If that trade reads wrong, D-FP-1's do-nothing option is the honest
 ## 8. Decisions surfaced (with the panel packet attached)
 
 - **D-FP-1** — ratify this protocol conditionally (binding after first task-set application,
-  §2) and register FP-A/B/C as CANDIDATE lanes under W-026?
-- **D-FP-2** — pilot order. **Recommendation now FP-0d → FP-B → FP-C → FP-A** (changed from
-  v1 by panel F-6/V-B2): FP-B needs no effort match and hits the highest-value gap
-  (BLOCKED-vs-improvise); FP-C follows once FP-0a's mapping half resolves; the v1 FP-C-first
-  rationale ("converts later results into attributable ones") was falsified by the panel and
-  is withdrawn.
-- **D-FP-3 (NEW, F-Q8):** name, before the wave, the disposition C-P1 evidence can license:
-  at best "repo-scoped, effort-cell-attested, no-evidence-against at stated exposure —
-  overlay row proposed for the operator." If that deliverable isn't worth the §7 cost, the
-  wave shouldn't run — this is the question that decision puts to the operator plainly.
+  §2) and register FP-A/B/C as CANDIDATE lanes under W-026? Note the v3 change: wave 1 is
+  feasibility-only; no routing surface can move on its results.
+- **D-FP-2** — pilot order. **Recommendation FP-0d → FP-B → FP-C → FP-A** (F-6/V-B2): FP-B
+  needs no effort match and hits the highest-value gap (BLOCKED-vs-improvise); FP-C follows
+  once FP-0a's mapping half resolves.
+- **D-FP-3 (restated for v3):** the wave-1 deliverable is now: "tool-loop viability +
+  honest-ambiguity evidence + severe-rate exposure at stated n, qualifying (or
+  disqualifying) Flash for a wave-2 paired incumbent trial — the trial being the only path
+  to any routing change." If that two-wave path isn't worth the §7 cost, do-nothing is the
+  honest option; the cost of wave 1 alone is smaller than v2's (no overlay packet to
+  assemble), and the routing-operative spend is deferred behind a gate the incumbent must
+  also pass through.
 
 ## 9. Revision log
 
 - v1 (2026-07-26): initial draft, panel-gated. Never surfaced.
+- v3 (2026-07-26): cross-vendor round (gpt-5.6-sol @ xhigh, native codex) — XV-1..10 all
+  accepted. Materially: wave 1 re-scoped **feasibility-only**, overlay output removed;
+  wave-2 paired substitution trial pre-registered as the sole routing-operative instrument
+  (XV-1); rework budget with root-salvage-is-negative rule (XV-2); task-population
+  pre-registration + FP-C worktree/cache/order/blinding freeze (XV-6); oracle content-digest
+  pinning (XV-5 slice); wave-end closure + all-intents denominator (XV-10 slice). Schema-
+  level findings XV-3/4/5/7/8/9/10 registered as the C-5 interchange-hardening package (see
+  sol adjudication doc).
 - v2 (2026-07-26): all 25 panel findings disposed (7 blockers). Materially: promotion
   produces an operator proposal, never a row (V-B1/B3); FP-C re-scoped whole-harness
   (V-B2/F-3); binding corrected to the served id (F-1); FP-0d tool-loop gate added (F-2);

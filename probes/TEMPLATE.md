@@ -7,6 +7,9 @@
 - blinded?:            <!-- legs blind to each other -->
 - frozen tree?:        <!-- artifact frozen at a SHA during review -->
 - adjudicator:         <!-- author / non-author -->
+- evaluator lineage:   <!-- vendor/model family of EACH verifying leg + author-separation
+                            (XV-4: process independence ≠ lineage independence; a panel of
+                            same-lineage legs must be legible as such to consumers) -->
 - router:              <!-- WHO made the routing decision: driver model × effort × surface
                             (routing competence is itself model-conditional — G-02; the one
                             observed routing failure to date fired under a fable driver) -->
