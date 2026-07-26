@@ -79,6 +79,20 @@ F-8 fix (pid+nonce does not make reclaim atomic). Fix directives:
 
 Plus the 12-item test-gap list from the report as suite additions.
 
+**Fix round LANDED and verified (same day):** delegation-runtime `97fbfba` (all ten SC
+fixes + 51 tests → suite 193, repo 500) + `4b49aea` (SPEC re-sync, `[SC]`-marked —
+adjudicated as implementation hardening, NOT a crosswalk bump: §1 already made `run_id`
+origin-scoped; the round enforced existing semantics). Parent verification: suites,
+SC-2/4/5/9 reject probes, live store validates clean under the new invariants (16 records,
+no grandfathering needed). Two durable byproducts: (1) the implementer's own SC-8 FIFO test
+HUNG the suite — the obvious implementation of "reject non-regular files" (open then check)
+blocks forever on a planted FIFO; only execution surfaced it (`O_NONBLOCK` fix) — another
+runnable-probe datum; (2) the implementer's close-out framing of SC-1, worth keeping
+verbatim: F-8's pid+nonce "narrowed the race and read as a fix, and it took a
+different-lineage reviewer to see that narrowing a race isn't closing one" — the
+cross-vendor leg earns its cost specifically on concurrency/filesystem code, where
+same-lineage review inherits the blind spot about what "looks careful."
+
 ## What this instrument bought (the meta-result)
 
 Every one of XV-1..10 and SC-1..10 passed through TWO Claude-lineage review rounds
