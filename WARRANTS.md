@@ -725,3 +725,25 @@ grading time; leg findings spot-checked firsthand before this amendment):**
   verified), not §2.2; §2.2 carries the same substance in different words.
 - Leg's declared blind spots inherited: transcribed numbers NOT re-checked against source
   PDFs by either reader; xlsx/charts/evidence_pages/sources PDFs unread; harness not executed.
+
+### W-026 — Gemini 3.6 Flash: detectable-reversible executor lanes (pilot instrument; Unchecked)
+- **Claim:** Gemini 3.6 Flash (served binding `google:gemini-3.6-flash-high`; the bare id is not
+  served — gateway README, verified 2026-07-26) can carry detectable-AND-reversible bounded-
+  implementation lanes (pilot lanes FP-A/B/C) at acceptable quality in THIS operator's harnesses.
+- **Label + grade:** **Unchecked** — no attested 3.6 outcome exists in any material held
+  (operator's substantive experience is 3.5-High = tractability-only, per the Day-3 corpus's own
+  version discipline; two 3.6 probes are single-task). Downgrade reasoning: benchmark cells
+  (CursorBench, DeepSWE) are vendor-harness, not effort-matched, no task set — conditioned per
+  AHR-C §3.5, they establish tractability, never placement.
+- **Locators:** pilot protocol `docs/proposals/2026-07-26-gemini-flash-36-pilot.md` ·
+  Day-3 corpus `~/Downloads/day3_flash_routing_revision_request.md` + `day3_local_traces/` +
+  `Fable_Opus_Day3_Gemini_Flash_Update/` (operator-held, off-package) · gateway
+  `claude-user-dir: gateway/README.md` (served ids; effort-knob status; exit-0-empty failure).
+- **Flip condition (= the pilot's promotion rule, panel-amended):** ≥2 attested concordant
+  positive terminal outcomes per lane (accepted OR accepted-after-rework with `rework_actor`
+  recorded), oracle-attested at ≥ third-party-verified, with FP-0a resolved (effort cell named)
+  and zero severe-failure events — which at pilot n bounds the severe rate only weakly; promotion
+  is therefore to a lane-scoped CANDIDATE→Provisional overlay surfaced as an operator decision,
+  never an automatic row change. Single attested severe event (fabricated completion / silent
+  scope violation / undetected omission) after cause adjudication → lane retired, counter here.
+- **Probe tally:** 0 attested (2026-07-26). Pilot records feed this tally.

@@ -20,6 +20,16 @@ closed (F-6), free-code write-time rule (F-1), §3a binds native records (F-11),
 null-until-publication made explicit and `router_model: human` legalized (F-12). No field
 that existed in v0.2 changed meaning; consumers built on v0.2 remain correct.
 
+**Amended 2026-07-26 (v0.2.2)** after the Flash-pilot §6.7a panel (adjudication:
+[flash-pilot panel](../reviews/2026-07-26-flash-pilot-panel-adjudication.md)) — three
+additive changes marked **[v0.2.2]**: `surface` gains `cli` (a native shell CLI invocation
+is a real sixth delivery surface; recording it as `pin`/`generic` would falsify the axis);
+`route_id` semantics widened to admit registered CANDIDATE lane ids (the pilot instantiated
+§8-1's falsifier before running — a routing decision the field couldn't express); the first
+three **registered friction-code vocabulary members** published: `fabricated-completion`,
+`silent-scope-violation`, `undetected-omission` (severe-failure classes; registering them
+makes the pilot's decisive signals exportable instead of free-slot-only).
+
 ## 0. What this is
 
 One **intent record** (written at the routing decision point) and one **outcome record**
@@ -90,14 +100,14 @@ Canonical fields → source mappings. `∅` = source cannot supply; nullable unl
 | `ts` | ✓ | ISO-8601 UTC (S2 native values are epoch **strings**, e.g. `"1782885929.454425"` — normalize at projection) | ✓ | ✓ | `ts` |
 | `event_id`,`run_id`,`origin`,`spawn_ordinal` | ✓ | §1 | §1 | §1 | §1 |
 | `task_class` | ✓ | demand-ontology term. **Two-level: `class` (closed enum — candidate assignment of all 58 observed values published in §2a before this field is REQ-enforced) + `class_free` (native term, preserved)**. Measured: S3 carries **58** distinct values / 94 route_planned (v0 said 59 — corrected); top: `bounded-implementation` 8 · `web-research` 6 · `review` 5 | ∅ | ∅ — the `task` dict (15/724 spawn-req) has subkeys `kind/project/gate/tier/lens/vendor/round`, none class-bearing (v0's cell was wrong) | `task_class` |
-| `route_id` | | ROUTES row (or overlay row) consulted; `none-consulted` is a legal, honest value — **the field whose absence made the 2.2% unmeasurable** | ∅ | ∅ | ∅ (new in v2) |
+| `route_id` | | ROUTES row (or overlay row) consulted, **or a registered CANDIDATE lane id [v0.2.2]** (registered = named in a committed package doc + a W-record; the Flash pilot's FP-A/B/C are the first); `none-consulted` is a legal, honest value — **the field whose absence made the 2.2% unmeasurable** | ∅ | ∅ | ∅ (new in v2) |
 | `warrant_ids[]` | | W-records load-bearing for the choice | ∅ | ∅ | ∅ (new) |
 | `rung` | | rung-table row fired (B-6; empty until it exists) | ∅ | ∅ | ∅ (new) |
 | `requested_model` | ✓ | **normalized binding id** (`vendor:model`) + `requested_model_raw` preserved. Needed now: measured live alias drift — `terra`/`gpt-5.6-terra`/`gpt-5-6-terra` are one binding in three spellings | `model` (probe block) | `model_requested` (394/724 non-empty; null = session-inherited, map to `requested_model: null` + `surface: generic`) | `requested_model` |
 | `requested_effort` | ✓ | `low/medium/high/xhigh/max/session-inherited/unspecified/unknown`. `unknown`/`unspecified` are honest members — measured: S3 `requested_effort` includes `unspecified`(4)/`unknown`(1). `max` unobserved in either corpus but retained: legal API value, ROUTES R8 reserves it | `effort` — **intent-side ONLY if emitted pre-call; the probe shows one `effort` attribute, so S1 supplies intent-effort OR observed-effort, not both** (v0 double-mapped it — corrected: S1 intent `requested_effort` = ∅, see §3) | **∅** — `effort_spawner` is the PARENT's effort (measured: explorer-light's 50 spawn-reqs carry high/xhigh/medium while all 60 child stops say medium). Child intent-effort is not captured request-side | `requested_effort` |
 | `router_effort` | | NEW (from A1): the routing *driver's* own effort at decision time — the effort-inheritance detector's input | ∅ | `effort_spawner` ✓ (722/724) | ∅ |
 | `requested_role` | | agent-type / roster pin name | **∅** — probe finding 4: no `subagent_type` in the stream; `agent.name` redacted to `custom`; roster identity exists only on the OUTCOME event | `subagent_type` (706/724) | `requested_role` |
-| `surface` | ✓ | delivery surface (pin / per-call / generic / teams / cowork) — CONTRACT §3's control-surface question, made a field | ∅ | derivable (`tool_name`+`subagent_type`+`model_requested` nullity) | ∅ (new) |
+| `surface` | ✓ | delivery surface (pin / per-call / generic / teams / cowork / **cli [v0.2.2]** — a native shell CLI invocation, e.g. `agy -p`, outside any Claude Code surface) — CONTRACT §3's control-surface question, made a field | ∅ | derivable (`tool_name`+`subagent_type`+`model_requested` nullity) | ∅ (new) |
 | `harness_contract` | ✓ (v2-only) | **content hash of the in-force contract** (prompt contract + skill + gate config) + a human label + **`harness_features` struct** — realized as `harness_contract.features` **[v0.2.1]** — (closed set, exactly: `review_gate: bool`, `claim_tagging: bool`, `tool_profile: ro/rw`; extension ONLY by amendment here — an open map would smuggle operator-chosen keys/values past a name-level export check, R1 F-6) so two disputants can see HOW contracts differ without fetching content (panel A12/W6) | ∅ | partial: `prompt_sha256` (prompt only) + `agent_def.{path,sha256}` (1,033 stops carry the executed definition hash — a strictly better partial the v0 missed; execution-side, joins per §1a) | ∅ (new) |
 | `router_model` | | who decided (self-route vs driver vs human): a normalized `vendor:model` binding, or the literal `human` **[v0.2.1]** (R1 F-12: the field's own semantics name a human router; forcing `other:human` was a workaround) | ∅ | `parent_agent_id` ≈ | ∅ |
 | `reason_code` | | **registered closed vocabulary** + optional `note_hash`. §6-4 requires enumerated values, and S3's `*_code` convention does NOT supply that (§0 — character class, 92-distinct/96 measured); S3 values project as `reason_code: other` + `reason_code_free` (origin-local, non-exportable unless registered) | ∅ | ∅ | `falsifier_code`, `expected_advantage_code`, `nearest_alternative` — via `other`+free slot until a registered vocabulary exists |
@@ -136,7 +146,7 @@ validate (R1 F-5: a silent collision fans out the §3 join).
 | `rework_actor` | | NEW (A3): who performed rework — `root / delegate / none / unknown`. S3's `accept-with-root-revision` vs `accept-after-revision` distinction is the most routing-relevant signal in the set; v0 destroyed it | ∅ | ∅ | derived from disposition string (§3a) |
 | `rework_count` | | int | ∅ | ∅ | ✓ |
 | `validator` | | what checked the output (reviewer gate id / tests / human / none) + outcome. S3's `validator_outcome` is free-code (36 distinct/96) — projects as `other`+free slot until a registered vocabulary exists (A4 rule) | ∅ | ∅ | `validator_outcome` via `other`+free |
-| `friction_codes[]`,`confounder_codes[]` | | from S3; same registered-vocabulary export rule | ∅ | ∅ | ✓ |
+| `friction_codes[]`,`confounder_codes[]` | | from S3; same registered-vocabulary export rule. **[v0.2.2] First registered members** (severe-failure classes; require ≥ `third-party-verified` attestation on the record carrying them): `fabricated-completion` (unhedged completion claim contradicted by the oracle), `silent-scope-violation` (write outside stated scope, undisclosed), `undetected-omission` (failure invisible at the time, found later) | ∅ | ∅ | ✓ |
 | `attestation` | ✓ | §4 enum | `platform-emitted` | **`platform-derived`** (NEW tier — see §4: the hook PARSES a transcript; measured self-declared error telemetry: `stop_class` = `phantom-no-transcript` in 521/~1,250 stops, `transcript_parse_err` 1,468 non-empty across Jun+Jul. Calling that `platform-emitted` overstated it — A12) | `self-reported` |
 | `projection` | ✓ on projected records | §4a — how this record came to exist (`native` / `projected-v1` / `heuristic-join`) | projector stamps | projector stamps | projector stamps |
 | `orphan` | | **[v0.2.1]** bool, native-v2 only, WRITER-stamped (never caller-asserted): true iff no matching intent existed in the store at write time and the writer's orphan override was invoked. Origin-local, **non-exportable** (§5.1 born-non-exportable stands — it reflects one store's local completeness, meaningless cross-origin). Defined here because R1 F-2 caught the writer emitting it undefined: any §§1–3-derived validator rejected every orphan record | ∅ | ∅ | ∅ (new) |
