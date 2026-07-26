@@ -55,6 +55,18 @@ remaining Observed claims are quotes of text this session authored, verified by 
   feasibility-only wave 1. **The XV-9 hash-linkage risk gets an interim §5 consent-text
   caveat at next crosswalk touch.**
 
+  **Convergent externals appended 2026-07-26** (source: the chatgpt-cli session's review
+  thread, relayed by operator — Reported, its measurements not re-run here): (a) the
+  **three-artifact separation** — per-delegation routing record / pre-registered evaluation
+  MANIFEST (pairs, arms, baselines, rubrics) / separate analysis rule for promotion —
+  reached independently by a different reviewer thread; converges with XV-3 (assignment
+  provenance) + XV-5 (evaluation events) and with the probes/TEMPLATE practice — two
+  lineages arriving at the same decomposition upgrades its standing; (b) **typed
+  detection-timing** (failure detected at-the-time vs later — the Day-3 Q7 instrument's own
+  field) and **review-cost/intervention-history** homes, absent from v2 outcomes; (c) the
+  G1 distinction: `requested_effort` cannot express *harness-cannot-deliver-a-tier* as
+  distinct from *not recorded* (`unspecified`/`unknown` conflate them).
+
 ## Adjudication — code (SC): all 10 ACCEPTED; fix round dispatched (R4)
 
 Firsthand reproductions before acceptance: SC-2 (NaN `cost_usd` accepted; literal `NaN`
