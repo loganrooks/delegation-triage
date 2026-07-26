@@ -81,3 +81,16 @@ C-5; (c) defer — accepts that "did routing follow ROUTES" stays unmeasurable. 
 assumption: the driver session can write at spawn time without harness changes (the S2 hook
 path proves the write point exists). Flip: if the write point requires harness cooperation we
 don't have, (b) becomes right.
+
+## RATIFIED (2026-07-24, operator)
+
+Operator verbatim: **"D-B3-1 yes, D-B3-2 yes — register and build the intent-writer"**.
+
+- **D-B3-1 — crosswalk v0.2 SIGNED OFF.** Status flipped in the proposal header. The §8
+  falsifiers remain live review targets; the §2a class-enum publication precondition stands.
+- **D-B3-2 — intent-writer: option (a) adopted, registered AND authorized to build now.**
+  Registered as portfolio item **B-7** (driver-side per-spawn v2 writer, no daemon; home:
+  `delegation-runtime:` — it is runtime machinery that consumes crosswalk v0.2 as doctrine).
+  Build routed per ROUTES R4 (`implementer` pin, opus/medium, Provisional) from a written
+  spec; verification: parent firsthand (tests + live record sample) + one R1 reviewer leg
+  (opus/high, crosswalk-conformance lens) on the implementation.

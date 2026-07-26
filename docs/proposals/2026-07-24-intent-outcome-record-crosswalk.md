@@ -1,6 +1,6 @@
 # B-3 — Intent/outcome record: three-schema crosswalk (v0.2)
 
-**Status: PANEL-AMENDED DRAFT — awaiting operator sign-off.** v0 was panel-gated per CONTRACT
+**Status: RATIFIED — operator sign-off 2026-07-24 (D-B3-1), post-panel.** v0 was panel-gated per CONTRACT
 §6.7a (run `wf_c594690d-a44`, 2 legs opus/high: OBJECT + CONCUR_WITH_CHANGES, 6 BLOCKERs);
 every finding was firsthand-re-measured and accepted — spread + dispositions in the
 [panel adjudication](../reviews/2026-07-24-b3-crosswalk-panel-adjudication.md). Binding
