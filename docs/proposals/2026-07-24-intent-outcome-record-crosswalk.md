@@ -11,6 +11,15 @@ without a value-level sample behind it** — every cell below is grounded in the
 re-measured 2026-07-24: S2 = 4,693 ledger records (Jun+Jul), S3 = 222 events, S1 = the OTel
 probe's verbatim attribute blocks only.
 
+**Amended 2026-07-26 (v0.2.1)** after the B-7 intent-writer R1 conformance review (OBJECT; single
+leg opus/high) — adjudication in
+[2026-07-26-b7-r1-review-adjudication](../reviews/2026-07-26-b7-r1-review-adjudication.md).
+All amendments are marked **[v0.2.1]** inline: `orphan` defined (F-2), `observed_model` null
+carve-out (F-3), `(run_id, outcome_ordinal)` uniqueness (F-5), `harness_contract.features`
+closed (F-6), free-code write-time rule (F-1), §3a binds native records (F-11), `class`
+null-until-publication made explicit and `router_model: human` legalized (F-12). No field
+that existed in v0.2 changed meaning; consumers built on v0.2 remain correct.
+
 ## 0. What this is
 
 One **intent record** (written at the routing decision point) and one **outcome record**
@@ -89,16 +98,19 @@ Canonical fields → source mappings. `∅` = source cannot supply; nullable unl
 | `router_effort` | | NEW (from A1): the routing *driver's* own effort at decision time — the effort-inheritance detector's input | ∅ | `effort_spawner` ✓ (722/724) | ∅ |
 | `requested_role` | | agent-type / roster pin name | **∅** — probe finding 4: no `subagent_type` in the stream; `agent.name` redacted to `custom`; roster identity exists only on the OUTCOME event | `subagent_type` (706/724) | `requested_role` |
 | `surface` | ✓ | delivery surface (pin / per-call / generic / teams / cowork) — CONTRACT §3's control-surface question, made a field | ∅ | derivable (`tool_name`+`subagent_type`+`model_requested` nullity) | ∅ (new) |
-| `harness_contract` | ✓ (v2-only) | **content hash of the in-force contract** (prompt contract + skill + gate config) + a human label + **`harness_features` struct** (small closed set: `review_gate: bool`, `claim_tagging: bool`, `tool_profile: ro/rw`, …) so two disputants can see HOW contracts differ without fetching content (panel A12/W6) | ∅ | partial: `prompt_sha256` (prompt only) + `agent_def.{path,sha256}` (1,033 stops carry the executed definition hash — a strictly better partial the v0 missed; execution-side, joins per §1a) | ∅ (new) |
-| `router_model` | | who decided (self-route vs driver vs human) | ∅ | `parent_agent_id` ≈ | ∅ |
+| `harness_contract` | ✓ (v2-only) | **content hash of the in-force contract** (prompt contract + skill + gate config) + a human label + **`harness_features` struct** — realized as `harness_contract.features` **[v0.2.1]** — (closed set, exactly: `review_gate: bool`, `claim_tagging: bool`, `tool_profile: ro/rw`; extension ONLY by amendment here — an open map would smuggle operator-chosen keys/values past a name-level export check, R1 F-6) so two disputants can see HOW contracts differ without fetching content (panel A12/W6) | ∅ | partial: `prompt_sha256` (prompt only) + `agent_def.{path,sha256}` (1,033 stops carry the executed definition hash — a strictly better partial the v0 missed; execution-side, joins per §1a) | ∅ (new) |
+| `router_model` | | who decided (self-route vs driver vs human): a normalized `vendor:model` binding, or the literal `human` **[v0.2.1]** (R1 F-12: the field's own semantics name a human router; forcing `other:human` was a workaround) | ∅ | `parent_agent_id` ≈ | ∅ |
 | `reason_code` | | **registered closed vocabulary** + optional `note_hash`. §6-4 requires enumerated values, and S3's `*_code` convention does NOT supply that (§0 — character class, 92-distinct/96 measured); S3 values project as `reason_code: other` + `reason_code_free` (origin-local, non-exportable unless registered) | ∅ | ∅ | `falsifier_code`, `expected_advantage_code`, `nearest_alternative` — via `other`+free slot until a registered vocabulary exists |
 | `price_lineage` | | NEW (from A12/W5): `{binding, price_per_mtok_in, price_per_mtok_out, as_of}` — resolvable to STATE.md price rows; lets any tuple be re-priced later. Reserved NOW because §6.1 makes late addition a v3 | ∅ (stamp at projection from STATE) | ∅ (same) | ∅ (same) |
-| S3 riders | | `reversibility`, `consequence`, `ambiguity`, `validation_oracle`, `closure_target`, `write_scope_count` — optional canonical fields (they encode the CONTRACT §1 delegation test). Caveat (A4): `validation_oracle`/`closure_target` are free-code in practice (75 and 48 distinct values) — same `other`+free-slot export rule as `reason_code` | ∅ | ∅ | ✓ native |
+| S3 riders | | `reversibility`, `consequence`, `ambiguity`, `validation_oracle`, `closure_target`, `write_scope_count` — optional canonical fields (they encode the CONTRACT §1 delegation test). Caveat (A4): `validation_oracle`/`closure_target` are free-code in practice (75 and 48 distinct values) — same `other`+free-slot rule as `reason_code`, and **[v0.2.1]** native v2 writers apply it at WRITE time (registered-member-or-`other` + `*_free` sibling gated on `other`), not only at export — R1 F-1 measured a repo-relative test path and a host:port passing straight into these fields under the plain-CODE_RE reading, instantiating the §8 consent-screen falsifier | ∅ | ∅ | ✓ native |
 
 ### 2a. The closed `class` enum — publication precondition
 
 The candidate ~12-class assignment of all 58 observed S3 values MUST be published (as a table
-in this doc or a sibling) before `task_class.class` is enforced as REQ. Panel A12 measured the
+in this doc or a sibling) before `task_class.class` is enforced as REQ. **[v0.2.1]** Until
+publication, `class` MUST be null in native v2 records and writers fail closed on any non-null
+value (there is no vocabulary to validate against; `class_free` carries the native term) —
+adjudicated R1 F-12 in favor of fail-closed over early use. Panel A12 measured the
 risk: the observed vocabulary is compositional along routing-relevant axes — scope
 (`implementation`/`bounded-implementation`/`bounded-mechanical-implementation`…) and review
 generation (`review`/`rereview` ×6 variants) — and a collapse that discards review-vs-rereview
@@ -109,12 +121,14 @@ those two axes or state the loss.
 
 **Cardinality (A3/A5):** one intent record joins 0..N outcome records via `run_id` +
 `outcome_ordinal` (int, 0-based). A non-terminal outcome (S3 `revise`) carries
-`terminal: false`; exactly one outcome per run may carry `terminal: true`.
+`terminal: false`; exactly one outcome per run may carry `terminal: true`; **[v0.2.1]**
+`(run_id, outcome_ordinal)` is unique — writers reject a duplicate pair at write and at
+validate (R1 F-5: a silent collision fans out the §3 join).
 
 | field | REQ | semantics | S1 | S2 (execution-side) | S3 |
 |---|---|---|---|---|---|
 | ids + `v`,`ts`,`origin`,`outcome_ordinal`,`terminal` | ✓ | §1, §3 header | ✓ | ✓ (partition caveat §1a) | ✓ |
-| `observed_model` | ✓ | normalized binding + `identity_source` (transcript / API / UI-label — UI labels weakest, per package doctrine) | `final_model`+`model_swapped` ✓, `identity_source: api` | `models_in_transcript` (1,872 non-empty) `identity_source: transcript`; request-side partition: `resolved_model` (650) `identity_source: api` — v0's ∅ was wrong both ways | `observed_model`+`observed_identity_source` ✓ |
+| `observed_model` | ✓ | normalized binding + `identity_source` (transcript / API / UI-label — UI labels weakest, per package doctrine) + optional `raw` preserved spelling **[v0.2.1]**. Null value legal ONLY when `disposition ∈ {error, blocked, interrupted, abandoned}` (nothing answered, so nothing was observable); on every other disposition the key AND value are REQ — writers reject **[v0.2.1]** (R1 F-3: the default CLI path was silently producing terminal `accepted` outcomes with `observed_model: null`, the exact un-joinable record E-1 is blocked on) | `final_model`+`model_swapped` ✓, `identity_source: api` | `models_in_transcript` (1,872 non-empty) `identity_source: transcript`; request-side partition: `resolved_model` (650) `identity_source: api` — v0's ∅ was wrong both ways | `observed_model`+`observed_identity_source` ✓ |
 | `observed_effort` | | as delivered; enum incl. `unknown` (measured: S3 `observed_effort` = `unknown` in 21/58 events — the largest observed value) | `effort` ✓ (the ONE S1 effort attribute lands here, not on intent — A7) | `effort_child` ✓ (3,300 non-empty; incl. `low`(1) and nulls → `unknown`) | `observed_effort` |
 | `tokens{in,out,cache_r,cache_w}` | | **nullable, REQ-if-available** (v0's REQ was unsupplyable: S3 carries in/out in 4–5/96 and its allowlist has NO cache fields; S2 `usage_from_transcript` 428 non-empty) | ✓ (probe block) | `usage_from_transcript` when parsed | `input_tokens`/`output_tokens` when present |
 | `cost_usd` | | when the platform reports it; otherwise reconstructable later from `tokens` × intent `price_lineage` — state coverage honestly: measured absent from ~86% of S2 spawn-res and all S3 v1 core events | ✓ (when enabled) | ∅ mostly | ∅ / delegations `costUSD` (n=1) |
@@ -125,8 +139,14 @@ those two axes or state the loss.
 | `friction_codes[]`,`confounder_codes[]` | | from S3; same registered-vocabulary export rule | ∅ | ∅ | ✓ |
 | `attestation` | ✓ | §4 enum | `platform-emitted` | **`platform-derived`** (NEW tier — see §4: the hook PARSES a transcript; measured self-declared error telemetry: `stop_class` = `phantom-no-transcript` in 521/~1,250 stops, `transcript_parse_err` 1,468 non-empty across Jun+Jul. Calling that `platform-emitted` overstated it — A12) | `self-reported` |
 | `projection` | ✓ on projected records | §4a — how this record came to exist (`native` / `projected-v1` / `heuristic-join`) | projector stamps | projector stamps | projector stamps |
+| `orphan` | | **[v0.2.1]** bool, native-v2 only, WRITER-stamped (never caller-asserted): true iff no matching intent existed in the store at write time and the writer's orphan override was invoked. Origin-local, **non-exportable** (§5.1 born-non-exportable stands — it reflects one store's local completeness, meaningless cross-origin). Defined here because R1 F-2 caught the writer emitting it undefined: any §§1–3-derived validator rejected every orphan record | ∅ | ∅ | ∅ (new) |
 
 ### 3a. S3 disposition mapping (all 12 live values; 96 events)
+
+**[v0.2.1]** This table also BINDS native v2 records: where a row fixes `terminal` and/or
+`rework_actor` for a disposition value, a native record must satisfy it and writers enforce
+(R1 F-11: a native `parked, terminal: true` defeats the comparability the mapping exists to
+create). `revise`-row semantics for natives: the interim state is any non-terminal outcome.
 
 | S3 value (count) | → `disposition` | `terminal` | `rework_actor` |
 |---|---|---|---|
@@ -185,7 +205,9 @@ carries at least **11** content/path-bearing fields. v0.2 inverts the constructi
 3. **Free-code fields** (S3 `*_code`, `run_id`, `validator_outcome`, `validation_oracle`,
    `closure_target`): exportable only as registered-vocabulary members; otherwise they project
    as `other` + an origin-local free slot that does not export, and `run_id` exports only as
-   `run_pseudonym` (§1).
+   `run_pseudonym` (§1). **[v0.2.1]** Native v2 writers apply this rule at write time
+   (`friction_codes`/`confounder_codes` included), so a native store is
+   exportable-by-construction rather than needing a scrub at projection (R1 F-1).
 4. **Consent-to-share = the §§1–3 field list, verbatim**, and with rules 1–3 in force that
    sentence is now *true*: W3's consent screen can honestly say "your prompts, code, paths,
    and free-text notes are in fields that structurally cannot leave."
