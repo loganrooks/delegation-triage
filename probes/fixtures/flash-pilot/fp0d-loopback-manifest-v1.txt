@@ -1,0 +1,5 @@
+# FP-0d loopback harness-contract manifest v1 (F-10)
+# files hashed, in order:
+~/.claude/gateway/bin/claudex
+~/.claude/gateway/gateway-env.sh
+# NOTE: throwaway cwd /tmp/fp0d-smoke has NO CLAUDE.md; driver rule files not in play for a -p smoke

@@ -1,6 +1,11 @@
 # Gemini 3.6 Flash placement pilot — routing evidence from instrumented probes (v3, post-cross-vendor)
 
-**Status: DRAFT v3 — two review rounds, all findings accepted and disposed. Round 1: §6.7a
+**RATIFIED 2026-07-27 — operator: "D-FP-1/2/3 yes, with the two riders" (rider 1: gateway
+request logging ON for pilot legs, folded into FP-0d — FP-0a becomes observable at the
+wire; rider 2: router-identity-from-transcript rule in §5). V-M11 applies: the protocol
+binds after first application to a concrete task set; defects surface as amendments.**
+
+**Status: v3 — two review rounds, all findings accepted and disposed. Round 1: §6.7a
 panel, 2 legs opus/high (OBJECT + CONCUR_WITH_CHANGES, 25 findings —
 [adjudication](../reviews/2026-07-26-flash-pilot-panel-adjudication.md)). Round 2:
 cross-vendor design review, gpt-5.6-sol @ xhigh via native codex exec (OBJECT ×2, findings
@@ -108,7 +113,14 @@ noted; leg order counterbalanced across tasks; patch adjudication vendor-blinded
   probe; whether `tool_use` blocks survive the OpenAI-compat round trip is untested, and all
   three lanes are implementation lanes. Minutes of work; everything else is dead until it
   passes. Failure disposition: `blocked` (lane-entry criterion unmet), not a Flash capability
-  claim.
+  claim. **Rider 1 (D-FP ratification 2026-07-27): gateway `request-log: true` is enabled
+  BEFORE this test and stays on for all pilot legs** — wire-level request/response capture
+  at the CLIProxyAPI layer. Consequence for FP-0a: the `effort:` →
+  `thinking.budget_tokens` question is answered by READING THE FP-0d REQUEST BYTES, not by
+  external report — FP-0a stops being a dependency on the chatgpt-cli session's D3-M02
+  answer and becomes an FP-0d byproduct; loopback `observed_effort` upgrades from
+  interface-attested to wire-attested (retiring the V-M7 caveat for loopback legs; the
+  native `agy` leg keeps it). Probe records cite the request-log locator.
 - **FP-0a — effort mapping, re-scoped (F-6):** the served-tier question is already answered
   (one tier id; gateway README). The genuinely open half: whether Claude Code `effort:` maps
   to the working `thinking.budget_tokens` knob or is silently dropped. Until resolved, a
@@ -141,6 +153,12 @@ per the manifest rule below) and ≥1 **outcome** (9-member disposition; `observ
 [v0.2.2] — exportable, not free-slot-only, F-8/commons fix). Predictions/adjudications live
 in `probes/records/` with **`run_id` = probe_id** so records machine-join (F-11).
 
+- **Router identity is read, never assumed (rider 2, D-FP ratification 2026-07-27):**
+  `router_model` and `router_effort` on pilot records come from the driver session's
+  transcript (`message.model`; top-level `effort` per assistant record) or `$CLAUDE_EFFORT`
+  — never from session self-assumption. The router-side mirror of `observed_model`'s
+  `identity_source` rule below; instituted after five live records carried a self-assumed
+  `router_effort: xhigh` that the transcript refuted (`high`).
 - **harness_contract input set (F-10):** the label names an origin-local MANIFEST file
   enumerating the files hashed (loopback: CLAUDE.md + resident rule files + pin definition;
   native: GEMINI.md + settings + agent definition); sha256 = hash of the manifest's

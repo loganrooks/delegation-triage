@@ -1,0 +1,10 @@
+{
+  "kind": "outcome", "v": "2", "origin": "local",
+  "run_id": "<same as intent>",
+  "outcome_ordinal": 1,
+  "disposition": "<accepted|accepted-after-rework|rejected|blocked|error|abandoned|...>",
+  "terminal": true,
+  "observed_model": {"id": "google:gemini-3.6-flash-high", "identity_source": "<api|transcript|ui-label>"},
+  "friction_codes": [],
+  "friction_codes_free": []
+}

@@ -1,0 +1,19 @@
+{
+  "kind": "intent", "v": "2",
+  "run_id": "<probe_id e.g. P-2026MMDD-fp0d-smoke>",
+  "session_id": "<driver session uuid>",
+  "spawn_ordinal": 0,
+  "surface": "cli",
+  "router_model": "<from transcript message.model, e.g. anthropic:claude-fable-5>",
+  "router_effort": "<from transcript top-level effort / $CLAUDE_EFFORT>",
+  "route_id": "<FP-0d|FP-A|FP-B|FP-C-loopback|FP-C-native>",
+  "requested_model": {"id": "google:gemini-3.6-flash-high", "raw": "flash"},
+  "requested_effort": "<tier|unknown until FP-0a read off the wire>",
+  "warrant_ids": ["W-026"],
+  "task_class": {"class": null, "class_free": "<lane task description>"},
+  "harness_contract": {
+    "label": "<MANIFEST filename, e.g. flash-pilot-loopback-manifest-v1>",
+    "sha256": "<sha256 of the manifest's concatenated file contents>",
+    "features": {"review_gate": false, "claim_tagging": false, "tool_profile": "rw"}
+  }
+}
