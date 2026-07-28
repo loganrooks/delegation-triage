@@ -14,6 +14,11 @@
                             (routing competence is itself model-conditional — G-02; the one
                             observed routing failure to date fired under a fable driver) -->
 - **attestation:** (REQUIRED) transcript JSONL / raw legs on disk / commit / review record @ locator — or `self-reported`
+- fault attribution:  <!-- adjudicator-filled, NEVER driver-filled (D-C5-1 2026-07-27):
+                           model / harness / environment / unadjudicated — non-exclusive,
+                           list all candidates when mixed; name the check that licenses it -->
+- detection timing:   <!-- at-the-time / later / unknown — when was the failure (if any)
+                           first detected relative to the outcome disposition -->
 - verdict:
 - unique catches (per leg):
 - tokens / cost (if observable):

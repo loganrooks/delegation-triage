@@ -1,10 +1,35 @@
 # Evidence commons — north star
 
-**Status: ORIENTATION (north star), not an implementation contract.** This document binds
-exactly one near-term design decision (§6); everything else orients. Nothing here authorizes
-building, spending, or activating anything, and the §6 constraint awaits operator disposition
-alongside decisions D-1–D-4 in the
+**Status: ORIENTATION (north star), not an implementation contract — with four distinct
+normative statuses** *(separation adopted 2026-07-27, D-NS-1, resolving the recorded
+inconsistency between this header, §7's "must not violate," and CONTRACT §6.8's mandatory
+worldings check — see the
+[panel adjudication](../reviews/2026-07-27-schema-pullforward-panel-adjudication.md))*:
+
+1. **Normative floor** — §7's commitments. Violating one requires operator disposition;
+   they bind direction, not mechanism.
+2. **Architectural hypotheses** — the record kernel (§3), layer ordering (§4), the
+   metrology framing (§2). Falsifiable (§9); revisable without a disposition when evidence
+   moves.
+3. **Current binding constraint** — §6 only, as ratified 2026-07-24.
+4. **Design probes** — the companion [Worldings](2026-07-24-evidence-commons-worldings.md).
+   A foreclosed worlding triggers *explain, name who loses what, then revise or record the
+   tradeoff* — it never vetoes by itself, and a vignette is not evidence that users want
+   what it depicts.
+
+Nothing here authorizes building, spending, or activating anything; the §6 constraint was
+ratified alongside decisions D-1–D-4 in the
 [2026-07-24 portfolio decomposition review](../reviews/2026-07-24-portfolio-decomposition-fable-review.md).
+
+**Bootstrap governance** *(adopted 2026-07-27, D-NS-1; self-expiring)*: until external
+contributors or adopters materially depend on the interchange format, the repository
+maintainer acts as bootstrap steward. Schema and vocabulary decisions are already
+governance decisions even when made in a schema file, so they must remain documented,
+versioned, reversible where practical, and accompanied by migration paths. Once another
+party contributes durable records or depends on the standard, changes to shared
+vocabularies, required fields, or contributor rights move to a documented public proposal
+and review process. Forking remains a legitimate response to unresolved institutional
+disagreement.
 
 **Provenance:** operator vision (dictated 2026-07-24) plus the same session's assessment.
 Claims about this repository cite paths. External precedents (§10) are training-knowledge,
@@ -42,15 +67,22 @@ it is closer to **distributed metrology with graded attestation** — most parti
 contribute measurements, not experiments — with this package's epistemics vocabulary as the
 shared grading language.
 
-## 3. The atomic object: the conditioned evidence tuple
+## 3. The conditioned boundary record *(renamed from "atomic object", 2026-07-27 D-NS-1 —
+architectural hypothesis, status 2)*
 
-The unit of exchange is never a score. It is the tuple
+The unit of exchange is never a score. It is a **conditioned boundary record** — stable
+enough to exchange, **incomplete by design** — whose shared kernel is
 
 > **task-class × harness-contract × binding (model × effort × delivery surface) × outcome ×
 > attestation × date**
 
-with one non-negotiable rule: **conditioning travels with every number, and aggregation must
-preserve it.** Lineage: the demand + selector + binding representation (review §3, R-D) plus
+A record may carry namespaced local extensions, links to narratives and artifacts,
+objections, and alternative classifications; aggregations must declare their
+transformations and remain reversible to the source records. (The crosswalk's origin-local
+`*_free` slots and `other`+free-slot rule are this kernel's existing extension seams.) The
+non-negotiable rule is unchanged: **known material conditioning and declared omissions
+travel with every number, and aggregation must preserve them** — conditioning is a
+discipline of situated accountability, not a completeness guarantee. Lineage: the demand + selector + binding representation (review §3, R-D) plus
 its harness-assumption refinement — W-023's sonnet-first is policy *conditioned on* harness
 discipline and transfers to nobody who lacks the harness. The moment a scalar leaderboard
 appears anywhere in this system, the commons has failed at its own premise.
@@ -92,6 +124,15 @@ Each entry: the problem, the design answer already in hand, and the open remaind
   value — the instrument pays for itself for a single user (better routing for *me*), and
   sharing is an opt-in overlay on records that already exist. *Open:* none by design; §9
   makes this a falsifier instead.
+- **H5 — The verification-and-maintenance commons** *(added 2026-07-27, D-NS-1, from the
+  external theoretical review §10)*. Records are non-rival, but the labour that produces,
+  interprets, reproduces, challenges, preserves, and repairs them is scarce: locator rot,
+  alias drift, probe decay, migrations, adjudication, moderation. The system must not
+  externalize that labour onto a few maintainers while distributing its benefits widely.
+  *Answer in hand:* repairs and migrations are recorded, not silent (the ledger-correction
+  and supersede-in-place discipline); maintenance is first-class work. *Open:* crediting
+  and cost-sharing are L3 governance, deferred — but the commitment that maintenance is
+  recorded and visible starts at L1.
 
 ## 6. The one binding near-term constraint (proposed)
 
@@ -137,11 +178,35 @@ north star itself and needs operator disposition, not a local edit.
    ([README.md](README.md), interpretation rule 3, already doctrine).
 6. **Literature initializes priors; on-the-ground records adapt them** (W-018 lineage —
    curated priors, then probes).
-7. **Per-user profiles are selector policy over a shared demand ontology** — budgets and
-   preferences customize the selector, never fork the evidence
-   ([ROUTES.md](../../ROUTES.md) profile-delta lineage).
-8. **Runnable probes over reported claims** — a shared probe is an artifact you can re-run,
-   or it is an anecdote.
+7. **Source records and lineage are never forked; interpretations may be** *(amended
+   2026-07-27, D-NS-1 — the prior "never fork the evidence" conflated source-record
+   integrity with interpretive centralization)* — budgets and preferences customize the
+   selector; participants may maintain forked classifications, trust policies, selectors,
+   annotations, and derived views, provided source records and their lineage remain
+   visible and unrewritten ([ROUTES.md](../../ROUTES.md) profile-delta lineage).
+8. **Runnable probes for claims they can test; field reports first-class, differently
+   warranted** *(amended 2026-07-27, D-NS-1 — the prior "runnable or it is an anecdote"
+   was a false binary that marginalized situated incidents)* — a runnable probe is the
+   promotion path for any claim a probe can test; a non-runnable field report enters with
+   a limited, honestly-labeled evidential licence (H3's hypothesis-generating tier), never
+   as zero.
+9. **Plural interpretations over shared records** *(added 2026-07-27, D-NS-1)* — canonical
+   source records and provenance are never silently rewritten; alternative annotations,
+   classifications, mappings, and derived views are legitimate so long as lineage stays
+   visible. (Commitment 7's other half, stated positively.)
+10. **Critical uptake** *(added 2026-07-27, D-NS-1)* — every load-bearing claim and shared
+    standard exposes where criticism can attach, what process considers it, and which
+    statuses or structures it can revise (flip conditions, Contested, supersede-in-place
+    are the n=1 instantiation). Recording dissent without a path to revision does not
+    satisfy this.
+11. **Contextual consent and partial opacity** *(added 2026-07-27, D-NS-1)* — local
+    usefulness never depends on sharing; before anything is shared, the fields, recipients,
+    purposes, retention, onward uses, and practical withdrawal limits are made visible.
+    Schema separation (§6.4) protects content; it does not by itself govern the social life
+    of shared data — that gap is stated, not papered over. *(W11 — consent narrowing after
+    contribution — is REGISTERED as a design probe for the pre-sharing governance gate, not
+    yet adopted; the XV-9 hash-linkage consent caveat rides the next crosswalk touch by
+    prior commitment.)*
 
 ## 8. Non-goals now
 

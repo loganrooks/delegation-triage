@@ -1,5 +1,12 @@
 # Schema pull-forward + north-star adoption — panel spread & adjudication (2026-07-27/28)
 
+**RATIFIED 2026-07-27:** operator — "D-C5-1 (d) yes / D-NS-1 (b)+amendments yes."
+Propagation landed same pass: north star (four-status separation, bootstrap-governance
+clause, §3 boundary-record rename with content, H5, commitments 7/8 amended + 9/10/11
+added, W11+XV-9 registered), worldings (counter-worlding rule, W9/W10/W13 breakdown set,
+W1 flip-language bug noted for next touch), CONTRACT §6.8 check-not-veto clarification,
+pilot §5 adjudicator-filled fault/timing rows, probes/TEMPLATE.md fields.
+
 **Object:** `.planning/2026-07-27-schema-pull-forward-packet.md` (D-C5-1: pre-pilot crosswalk
 v0.2.3 pull-forward; D-NS-1: adoption scope for the external theoretical review
 `.planning/delegation-triage-evidence-commons-theoretical-review-2026-07-27.md`).

@@ -14,6 +14,13 @@ directions:
 > **A design element that appears in no worlding is suspect. A worlding that no design
 > element serves marks a gap.**
 
+*(Amended 2026-07-27, D-NS-1 — the counter-worlding rule:)* a worlding that merely restates
+the desired feature is weak evidence. Every affirmative worlding should be accompanied by a
+breakdown, refusal, or counter-worlding capable of challenging the design — W9/W10/W13
+below begin that set. And per the north star's status separation: worldings are **design
+probes** (status 4). A foreclosed worlding triggers *explain, name who loses what, revise
+or record the tradeoff* — it never vetoes by itself.
+
 Each worlding carries: the situation; what the system *is* within it; the records produced
 or consumed; which design commitments (north star §7) carry it; and **what breaks without
 them** — the counterfactual is what keeps these load-bearing rather than decorative.
@@ -132,6 +139,60 @@ with a probe design attached — which is what L3 governance owes the community.
 
 ---
 
+## W9 — The valuable non-runnable incident *(added 2026-07-27, D-NS-1; breakdown set)*
+
+A consequential routing failure happened inside a proprietary repository: a cheap-tier
+model silently dropped a migration step, caught two days later in staging. Nothing about it
+can be publicly reproduced — the code cannot leave, the harness config is client-owned. The
+contributor writes a redacted field report: task class, harness features (not the config
+itself), the binding, the failure mode, detection timing, what the oracle missed. It enters
+with a limited evidential licence — hypothesis-generating, never route-flipping — instead
+of being dismissed because it isn't a runnable probe. Six weeks later three similar reports
+from different origins make it a registered weakness with a probe design attached.
+
+- **Records:** a redacted field report with honest attestation; later, a minted weakness.
+- **Commitments:** #8 as amended (field reports first-class, differently warranted), #3, #11.
+- **Breaks without:** everyone working in proprietary, privacy-sensitive, or
+  non-reproducible settings is structurally unable to contribute knowledge — the commons
+  selects for exactly the least-representative environments.
+
+## W10 — The maintainer in breakdown *(added 2026-07-27, D-NS-1; breakdown set)*
+
+Monday: a provider silently re-points a model alias, so `flash` now resolves to a different
+binding than every record citing it. Tuesday: a probe's oracle repo force-pushed; the
+pinned digest no longer resolves. Wednesday: a schema migration breaks the oldest adapter,
+and three warrant locators 404. Nobody planned this week. The worlding follows who notices
+(a validation run, not a human), who repairs (one person, unpaid), who validates the repair
+(a second reader, if one exists), and what the repair record looks like — because next
+quarter someone will ask why the March records cite an alias that means something else now.
+
+- **Records:** repair and migration records; supersession links; a dated alias-resolution
+  table.
+- **Commitments:** H5 (the maintenance commons), #10 (uptake — the repair changes what
+  consumers read).
+- **Breaks without:** silent decay read as stability; evidence that quietly stops meaning
+  what it says; maintainer burnout invisible until it is total.
+
+## W13 — The legitimate fork *(added 2026-07-27, D-NS-1; breakdown set)*
+
+Two communities need incompatible attestation rules — one requires hardware-attested
+execution for anything touching a regulated codebase; the other finds that bar absurd for
+hobby projects and refuses the overhead. Neither is wrong. They fork the standard: source
+records and lineage stay intact and mutually readable, each publishes its mapping to the
+other's attestation vocabulary, and cross-citations carry the mapping's declared loss. The
+fork is institutional pluralism, not failure — and because commitment 7 (as amended)
+distinguishes source-record integrity from interpretive centralization, nothing in the
+format fights it.
+
+- **Records:** two vocabulary versions; a published mapping with declared loss;
+  cross-origin citations that survive.
+- **Commitments:** #7 and #9 as amended (lineage never forked; interpretations may be),
+  #10.
+- **Breaks without:** the standard becomes a monoculture that loses whichever community it
+  didn't fit — or worse, keeps both and silently averages their incompatible attestations.
+
+---
+
 ## Reading the set
 
 W1–W2 are the current decomposition wearing narrative clothes: B-3 (intent record), B-5
@@ -139,3 +200,13 @@ W1–W2 are the current decomposition wearing narrative clothes: B-3 (intent rec
 real *there*, at n=1 and n=2. W3 requires L2 maturity; W4–W6 are L3 horizon and are included
 now for exactly one reason: so that L1 schema decisions — the only binding work this vision
 currently claims (north star §6) — don't foreclose them.
+
+W9/W10/W13 (added 2026-07-27) are the breakdown set: situations where the standard, the
+maintenance load, or the community itself is the difficulty. They exist to keep the
+affirmative six honest — per the counter-worlding rule above, success-shaped vignettes
+alone are weak evidence. Registered but not yet written: W8 (ontology dissent), W11
+(consent narrows after contribution — rides the pre-sharing governance gate), W12
+(same facts, different values). Known bug, next-touch: W1's "flips under the flip
+discipline" predates the proposal-not-application commitment — a route never flips
+automatically; the record pile yields a surfaced proposal (caught by the 2026-07-27
+cross-vendor research leg).

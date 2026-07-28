@@ -160,6 +160,21 @@ in `probes/records/` with **`run_id` = probe_id** so records machine-join (F-11)
 - **Closure rule (XV-10, wave-1 slice):** every intent gets a terminal outcome by wave-end
   review — a leg with no result by then is terminalized `abandoned` with a timeout friction
   note, and the wave report's denominator is ALL intents, not completed ones.
+- **Fault-attribution + detection-timing rows (D-C5-1, ratified 2026-07-27 — the
+  [panel adjudication](../reviews/2026-07-27-schema-pullforward-panel-adjudication.md)):**
+  every wave-1 outcome's probe record carries a `fault attribution:` row (§6 V-M5
+  vocabulary: model / harness / environment / unadjudicated, non-exclusive — list all
+  candidates when mixed) and a `detection timing:` row (at-the-time / later / unknown),
+  filled **at adjudication time by the adjudicator the TEMPLATE names** — never by the
+  driver at outcome-write time (cause adjudication is non-author by §6; a driver-attested
+  blame value would flatten the V-M4 tier, and `harness` is the self-exculpating value
+  that suppresses lane retirement). These rows are the wave's ONLY fault-typing surface:
+  no v2 outcome field exists for either (rejected as crosswalk v0.2.3 by unanimous 5-leg
+  panel — both fields defer to C-5's evaluation-event design; retro-typing is a mechanical
+  `run_id = probe_id` join, verified by execution). Overlap note: `detection timing:
+  later` and the registered friction code `undetected-omission` encode the same
+  distinction — until C-5 adjudicates precedence, the probe-record row is authoritative
+  and the friction code follows it.
 
 ## 6. Stopping rules, both directions (rewritten per V-B3/F-8/V-M5/V-M8)
 

@@ -110,4 +110,9 @@ general ones.
    "does this move toward or away from the vision; does it foreclose any worlding?" Decisions
    predating the north star (committed 2026-07-24) get re-reviewed under this lens on next
    touch. The worldings grounding rule is the test: a design element serving no worlding is
-   suspect; a worlding no element serves marks a gap.
+   suspect; a worlding no element serves marks a gap. *(Clarified 2026-07-27, D-NS-1:
+   running this check is mandatory; the worlding's verdict is not a veto. A foreclosure
+   finding obliges the panel to explain, name who loses what, and either revise or record
+   the tradeoff — per the north star's four-status separation, worldings are design probes,
+   status 4. The B-3 panel's practice was exactly this; this sentence is the documented
+   authority it lacked.)*
