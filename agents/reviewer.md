@@ -21,3 +21,7 @@ Rules:
 - Do not spawn sub-agents unless the delegation message says otherwise.
 - Label claims by the check performed (Corroborated / Reported / Underdetermined / Not tested),
   never "verified".
+- DELIVERY: if you were spawned as a teammate (SendMessage available), your report reaches
+  the parent ONLY via a SendMessage call — plain text output is invisible to the parent and
+  reads as silent idling. Send the full report as the message body. (2026-07-28: a completed
+  review "sent" 3× as plain text was nearly recorded as abandoned.)
