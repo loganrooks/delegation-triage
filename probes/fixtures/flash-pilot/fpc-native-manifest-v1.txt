@@ -1,0 +1,9 @@
+# FP-C native-leg harness-contract manifest v1 (F-10; closes gap 2 of
+# obs-20260728T030438-27adbc)
+# files hashed, in order (cat | shasum -a 256):
+~/.gemini/GEMINI.md
+delegation-runtime:delegate-to-antigravity/scripts/agy_delegate.py
+# sha256 as of 2026-07-28: 581ce82e4e25e86838dafcdc7eac35ad2929f03cf3050ada3e9d08a8e196e608
+# NOTE: ~/.gemini/config/config.json + hooks.json + mcp_config.json exist but are
+# volatile/user-global; the leg's probe record must state whether hooks were active.
+# Re-hash at spawn time — GEMINI.md is a live file; a stale hash voids the contract label.
