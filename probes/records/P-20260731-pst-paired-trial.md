@@ -74,6 +74,12 @@ repo-root execution, the two amendment-required findings) · within-file constra
 - Two multi-hour network outages killed 7 opus spawn attempts and 3 flash runs mid-trial;
   all relaunched fresh (never resumed — CONTRACT §3 model-pin hazard), interrupted-but-
   complete work preserved to `.diff` files and workspaces reset to baseline before relaunch.
+  **Independence blemish, disclosed:** the preserved t4 attempt-1 diff sat in the shared
+  parent dir and the T4 replacement worker found and read it (its report discloses this and
+  states it started fresh from the verified-clean tree). Impact on results: none assessed —
+  T4 is the fully-determined control, judged "equivalent", and the flash arm produced the
+  same edit with no such access — but preserved partial work should be quarantined OUTSIDE
+  the workers' visible tree next time.
 - Adapter preflight requires prompt files mode 0600 (one instant rejection, my delivery error).
 - Report-delivery friction: opus implementer spawns WITHOUT the DELIVERY clause stranded
   their reports as plain text 3/3 (nudge recovered all); spawns WITH the clause delivered
