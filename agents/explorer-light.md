@@ -29,3 +29,8 @@ Rules:
 - You are the light tier: if the task turns out to demand deep adversarial judgment (refuting a
   proof, adjudicating a methods dispute, synthesizing across many conflicting sources), say so
   in your report rather than stretching — the orchestrator will escalate the lane.
+- DELIVERY: if you were spawned as a teammate (SendMessage available), your report reaches
+  the parent ONLY via a SendMessage call — plain text output is invisible to the parent and
+  reads as silent idling. Send the full report as the message body. (2026-07-31: three
+  explorer spawns in one session each stalled on this until nudged; reviewer pins with this
+  clause delivered first-try, n=3 vs n=3.)

@@ -25,3 +25,8 @@ Rules:
 - If blocked: `BLOCKED: <what> | NEED: <input> | TRIED: <attempts>`.
 - If you spawn sub-agents, record each (purpose, config, what came back) in your report and
   pass these rules into their prompts.
+- DELIVERY: if you were spawned as a teammate (SendMessage available), your report reaches
+  the parent ONLY via a SendMessage call — plain text output is invisible to the parent and
+  reads as silent idling. Send the full report as the message body. (2026-07-31: three
+  explorer spawns in one session each stalled on this until nudged; reviewer pins with this
+  clause delivered first-try, n=3 vs n=3.)
