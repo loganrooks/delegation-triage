@@ -759,6 +759,8 @@ grading time; leg findings spot-checked firsthand before this amendment):**
   gate-caught omissions (severe code adjudicated as MISLABELED detected-at-gate; C-5
   vocabulary gap), 1 error terminal; executor reporting-fidelity defects in waves 2–3
   (miscounts, omitted attempts) mean acceptance is the orchestrator-gate SYSTEM's property.
-  **Loopback/gateway surface: still 0 implementation outcomes** (FP-0d smoke only) — the
-  deployed flash-* pins target that surface and extrapolate across it; FP-B as ratified
-  (planted ambiguity, blinded gate): UNRUN.
+  **Loopback/gateway surface: 1 implementation-shaped outcome** (FP-0e write-smoke PASS
+  2026-07-31, P-20260731-fp0e-write-smoke — feasibility only, trivial task; FP-0d tool-loop
+  smoke before it) — the deployed flash-* pins target that surface and still extrapolate
+  their quality findings across it; FP-B as ratified (planted ambiguity, blinded gate):
+  UNRUN, loopback precondition now MET.
