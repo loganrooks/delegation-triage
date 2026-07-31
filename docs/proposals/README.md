@@ -36,6 +36,15 @@ concrete inhabited situations and states what breaks without each design commitm
 are orientation, not implementation contracts; the north star's §6 constraint awaits
 operator disposition alongside the portfolio review's decisions.
 
+**Priority overlay (2026-07-31, awaiting operator ratification):** the
+[passive-first reprioritization](2026-07-31-passive-first-reprioritization.md) — panel-revised v2
+([adjudication](../reviews/2026-07-31-passive-first-panel-adjudication.md), three legs unanimous
+CONCUR_WITH_CHANGES) — proposes ranking ledger consumption (route-evidence rollup, enum-first) and
+the average-user capture surface ahead of the remaining interchange work and of new experiments,
+which become a graded contribution tier with falsifier-testing exempt. If ratified, every row below
+is read under that priority order; the paired-trial channel's cadence is re-decided at the first §9
+evaluation.
+
 ## Recommended read order
 
 | Proposal | Current role | Required disposition |
