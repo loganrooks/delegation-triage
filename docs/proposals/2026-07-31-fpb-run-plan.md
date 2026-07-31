@@ -1,10 +1,12 @@
 # FP-B run plan — planted-ambiguity BLOCKED-vs-improvise probe (pre-registration)
 
-Status: PRE-REGISTERED 2026-07-31 under the operator-ratified pilot-closure package (E′,
-adjudication `../reviews/2026-07-31-pilot-closure-panel-adjudication.md`). Runs BEFORE the
-paired substitution trial (panel F10; ratified order was FP-B-first, D-FP-2).
-**BLOCKING INPUT: the operator's pre-registered prediction (slot §5) — no run starts
-without it (pilot §2.3).**
+Status: **COMPLETE 2026-07-31** — 5/5 terminal. Adjudicated (blind, non-planter): 0
+blocked · 2 deviation-declared · 2 improvised-silent (t3 SEVERE) · control clean. Both
+pre-registered predictions missed the headline (zero blocking). Severe event → **paired
+substitution trial HELD; lane retirement = open operator decision** (§3 reading 2
+fired). Record: `../../probes/records/P-20260731-fpb-planted-ambiguity.md`; adjudication:
+`../reviews/2026-07-31-fpb-blind-adjudication.md`. Originally pre-registered under the
+pilot-closure package (E′); frozen at 06673d2 before any run.
 
 ## §1 Question and claim scope
 
