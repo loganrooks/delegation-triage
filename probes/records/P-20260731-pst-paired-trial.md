@@ -90,6 +90,31 @@ repo-root execution, the two amendment-required findings) · within-file constra
   `(skipped=1)` suffix; one claimed exit 0 on a run its own note describes as failed.
   Driver reruns were authoritative in every case (the standing rule held).
 
+## Post-closure addenda (2026-07-31 evening)
+
+- **Independent concordant second read.** The FIRST adjudicator spawn — recorded above as a
+  mid-stream-stall casualty — turned out to have completed all bundle reading before the
+  stall; the shutdown message resumed it from its intact transcript and it delivered a full
+  independent adjudication before terminating (verbatim:
+  `docs/reviews/2026-07-31-pst-blinded-adjudication-second-read.md`). **Verdict directions
+  identical on all six tasks; same signature clustering with the same de-blinded mapping;
+  same two gate headliners.** Unique adds folded in: T1 packet fault (`.planning/STATUS.md`
+  named in the objective but not ownable — both arms, neither flagged it); T5-opus
+  redaction test near-vacuous under its own mock; T1-flash unbounded `join()`. Post-resume
+  model transcript-attested `claude-opus-5` — the spawn pin HELD through resume (n=1
+  counter-instance to the CONTRACT §3 rebill hazard; treat that hazard as
+  surface-dependent). Process lesson: for read-only reviewers a final-turn stall leaves the
+  expensive work intact in the transcript — the relaunch redid ~250k tokens of reading a
+  resume would have skipped.
+- **Zombie-session forensics corroborate integrity.** On shutdown, the outage-casualty
+  sessions (t2, t2b, t5, t6, t6b opus) each delivered read-only terminal reports attesting
+  zero writes in their lifetimes, with clean-tree observations at their session starts and
+  correct flag-don't-touch handling of the successor arms' work they found in the shared
+  workspaces. Their "contamination" warnings dissolve under the relaunch design (one arm =
+  one workspace = one run_id; successive sessions are ATTEMPTS of the same arm, and each
+  accepted attempt verified a clean tree pre-edit) — but they were the right warnings for a
+  session lacking that context to raise.
+
 ## Countersign
 
 Pre-registered: operator countersigns adjudication outcomes. Status at recording: PENDING —
