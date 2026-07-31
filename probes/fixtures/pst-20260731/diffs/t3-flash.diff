@@ -1,0 +1,111 @@
+diff --git a/tests/test_backtest.py b/tests/test_backtest.py
+new file mode 100644
+index 0000000..3b9d128
+--- /dev/null
++++ b/tests/test_backtest.py
+@@ -0,0 +1,69 @@
++#!/usr/bin/env python3
++"""Unit tests for tools/backtest.py — decision_for and load_cases."""
++import json
++import os
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++
++HERE = os.path.dirname(os.path.abspath(__file__))
++ROOT = os.path.dirname(HERE)
++sys.path.insert(0, os.path.join(ROOT, "tools"))
++import backtest as B  # noqa: E402
++
++
++class TestDecisionFor(unittest.TestCase):
++    def test_auto_approve_when_usd_below_threshold(self):
++        self.assertEqual(B.decision_for(10.0, 15.0), "auto-approve")
++        self.assertEqual(B.decision_for(0.0, 15.0), "auto-approve")
++
++    def test_needs_approval_when_usd_equals_threshold(self):
++        self.assertEqual(B.decision_for(15.0, 15.0), "needs-approval")
++
++    def test_needs_approval_when_usd_exceeds_threshold(self):
++        self.assertEqual(B.decision_for(20.0, 15.0), "needs-approval")
++
++
++class TestLoadCases(unittest.TestCase):
++    def test_nonexistent_ledger_returns_empty_list(self):
++        with tempfile.TemporaryDirectory() as tmpdir:
++            fake_ledger = os.path.join(tmpdir, "does_not_exist.jsonl")
++            with patch.object(B, "ledger_path", return_value=fake_ledger):
++                self.assertEqual(B.load_cases(), [])
++
++    def test_loads_valid_json_lines(self):
++        cases_data = [
++            {"case_id": "c1", "estimate_usd": 10.0, "actual_usd": 12.0},
++            {"case_id": "c2", "estimate_usd": 5.0, "actual_usd": 4.5},
++        ]
++        with tempfile.TemporaryDirectory() as tmpdir:
++            fake_ledger = os.path.join(tmpdir, "backtest-cases.jsonl")
++            with open(fake_ledger, "w") as fh:
++                for case in cases_data:
++                    fh.write(json.dumps(case) + "\n")
++            with patch.object(B, "ledger_path", return_value=fake_ledger):
++                cases = B.load_cases()
++                self.assertEqual(cases, cases_data)
++
++    def test_skips_empty_and_malformed_lines(self):
++        lines = [
++            json.dumps({"case_id": "c1"}),
++            "",
++            "   ",
++            "invalid json line",
++            json.dumps({"case_id": "c2"}),
++        ]
++        with tempfile.TemporaryDirectory() as tmpdir:
++            fake_ledger = os.path.join(tmpdir, "backtest-cases.jsonl")
++            with open(fake_ledger, "w") as fh:
++                fh.write("\n".join(lines) + "\n")
++            with patch.object(B, "ledger_path", return_value=fake_ledger):
++                cases = B.load_cases()
++                self.assertEqual(len(cases), 2)
++                self.assertEqual(cases[0]["case_id"], "c1")
++                self.assertEqual(cases[1]["case_id"], "c2")
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tools/backtest.py b/tools/backtest.py
+index 7bf6991..1483598 100755
+--- a/tools/backtest.py
++++ b/tools/backtest.py
+@@ -39,7 +39,8 @@ def decision_for(usd: float, threshold: float) -> str:
+ 
+ 
+ def cmd_add(args) -> int:
+-    rec = json.load(open(args.proposal))
++    with open(args.proposal) as fh:
++        rec = json.load(fh)
+     est = rec["breakdown"]["total_usd"]
+     threshold = rec.get("threshold_usd", args.threshold)
+     actual = args.actual_usd
+@@ -77,13 +78,14 @@ def load_cases():
+     if not os.path.exists(ledger):
+         return []
+     out = []
+-    for line in open(ledger):
+-        line = line.strip()
+-        if line:
+-            try:
+-                out.append(json.loads(line))
+-            except Exception:
+-                pass
++    with open(ledger) as fh:
++        for line in fh:
++            line = line.strip()
++            if line:
++                try:
++                    out.append(json.loads(line))
++                except Exception:
++                    pass
+     return out
+ 
+ 

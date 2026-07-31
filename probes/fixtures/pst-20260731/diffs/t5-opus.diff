@@ -1,0 +1,153 @@
+diff --git a/tests/test_cli.py b/tests/test_cli.py
+index e795dbf..c73cb61 100644
+--- a/tests/test_cli.py
++++ b/tests/test_cli.py
+@@ -188,6 +188,148 @@ class CliTests(unittest.TestCase):
+             self.assertTrue(output_path.is_file())
+             self.assertTrue(output_path.read_text(encoding="utf-8").endswith("\n"))
+ 
++    def test_text_format_renders_expected_lines(self) -> None:
++        sample = CapacitySample("alpha-1", 25_000, 100_000, FIXED_TIME)
++        stdout = io.StringIO()
++        with (
++            patch.object(cli, "sample_local_capacity", return_value=sample),
++            patch.object(cli, "utc_now", return_value=FIXED_TIME),
++            redirect_stdout(stdout),
++        ):
++            exit_code = cli.main(
++                [
++                    "report", str(FIXTURE), "--host", "alpha-1", "--sample-path", "/unused",
++                    "--format", "text",
++                ]
++            )
++
++        self.assertEqual(exit_code, 0)
++        self.assertEqual(
++            stdout.getvalue(),
++            "host: alpha-1\n"
++            "observed_at: 2026-07-14T12:00:00Z\n"
++            "capacity: 25000 / 100000 bytes available\n"
++            "held reservations: affordable\n"
++            "intent orders-db: unaffordable (realized)\n",
++        )
++
++    def test_text_format_redacts_explicit_paths(self) -> None:
++        requested_path = Path("/private/text-only-capacity-path")
++        sample = CapacitySample("alpha-1", 25_000, 100_000, FIXED_TIME)
++        stdout = io.StringIO()
++        with (
++            patch.object(cli, "sample_local_capacity", return_value=sample),
++            patch.object(cli, "utc_now", return_value=FIXED_TIME),
++            redirect_stdout(stdout),
++        ):
++            exit_code = cli.main(
++                [
++                    "report", str(FIXTURE), "--host", "alpha-1",
++                    "--sample-path", str(requested_path), "--format", "text",
++                ]
++            )
++
++        output = stdout.getvalue()
++        self.assertEqual(exit_code, 0)
++        self.assertTrue(output.startswith("host: alpha-1\n"))
++        self.assertNotIn(str(requested_path), output)
++        self.assertNotIn(str(FIXTURE), output)
++
++    def test_text_format_stdout_is_deterministic_with_fixed_clock(self) -> None:
++        sample = CapacitySample("alpha-1", 25_000, 100_000, FIXED_TIME)
++
++        def render_once() -> str:
++            stdout = io.StringIO()
++            with (
++                patch.object(cli, "sample_local_capacity", return_value=sample),
++                patch.object(cli, "utc_now", return_value=FIXED_TIME),
++                redirect_stdout(stdout),
++            ):
++                self.assertEqual(
++                    cli.main(
++                        [
++                            "report", str(FIXTURE), "--host", "alpha-1", "--sample-path", "/unused",
++                            "--format", "text",
++                        ]
++                    ),
++                    0,
++                )
++            return stdout.getvalue()
++
++        first = render_once()
++        self.assertEqual(first, render_once())
++        self.assertTrue(first.startswith("host: alpha-1\n"))
++        self.assertTrue(first.endswith("\n"))
++        self.assertFalse(first.endswith("\n\n"))
++
++    def test_report_format_defaults_to_json(self) -> None:
++        sample = CapacitySample("alpha-1", 25_000, 100_000, FIXED_TIME)
++
++        def render_with(arguments: list[str]) -> str:
++            stdout = io.StringIO()
++            with (
++                patch.object(cli, "sample_local_capacity", return_value=sample),
++                patch.object(cli, "utc_now", return_value=FIXED_TIME),
++                redirect_stdout(stdout),
++            ):
++                self.assertEqual(
++                    cli.main(
++                        ["report", str(FIXTURE), "--host", "alpha-1", "--sample-path", "/unused"]
++                        + arguments
++                    ),
++                    0,
++                )
++            return stdout.getvalue()
++
++        default_output = render_with([])
++        self.assertEqual(default_output, render_with(["--format", "json"]))
++        self.assertEqual(json.loads(default_output)["host_id"], "alpha-1")
++        self.assertNotEqual(default_output, render_with(["--format", "text"]))
++
++    def test_text_format_rejects_unknown_format_without_sampling(self) -> None:
++        stderr = io.StringIO()
++        with (
++            patch.object(cli, "sample_local_capacity") as sample_capacity,
++            redirect_stderr(stderr),
++        ):
++            exit_code = cli.main(
++                [
++                    "report", str(FIXTURE), "--host", "alpha-1", "--sample-path", "/unused",
++                    "--format", "yaml",
++                ]
++            )
++
++        self.assertEqual(exit_code, 2)
++        sample_capacity.assert_not_called()
++        self.assertEqual(stderr.getvalue(), "storage-advisor: argument-error\n")
++
++    def test_text_format_output_file_is_written_when_explicit(self) -> None:
++        sample = CapacitySample("alpha-1", 25_000, 100_000, FIXED_TIME)
++        with TemporaryDirectory() as temporary_directory:
++            output_path = Path(temporary_directory) / "report.txt"
++            stdout = io.StringIO()
++            with (
++                patch.object(cli, "sample_local_capacity", return_value=sample),
++                patch.object(cli, "utc_now", return_value=FIXED_TIME),
++                redirect_stdout(stdout),
++            ):
++                self.assertEqual(
++                    cli.main(
++                        [
++                            "report", str(FIXTURE), "--host", "alpha-1", "--sample-path", "/unused",
++                            "--format", "text", "--output", str(output_path),
++                        ]
++                    ),
++                    0,
++                )
++
++            written = output_path.read_text(encoding="utf-8")
++            self.assertEqual(stdout.getvalue(), "")
++            self.assertTrue(written.startswith("host: alpha-1\n"))
++            self.assertTrue(written.endswith("\n"))
++            with self.assertRaises(json.JSONDecodeError):
++                json.loads(written)
++
+ 
+ if __name__ == "__main__":
+     unittest.main()

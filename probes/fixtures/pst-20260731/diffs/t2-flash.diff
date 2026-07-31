@@ -1,0 +1,122 @@
+diff --git a/tests/test_savings.py b/tests/test_savings.py
+new file mode 100644
+index 0000000..8c46cc2
+--- /dev/null
++++ b/tests/test_savings.py
+@@ -0,0 +1,102 @@
++#!/usr/bin/env python3
++"""Unit tests for `tools/savings.py` pure functions: find_journals, project_of, and pct.
++
++Run: python3 -m unittest discover -s tests (from the repo root)
++"""
++import os
++import sys
++import tempfile
++import unittest
++
++HERE = os.path.dirname(os.path.abspath(__file__))
++ROOT = os.path.dirname(HERE)
++sys.path.insert(0, os.path.join(ROOT, "tools"))
++
++import savings  # noqa: E402
++
++
++class TestFindJournals(unittest.TestCase):
++    def setUp(self):
++        self._td = tempfile.TemporaryDirectory()
++        self.root = self._td.name
++
++    def tearDown(self):
++        self._td.cleanup()
++
++    def test_find_journals_empty_directory(self):
++        self.assertEqual(savings.find_journals(self.root), [])
++
++    def test_find_journals_matches_pattern_and_sorts(self):
++        # Layout: <root>/<proj>/<sess>/workflows/wf_*.json
++        wf_dir1 = os.path.join(self.root, "projA", "sess1", "workflows")
++        wf_dir2 = os.path.join(self.root, "projB", "sess2", "workflows")
++        os.makedirs(wf_dir1, exist_ok=True)
++        os.makedirs(wf_dir2, exist_ok=True)
++
++        wf1 = os.path.join(wf_dir1, "wf_b.json")
++        wf2 = os.path.join(wf_dir1, "wf_a.json")
++        wf3 = os.path.join(wf_dir2, "wf_c.json")
++        for filepath in (wf1, wf2, wf3):
++            with open(filepath, "w") as f:
++                f.write("{}")
++
++        # Non-matching files (wrong name pattern or structure depth)
++        non_matching = [
++            os.path.join(wf_dir1, "other.json"),
++            os.path.join(self.root, "projA", "wf_direct.json"),
++            os.path.join(self.root, "projA", "sess1", "wf_depth.json"),
++        ]
++        for filepath in non_matching:
++            with open(filepath, "w") as f:
++                f.write("{}")
++
++        expected = sorted([wf1, wf2, wf3])
++        results = savings.find_journals(self.root)
++        self.assertEqual(results, expected)
++
++
++class TestProjectOf(unittest.TestCase):
++    def test_project_of_standard_path(self):
++        path = os.path.join("home", "user", "projects", "my_project", "session123", "workflows", "wf_001.json")
++        self.assertEqual(savings.project_of(path), "my_project")
++
++    def test_project_of_absolute_path(self):
++        path = os.path.join(os.sep, "var", "data", "projects", "analytics", "sess", "workflows", "wf_test.json")
++        self.assertEqual(savings.project_of(path), "analytics")
++
++    def test_project_of_no_projects_directory_returns_question_mark(self):
++        path = os.path.join("tmp", "other_folder", "session123", "workflows", "wf_abc.json")
++        self.assertEqual(savings.project_of(path), "?")
++
++
++class TestPct(unittest.TestCase):
++    def test_pct_empty_or_falsy(self):
++        self.assertIsNone(savings.pct([], 0.5))
++        self.assertIsNone(savings.pct(None, 0.5))
++
++    def test_pct_single_element(self):
++        vals = [42]
++        self.assertEqual(savings.pct(vals, 0.0), 42)
++        self.assertEqual(savings.pct(vals, 0.5), 42)
++        self.assertEqual(savings.pct(vals, 1.0), 42)
++
++    def test_pct_odd_length_list(self):
++        vals = [10, 20, 30, 40, 50]
++        self.assertEqual(savings.pct(vals, 0.0), 10)
++        self.assertEqual(savings.pct(vals, 0.5), 30)
++        self.assertEqual(savings.pct(vals, 1.0), 50)
++
++    def test_pct_even_length_list(self):
++        vals = [100, 200, 300, 400]
++        self.assertEqual(savings.pct(vals, 0.0), 100)
++        self.assertEqual(savings.pct(vals, 0.5), 300)
++        self.assertEqual(savings.pct(vals, 1.0), 400)
++
++    def test_pct_quantiles(self):
++        vals = list(range(101))  # 0 to 100
++        self.assertEqual(savings.pct(vals, 0.9), 90)
++        self.assertEqual(savings.pct(vals, 0.99), 99)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tools/savings.py b/tools/savings.py
+index c8dfcdf..a012f6f 100644
+--- a/tools/savings.py
++++ b/tools/savings.py
+@@ -56,7 +56,8 @@ def price_run(journal_path: str):
+     """Return a priced row for one run. Cache-aware from agent transcripts when present;
+     otherwise a blended fallback on the journal's totalTokens (flagged)."""
+     try:
+-        d = json.load(open(journal_path))
++        with open(journal_path) as f:
++            d = json.load(f)
+     except Exception:
+         return None
+     run_id = os.path.basename(journal_path)[:-5]  # strip .json

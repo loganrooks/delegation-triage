@@ -1,0 +1,84 @@
+diff --git a/tests/test_measure_overhead.py b/tests/test_measure_overhead.py
+new file mode 100644
+index 0000000..e003730
+--- /dev/null
++++ b/tests/test_measure_overhead.py
+@@ -0,0 +1,78 @@
++"""Subprocess smoke test for the Phase A benchmark contract in docs/OPERATIONAL-OVERHEAD.md."""
++
++import json
++import os
++import subprocess
++import sys
++import tempfile
++import unittest
++from pathlib import Path
++
++REPO_ROOT = Path(__file__).resolve().parent.parent
++SCRIPT = REPO_ROOT / "scripts" / "measure_overhead.py"
++SRC = REPO_ROOT / "src"
++
++EXPECTED_KEYS = {
++    "cpu_nanoseconds",
++    "forecast_count",
++    "peak_traced_bytes",
++    "wall_nanoseconds",
++}
++EXPECTED_FORECAST_COUNT = 1000
++
++
++class TestMeasureOverheadSmoke(unittest.TestCase):
++    """The benchmark exits 0, prints one JSON line, and leaves its working directory empty."""
++
++    @classmethod
++    def setUpClass(cls):
++        """Run the benchmark once in an empty working directory and record what it left behind."""
++        cls._workdir = tempfile.TemporaryDirectory()
++        workdir = Path(cls._workdir.name)
++        env = dict(os.environ)
++        env["PYTHONPATH"] = str(SRC)
++        cls.result = subprocess.run(
++            [sys.executable, str(SCRIPT)],
++            cwd=workdir,
++            env=env,
++            capture_output=True,
++            text=True,
++        )
++        cls.workdir_entries = sorted(entry.name for entry in workdir.iterdir())
++
++    @classmethod
++    def tearDownClass(cls):
++        cls._workdir.cleanup()
++
++    def test_exits_zero(self):
++        """A successful measurement returns exit status 0."""
++        self.assertEqual(
++            self.result.returncode,
++            0,
++            msg=f"stdout={self.result.stdout!r} stderr={self.result.stderr!r}",
++        )
++
++    def test_stdout_is_a_single_line_of_valid_json(self):
++        """Stdout carries exactly one line, and that line parses as a JSON object."""
++        lines = self.result.stdout.splitlines()
++        self.assertEqual(len(lines), 1, msg=f"stdout={self.result.stdout!r}")
++        payload = json.loads(lines[0])
++        self.assertIsInstance(payload, dict)
++
++    def test_emits_exactly_the_documented_keys(self):
++        """The object contains the four documented fields and nothing else."""
++        payload = json.loads(self.result.stdout)
++        self.assertEqual(set(payload), EXPECTED_KEYS)
++
++    def test_reports_one_thousand_forecasts(self):
++        """The run covers the documented 1,000 held-reservation forecasts."""
++        payload = json.loads(self.result.stdout)
++        self.assertEqual(payload["forecast_count"], EXPECTED_FORECAST_COUNT)
++
++    def test_creates_no_files_in_the_working_directory(self):
++        """The benchmark is ephemeral: no files, caches, logs, databases, or snapshots."""
++        self.assertEqual(self.workdir_entries, [])
++
++
++if __name__ == "__main__":
++    unittest.main()

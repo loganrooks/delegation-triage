@@ -1,6 +1,15 @@
 # Paired substitution trial — pre-registration (pilot §6 wave-2 instrument, C′)
 
-Status: PRE-REGISTERED 2026-07-31 under the operator-ratified pilot-closure package (C′).
+Status: **COMPLETE 2026-07-31 — decision rule yielded NO overlay row (acceptance 6/6 vs 6/6,
+a metric tie; 0 severe events both arms). Full results: probe record
+`probes/records/P-20260731-pst-paired-trial.md` · blinded adjudication verbatim
+`docs/reviews/2026-07-31-pst-blinded-adjudication.md` · artifacts
+`probes/fixtures/pst-20260731/`. Blinded quality: incumbent better 5/6, T4 control
+equivalent; arms byte-identical on fully-specified edits, separated entirely on open-ended
+test authoring (flash: vacuous-green tests on all 4 discriminable test-authoring tasks).
+Operator countersign PENDING at recording.**
+
+Was: PRE-REGISTERED 2026-07-31 under the operator-ratified pilot-closure package (C′).
 **HOLD UPDATE 2026-07-31: FP-B produced one severe event (t3, fabricated-completion —
 P-20260731-fpb-planted-ambiguity); operator dispositioned (ii) gate-and-continue.**
 Launch condition now: (a) the delegator acceptance gate G1–G4

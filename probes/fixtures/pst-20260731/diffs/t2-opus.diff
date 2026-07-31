@@ -1,0 +1,197 @@
+diff --git a/tests/test_savings.py b/tests/test_savings.py
+new file mode 100644
+index 0000000..a0f0067
+--- /dev/null
++++ b/tests/test_savings.py
+@@ -0,0 +1,177 @@
++#!/usr/bin/env python3
++"""Unit tests for the pure helpers in `wg savings` (corpus savings analysis).
++
++Run:  python3 -m unittest discover -s tests   (from the repo root)
++
++Covers the three functions the corpus numbers are built on, which had no coverage:
++find_journals (the on-disk discovery glob — depth and filename contract), project_of (the
++path->project attribution used to label every row), and pct (the NEAREST-RANK percentile
++behind every min/median/p90/p99/max the tool prints). Two of these encode surprising
++behavior worth pinning: pct does NOT interpolate, and its int(round(...)) index inherits
++Python's banker's rounding at exact .5 boundaries.
++"""
++import os
++import sys
++import tempfile
++import unittest
++
++HERE = os.path.dirname(os.path.abspath(__file__))
++ROOT = os.path.dirname(HERE)
++sys.path.insert(0, os.path.join(ROOT, "tools"))
++
++import savings as sv  # noqa: E402
++
++
++def touch(path):
++    """Create an empty file, making its parent dirs. Returns the path."""
++    os.makedirs(os.path.dirname(path), exist_ok=True)
++    with open(path, "w") as fh:
++        fh.write("{}")
++    return path
++
++
++class TestFindJournals(unittest.TestCase):
++    def setUp(self):
++        self._td = tempfile.TemporaryDirectory()
++        self.root = self._td.name
++
++    def tearDown(self):
++        self._td.cleanup()
++
++    def _journal(self, proj, sess, name):
++        return touch(os.path.join(self.root, proj, sess, "workflows", name))
++
++    def test_empty_root_returns_empty_list(self):
++        self.assertEqual(sv.find_journals(self.root), [])
++
++    def test_missing_root_returns_empty_list(self):
++        # glob on a nonexistent dir yields nothing rather than raising.
++        self.assertEqual(sv.find_journals(os.path.join(self.root, "nope")), [])
++
++    def test_finds_journals_at_the_expected_depth(self):
++        a = self._journal("projA", "sess1", "wf_aaa.json")
++        b = self._journal("projB", "sess2", "wf_bbb.json")
++        self.assertEqual(sv.find_journals(self.root), sorted([a, b]))
++
++    def test_results_are_sorted(self):
++        # Created out of lexical order; the contract is a sorted return.
++        self._journal("zzz", "s", "wf_1.json")
++        self._journal("aaa", "s", "wf_1.json")
++        self._journal("mmm", "s", "wf_1.json")
++        got = sv.find_journals(self.root)
++        self.assertEqual(got, sorted(got))
++        self.assertEqual([p.split(os.sep)[-4] for p in got], ["aaa", "mmm", "zzz"])
++
++    def test_multiple_sessions_under_one_project_all_found(self):
++        a = self._journal("proj", "sessA", "wf_1.json")
++        b = self._journal("proj", "sessB", "wf_2.json")
++        self.assertEqual(sv.find_journals(self.root), sorted([a, b]))
++
++    def test_ignores_files_without_the_wf_prefix(self):
++        keep = self._journal("proj", "sess", "wf_keep.json")
++        self._journal("proj", "sess", "notes.json")
++        self._journal("proj", "sess", "summary.json")
++        self.assertEqual(sv.find_journals(self.root), [keep])
++
++    def test_ignores_non_json_extensions(self):
++        keep = self._journal("proj", "sess", "wf_keep.json")
++        self._journal("proj", "sess", "wf_other.jsonl")
++        self._journal("proj", "sess", "wf_other.txt")
++        self.assertEqual(sv.find_journals(self.root), [keep])
++
++    def test_ignores_journals_outside_a_workflows_dir(self):
++        keep = self._journal("proj", "sess", "wf_keep.json")
++        touch(os.path.join(self.root, "proj", "sess", "subagents", "wf_nope.json"))
++        touch(os.path.join(self.root, "proj", "sess", "wf_nope.json"))
++        self.assertEqual(sv.find_journals(self.root), [keep])
++
++    def test_ignores_wrong_depth(self):
++        # The glob pins exactly two path segments between root and "workflows":
++        # neither one segment nor three is discovered.
++        touch(os.path.join(self.root, "proj", "workflows", "wf_shallow.json"))
++        touch(os.path.join(self.root, "a", "b", "c", "workflows", "wf_deep.json"))
++        self.assertEqual(sv.find_journals(self.root), [])
++
++
++class TestProjectOf(unittest.TestCase):
++    def test_extracts_segment_after_projects(self):
++        p = os.sep.join(["", "home", "u", ".claude", "projects", "my-proj",
++                         "sess", "workflows", "wf_1.json"])
++        self.assertEqual(sv.project_of(p), "my-proj")
++
++    def test_encoded_project_dir_name_returned_verbatim(self):
++        # Real project dirs are path-encoded; the function must not decode or trim them.
++        p = os.sep.join(["", "projects", "-Users-me-Projects-thing", "s", "workflows", "wf_1.json"])
++        self.assertEqual(sv.project_of(p), "-Users-me-Projects-thing")
++
++    def test_missing_projects_segment_returns_question_mark(self):
++        p = os.sep.join(["", "tmp", "scratch", "sess", "workflows", "wf_1.json"])
++        self.assertEqual(sv.project_of(p), "?")
++
++    def test_partial_match_does_not_count_as_the_projects_segment(self):
++        # Matching is on a whole path segment, not a substring.
++        p = os.sep.join(["", "home", "myprojects", "proj", "s", "workflows", "wf_1.json"])
++        self.assertEqual(sv.project_of(p), "?")
++
++    def test_first_projects_segment_wins_when_repeated(self):
++        p = os.sep.join(["", "x", "projects", "one", "projects", "two", "workflows", "wf_1.json"])
++        self.assertEqual(sv.project_of(p), "one")
++
++    def test_projects_as_final_segment_raises_indexerror(self):
++        # CHARACTERIZATION, not an endorsement: only ValueError (segment absent) is caught,
++        # so a path ENDING in "projects" escapes the guard and propagates IndexError.
++        # Unreachable from find_journals output, which always has segments after it.
++        with self.assertRaises(IndexError):
++            sv.project_of(os.sep.join(["", "home", "projects"]))
++
++
++class TestPct(unittest.TestCase):
++    def test_empty_returns_none(self):
++        self.assertIsNone(sv.pct([], 0.5))
++        self.assertIsNone(sv.pct([], 0.0))
++        self.assertIsNone(sv.pct([], 1.0))
++
++    def test_single_value_for_any_quantile(self):
++        for q in (0.0, 0.5, 0.9, 0.99, 1.0):
++            self.assertEqual(sv.pct([7], q), 7)
++
++    def test_q0_is_min_and_q1_is_max(self):
++        vals = [1, 2, 3, 4, 5]
++        self.assertEqual(sv.pct(vals, 0.0), 1)
++        self.assertEqual(sv.pct(vals, 1.0), 5)
++
++    def test_median_of_odd_length(self):
++        self.assertEqual(sv.pct([10, 20, 30], 0.5), 20)
++
++    def test_does_not_interpolate_between_neighbours(self):
++        # Nearest-rank: the result is always a MEMBER of the input, never a computed midpoint.
++        self.assertEqual(sv.pct([0, 10], 0.5), 0)  # not 5.0
++        self.assertIn(sv.pct([0, 100], 0.5), (0, 100))
++
++    def test_exact_half_boundary_rounds_to_even(self):
++        # int(round(...)) inherits Python 3 banker's rounding, so an index landing exactly on
++        # .5 goes to the EVEN neighbour -- down at 0.5/4.5, up at 1.5. Pinned because it is
++        # the difference between reporting one run's number and the next one's.
++        self.assertEqual(sv.pct([0, 10], 0.5), 0)              # idx round(0.5) -> 0
++        self.assertEqual(sv.pct([0, 10, 20, 30], 0.5), 20)     # idx round(1.5) -> 2
++        self.assertEqual(sv.pct(list(range(10)), 0.5), 4)      # idx round(4.5) -> 4
++
++    def test_p90_and_p99_index_arithmetic(self):
++        vals = list(range(10))  # indices 0..9
++        self.assertEqual(sv.pct(vals, 0.9), 8)   # round(0.9*9=8.1) -> 8
++        self.assertEqual(sv.pct(vals, 0.99), 9)  # round(0.99*9=8.91) -> 9
++
++    def test_p99_collapses_to_max_on_small_samples(self):
++        # With few runs, p99 and max are the SAME run -- the p99 row is not independent evidence.
++        vals = list(range(5))
++        self.assertEqual(sv.pct(vals, 0.99), vals[-1])
++        self.assertEqual(sv.pct(vals, 0.99), sv.pct(vals, 1.0))
++
++    def test_works_on_floats_as_used_for_usd(self):
++        usd = [0.5, 1.25, 3.0, 12.75]
++        self.assertEqual(sv.pct(usd, 0.0), 0.5)
++        self.assertEqual(sv.pct(usd, 1.0), 12.75)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tools/savings.py b/tools/savings.py
+index c8dfcdf..d5b1a05 100644
+--- a/tools/savings.py
++++ b/tools/savings.py
+@@ -56,7 +56,8 @@ def price_run(journal_path: str):
+     """Return a priced row for one run. Cache-aware from agent transcripts when present;
+     otherwise a blended fallback on the journal's totalTokens (flagged)."""
+     try:
+-        d = json.load(open(journal_path))
++        with open(journal_path) as fh:
++            d = json.load(fh)
+     except Exception:
+         return None
+     run_id = os.path.basename(journal_path)[:-5]  # strip .json

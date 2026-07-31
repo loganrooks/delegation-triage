@@ -1,0 +1,72 @@
+diff --git a/tests/test_cli.py b/tests/test_cli.py
+index e795dbf..3d867d2 100644
+--- a/tests/test_cli.py
++++ b/tests/test_cli.py
+@@ -188,6 +188,67 @@ class CliTests(unittest.TestCase):
+             self.assertTrue(output_path.is_file())
+             self.assertTrue(output_path.read_text(encoding="utf-8").endswith("\n"))
+ 
++    def test_report_format_text_stdout(self) -> None:
++        sample = CapacitySample("alpha-1", 25_000, 100_000, FIXED_TIME)
++        stdout = io.StringIO()
++        with (
++            patch.object(cli, "sample_local_capacity", return_value=sample),
++            patch.object(cli, "utc_now", return_value=FIXED_TIME),
++            redirect_stdout(stdout),
++        ):
++            exit_code = cli.main(
++                [
++                    "report",
++                    str(FIXTURE),
++                    "--host",
++                    "alpha-1",
++                    "--sample-path",
++                    "/unused",
++                    "--format",
++                    "text",
++                ]
++            )
++
++        output = stdout.getvalue()
++        self.assertEqual(exit_code, 0)
++        self.assertTrue(output.endswith("\n"))
++        self.assertIn("host: alpha-1\n", output)
++        self.assertIn("observed_at: 2026-07-14T12:00:00Z\n", output)
++        self.assertIn("capacity: 25000 / 100000 bytes available\n", output)
++        self.assertIn("held reservations:", output)
++        self.assertIn("intent orders-db:", output)
++
++    def test_report_format_text_to_output_file(self) -> None:
++        sample = CapacitySample("alpha-1", 25_000, 100_000, FIXED_TIME)
++        with TemporaryDirectory() as temporary_directory:
++            output_path = Path(temporary_directory) / "report.txt"
++            with (
++                patch.object(cli, "sample_local_capacity", return_value=sample),
++                patch.object(cli, "utc_now", return_value=FIXED_TIME),
++                redirect_stdout(io.StringIO()),
++            ):
++                exit_code = cli.main(
++                    [
++                        "report",
++                        str(FIXTURE),
++                        "--host",
++                        "alpha-1",
++                        "--sample-path",
++                        "/unused",
++                        "--format",
++                        "text",
++                        "--output",
++                        str(output_path),
++                    ]
++                )
++
++            self.assertEqual(exit_code, 0)
++            self.assertTrue(output_path.is_file())
++            content = output_path.read_text(encoding="utf-8")
++            self.assertTrue(content.endswith("\n"))
++            self.assertIn("host: alpha-1\n", content)
++            self.assertIn("capacity: 25000 / 100000 bytes available\n", content)
++
+ 
+ if __name__ == "__main__":
+     unittest.main()

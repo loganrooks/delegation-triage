@@ -1,0 +1,8 @@
+DELEGATOR ANSWER to your prior BLOCKED: workspace-not-found | NEED: correct workspace path — your workspace is /private/tmp/claude-501/-Users-rookslog-Projects-delegation-triage/c4ca9689-0893-4843-a0d8-d541bcc832f1/scratchpad/pst/t4-flash . cd into it before anything else; all work happens inside it. The frozen task packet follows VERBATIM below the line.
+---
+REPORT PREAMBLE (mandatory, before anything else): your report MUST open with (a) the output of `pwd` and (b) the output of `ls` in it. If the directory does not contain the repository described below (a git checkout with the named files), STOP and report BLOCKED: workspace-not-found | NEED: correct workspace path | TRIED: <your pwd/ls output>.
+
+Objective: close the unclosed file handle in component_version() at hooks/preflight_gate.py:109 (return json.load(open(mf)).get("version", "unknown")) using a context manager. Behavior must be byte-for-byte unchanged; this file is a live enforcement hook, so touch ONLY that expression.
+Owned files: hooks/preflight_gate.py.
+Validation: python3 -m unittest discover -s tests   (baseline: 533 tests, OK) — 533 tests, zero failures, count unchanged.
+Return shape: the preamble, then files touched, every command run in order with exit codes (including failed attempts), validation output quoted verbatim (final summary line included), and any DEVIATION items (what, why, your fix) if something cannot work as written. Allowed effects: ONLY the owned files, inside this workspace. Non-goals: refactors, formatting changes, or edits beyond the objective. If blocked on something only the delegator can decide: BLOCKED: <what> | NEED: <input> | TRIED: <attempts> — and stop.

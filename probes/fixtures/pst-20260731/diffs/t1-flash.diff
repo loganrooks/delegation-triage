@@ -1,0 +1,134 @@
+diff --git a/tests/test_gate.py b/tests/test_gate.py
+index 183f161..fc1a7f3 100644
+--- a/tests/test_gate.py
++++ b/tests/test_gate.py
+@@ -9,14 +9,25 @@ scriptPath); the mode matrix in main() (shadow log-only / enforce ask+deny / off
+ as a real subprocess over stdin; and fail-open/fail-closed invariants.
+ """
+ 
++import concurrent.futures
+ import hashlib
+ import json
+ import os
+ import subprocess
+ import sys
+ import tempfile
++import threading
++import time
+ import unittest
+ 
++
++def _fleet_count_worker(args):
++    dd, session_id, window_seconds, iterations = args
++    results = []
++    for _ in range(iterations):
++        results.append(pg.fleet_count(dd, session_id, window_seconds))
++    return results
++
+ HERE = os.path.dirname(os.path.abspath(__file__))
+ ROOT = os.path.dirname(HERE)
+ sys.path.insert(0, os.path.join(ROOT, "hooks"))
+@@ -1547,5 +1558,103 @@ class TestAgentFleetEnforce(unittest.TestCase):
+             self.assertEqual(p.stdout.strip(), "")
+ 
+ 
++class TestFleetCountConcurrency(unittest.TestCase):
++    """Concurrency stress tests for fleet_count rolling-window counter."""
++
++    def test_fleet_count_thread_concurrency(self):
++        """Multiple threads registering concurrently produce exact count with no lost updates."""
++        num_threads = 20
++        iterations_per_thread = 10
++        total_expected = num_threads * iterations_per_thread
++
++        with tempfile.TemporaryDirectory() as dd:
++            session_id = "thread_stress_sess"
++            window_seconds = 60
++
++            def worker():
++                for _ in range(iterations_per_thread):
++                    pg.fleet_count(dd, session_id, window_seconds)
++
++            threads = [threading.Thread(target=worker) for _ in range(num_threads)]
++            for t in threads:
++                t.start()
++            for t in threads:
++                t.join()
++
++            log_path = os.path.join(dd, f"_fleet_{session_id}.log")
++            self.assertTrue(os.path.exists(log_path))
++            with open(log_path, "r") as fh:
++                lines = [line.strip() for line in fh if line.strip()]
++            self.assertEqual(len(lines), total_expected)
++
++            final_count = pg.fleet_count(dd, session_id, window_seconds)
++            self.assertEqual(final_count, total_expected + 1)
++
++    def test_fleet_count_process_concurrency(self):
++        """Multiple processes registering concurrently produce exact count with no lost updates."""
++        num_processes = 8
++        iterations_per_proc = 10
++        total_expected = num_processes * iterations_per_proc
++
++        with tempfile.TemporaryDirectory() as dd:
++            session_id = "proc_stress_sess"
++            window_seconds = 60
++            task_args = [
++                (dd, session_id, window_seconds, iterations_per_proc)
++                for _ in range(num_processes)
++            ]
++
++            with concurrent.futures.ProcessPoolExecutor(
++                max_workers=num_processes
++            ) as executor:
++                futures = [
++                    executor.submit(_fleet_count_worker, arg) for arg in task_args
++                ]
++                for future in concurrent.futures.as_completed(futures):
++                    future.result()
++
++            log_path = os.path.join(dd, f"_fleet_{session_id}.log")
++            self.assertTrue(os.path.exists(log_path))
++            with open(log_path, "r") as fh:
++                lines = [line.strip() for line in fh if line.strip()]
++            self.assertEqual(len(lines), total_expected)
++
++            final_count = pg.fleet_count(dd, session_id, window_seconds)
++            self.assertEqual(final_count, total_expected + 1)
++
++    def test_fleet_count_window_expiration_under_concurrency(self):
++        """Old timestamps outside window_seconds are excluded even during concurrent appends."""
++        num_threads = 10
++        iterations_per_thread = 5
++        new_expected = num_threads * iterations_per_thread
++
++        with tempfile.TemporaryDirectory() as dd:
++            session_id = "window_stress_sess"
++            window_seconds = 10
++            log_path = os.path.join(dd, f"_fleet_{session_id}.log")
++
++            old_time = time.time() - 30.0
++            with open(log_path, "w") as fh:
++                for _ in range(15):
++                    fh.write(f"{old_time}\n")
++
++            def worker():
++                for _ in range(iterations_per_thread):
++                    pg.fleet_count(dd, session_id, window_seconds)
++
++            threads = [threading.Thread(target=worker) for _ in range(num_threads)]
++            for t in threads:
++                t.start()
++            for t in threads:
++                t.join()
++
++            with open(log_path, "r") as fh:
++                lines = [line.strip() for line in fh if line.strip()]
++            self.assertEqual(len(lines), 15 + new_expected)
++
++            final_count = pg.fleet_count(dd, session_id, window_seconds)
++            self.assertEqual(final_count, new_expected + 1)
++
++
+ if __name__ == "__main__":
+     unittest.main(verbosity=2)

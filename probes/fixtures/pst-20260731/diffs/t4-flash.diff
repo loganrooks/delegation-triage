@@ -1,0 +1,14 @@
+diff --git a/hooks/preflight_gate.py b/hooks/preflight_gate.py
+index 05603d5..f4e16cf 100755
+--- a/hooks/preflight_gate.py
++++ b/hooks/preflight_gate.py
+@@ -106,7 +106,8 @@ def component_version():
+             ".claude-plugin",
+             "plugin.json",
+         )
+-        return json.load(open(mf)).get("version", "unknown")
++        with open(mf) as f:
++            return json.load(f).get("version", "unknown")
+     except Exception:
+         return "unknown"
+ 

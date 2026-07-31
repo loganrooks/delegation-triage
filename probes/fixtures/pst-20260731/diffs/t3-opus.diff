@@ -1,0 +1,160 @@
+diff --git a/tests/test_backtest.py b/tests/test_backtest.py
+new file mode 100644
+index 0000000..1cf16df
+--- /dev/null
++++ b/tests/test_backtest.py
+@@ -0,0 +1,118 @@
++#!/usr/bin/env python3
++"""Unit tests for tools/backtest.py — the two helpers the eval ledger rests on.
++
++Run:  python3 tests/test_backtest.py   (or: python3 -m unittest discover -s tests)
++
++`decision_for` IS the gate rule the ledger scores itself against — est_decision, act_decision and
++gate_correct all route through it — so its threshold BOUNDARY is load-bearing: `<` means an
++estimate landing exactly on the threshold is gated, never waved through. A silent flip to `<=`
++would not crash anything; it would just quietly re-score every case.
++
++`load_cases` is the reader every subcommand starts from. It must survive the ledger states an
++append-only JSONL file actually reaches: absent (nothing recorded yet), blank-padded, and
++torn mid-append. A crash here takes out `score` and `list`, so the tolerance is the contract.
++"""
++
++import gc
++import json
++import os
++import sys
++import tempfile
++import unittest
++import warnings
++
++HERE = os.path.dirname(os.path.abspath(__file__))
++ROOT = os.path.dirname(HERE)
++sys.path.insert(0, os.path.join(ROOT, "tools"))
++import backtest as B  # noqa: E402
++
++
++class DecisionFor(unittest.TestCase):
++    def test_below_threshold_auto_approves(self):
++        self.assertEqual(B.decision_for(9.99, 15.0), "auto-approve")
++
++    def test_at_threshold_needs_approval(self):
++        # `<` not `<=`: an estimate exactly on the line is gated (the conservative side).
++        self.assertEqual(B.decision_for(15.0, 15.0), "needs-approval")
++
++    def test_above_threshold_needs_approval(self):
++        self.assertEqual(B.decision_for(15.01, 15.0), "needs-approval")
++
++    def test_zero_threshold_gates_every_launch(self):
++        self.assertEqual(B.decision_for(0.0, 0.0), "needs-approval")
++        self.assertEqual(B.decision_for(0.01, 0.0), "needs-approval")
++
++    def test_free_run_under_a_positive_threshold_auto_approves(self):
++        self.assertEqual(B.decision_for(0.0, 15.0), "auto-approve")
++
++    def test_ints_and_floats_compare_alike(self):
++        # cmd_add takes the threshold from a JSON record, where 15 and 15.0 are both plausible.
++        self.assertEqual(B.decision_for(15, 15.0), B.decision_for(15.0, 15))
++
++
++class LoadCases(unittest.TestCase):
++    def setUp(self):
++        self.dir = tempfile.mkdtemp()
++        self._saved = os.environ.get("WORKFLOW_GATE_DIR")
++        os.environ["WORKFLOW_GATE_DIR"] = self.dir
++
++    def tearDown(self):
++        if self._saved is None:
++            os.environ.pop("WORKFLOW_GATE_DIR", None)
++        else:
++            os.environ["WORKFLOW_GATE_DIR"] = self._saved
++
++    def _write(self, text):
++        with open(os.path.join(self.dir, "backtest-cases.jsonl"), "w") as fh:
++            fh.write(text)
++
++    def test_missing_ledger_reads_empty_not_an_error(self):
++        # guard: the redirect above must actually be what load_cases resolves, or every
++        # assertion in this class is about the developer's real ledger.
++        self.assertEqual(
++            B.ledger_path(), os.path.join(self.dir, "backtest-cases.jsonl")
++        )
++        self.assertEqual(B.load_cases(), [])
++
++    def test_reads_one_case_per_line_in_ledger_order(self):
++        self._write('{"case_id": "a"}\n{"case_id": "b"}\n')
++        self.assertEqual([c["case_id"] for c in B.load_cases()], ["a", "b"])
++
++    def test_blank_and_whitespace_only_lines_skipped(self):
++        self._write('\n   \n{"case_id": "a"}\n\t\n')
++        self.assertEqual([c["case_id"] for c in B.load_cases()], ["a"])
++
++    def test_corrupt_line_skipped_and_neighbours_survive(self):
++        # a torn append must cost one case, not the whole score run.
++        self._write('{"case_id": "a"}\nnot json at all\n{"case_id": "b"}\n')
++        self.assertEqual([c["case_id"] for c in B.load_cases()], ["a", "b"])
++
++    def test_final_line_without_trailing_newline_is_read(self):
++        self._write('{"case_id": "a"}\n{"case_id": "b"}')
++        self.assertEqual([c["case_id"] for c in B.load_cases()], ["a", "b"])
++
++    def test_empty_ledger_file_reads_empty(self):
++        self._write("")
++        self.assertEqual(B.load_cases(), [])
++
++    def test_records_round_trip_whole_not_just_the_id(self):
++        case = {"case_id": "a", "skill": {"version": "1.2"}, "abs_pct_error": 12.5}
++        self._write(json.dumps(case) + "\n")
++        self.assertEqual(B.load_cases(), [case])
++
++    def test_ledger_handle_is_closed(self):
++        # pins the context manager: an iterated bare open() leaks the handle and CPython
++        # reports it as a ResourceWarning when the loop drops the last reference.
++        self._write('{"case_id": "a"}\n')
++        with warnings.catch_warnings(record=True) as caught:
++            warnings.simplefilter("always")
++            B.load_cases()
++            gc.collect()
++        self.assertEqual(
++            [str(w.message) for w in caught if issubclass(w.category, ResourceWarning)],
++            [],
++        )
++
++
++if __name__ == "__main__":
++    unittest.main(verbosity=2)
+diff --git a/tools/backtest.py b/tools/backtest.py
+index 7bf6991..1483598 100755
+--- a/tools/backtest.py
++++ b/tools/backtest.py
+@@ -39,7 +39,8 @@ def decision_for(usd: float, threshold: float) -> str:
+ 
+ 
+ def cmd_add(args) -> int:
+-    rec = json.load(open(args.proposal))
++    with open(args.proposal) as fh:
++        rec = json.load(fh)
+     est = rec["breakdown"]["total_usd"]
+     threshold = rec.get("threshold_usd", args.threshold)
+     actual = args.actual_usd
+@@ -77,13 +78,14 @@ def load_cases():
+     if not os.path.exists(ledger):
+         return []
+     out = []
+-    for line in open(ledger):
+-        line = line.strip()
+-        if line:
+-            try:
+-                out.append(json.loads(line))
+-            except Exception:
+-                pass
++    with open(ledger) as fh:
++        for line in fh:
++            line = line.strip()
++            if line:
++                try:
++                    out.append(json.loads(line))
++                except Exception:
++                    pass
+     return out
+ 
+ 

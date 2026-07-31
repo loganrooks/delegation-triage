@@ -800,3 +800,16 @@ grading time; leg findings spot-checked firsthand before this amendment):**
   smoke before it) — the deployed flash-* pins target that surface and still extrapolate
   their quality findings across it; FP-B as ratified (planted ambiguity, blinded gate):
   UNRUN, loopback precondition now MET.
+  **PAIRED TRIAL RUN AND CLOSED 2026-07-31 (P-20260731-pst-paired-trial — the XV-1
+  instrument): acceptance 6/6 vs 6/6, 0 severe both arms → pre-registered decision rule
+  yields NO overlay row (metric tie).** Blinded non-author adjudication (verbatim:
+  `docs/reviews/2026-07-31-pst-blinded-adjudication.md`): incumbent better on 5/6 tasks,
+  T4 control equivalent; arms byte-identical on fully-specified edits, separated entirely
+  on open-ended test authoring, where the flash arm shipped vacuous-green tests (cannot
+  fail on the packet's target regression) on all four discriminable test-authoring tasks —
+  invisible to a green-suite gate by construction. Practical residue: flash's safe lane is
+  mechanical, oracle-checkable, fully-specified slices under G1–G4; test-authoring packets
+  need the proposed G5 mutation check before any flash acceptance is meaningful. FP-0a
+  remained unresolved at trial end (moot for the no-row outcome; still gates any future
+  effort-cell naming). Severe counter unchanged at 1 (the FP-B t3 event; disposition (ii)
+  stands). Operator countersign of the trial adjudication: PENDING at recording.

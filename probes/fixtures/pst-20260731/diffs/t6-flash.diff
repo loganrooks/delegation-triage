@@ -1,0 +1,97 @@
+diff --git a/tests/test_measure_overhead.py b/tests/test_measure_overhead.py
+new file mode 100644
+index 0000000..b324795
+--- /dev/null
++++ b/tests/test_measure_overhead.py
+@@ -0,0 +1,91 @@
++from __future__ import annotations
++
++import json
++import os
++from pathlib import Path
++import subprocess
++import sys
++import tempfile
++import unittest
++
++
++REPO_ROOT = Path(__file__).resolve().parent.parent
++SCRIPT_PATH = REPO_ROOT / "scripts" / "measure_overhead.py"
++SRC_PATH = REPO_ROOT / "src"
++
++
++class MeasureOverheadSubprocessTests(unittest.TestCase):
++    def test_measure_overhead_subprocess_contract(self) -> None:
++        with tempfile.TemporaryDirectory() as tmp_dir:
++            env = os.environ.copy()
++            env["PYTHONPATH"] = str(SRC_PATH)
++
++            result = subprocess.run(
++                [sys.executable, str(SCRIPT_PATH)],
++                cwd=tmp_dir,
++                env=env,
++                capture_output=True,
++                text=True,
++                check=False,
++            )
++
++            self.assertEqual(result.returncode, 0)
++            self.assertEqual(result.stderr, "")
++
++            stdout_str = result.stdout
++            self.assertTrue(stdout_str.endswith("\n"), "stdout must end with newline")
++            lines = stdout_str.rstrip("\r\n").splitlines()
++            self.assertEqual(len(lines), 1, f"Expected single line of stdout, got {len(lines)}")
++
++            data = json.loads(lines[0])
++
++            expected_keys = {
++                "cpu_nanoseconds",
++                "forecast_count",
++                "peak_traced_bytes",
++                "wall_nanoseconds",
++            }
++            self.assertEqual(set(data.keys()), expected_keys)
++            self.assertEqual(data["forecast_count"], 1000)
++            self.assertIsInstance(data["cpu_nanoseconds"], int)
++            self.assertIsInstance(data["peak_traced_bytes"], int)
++            self.assertIsInstance(data["wall_nanoseconds"], int)
++
++            self.assertEqual(os.listdir(tmp_dir), [])
++
++    def test_measure_overhead_with_relative_pythonpath_from_repo_root(self) -> None:
++        env = os.environ.copy()
++        env["PYTHONPATH"] = "src"
++
++        before_files = set(os.listdir(REPO_ROOT))
++
++        result = subprocess.run(
++            [sys.executable, "scripts/measure_overhead.py"],
++            cwd=REPO_ROOT,
++            env=env,
++            capture_output=True,
++            text=True,
++            check=False,
++        )
++
++        after_files = set(os.listdir(REPO_ROOT))
++
++        self.assertEqual(result.returncode, 0)
++        self.assertEqual(result.stderr, "")
++
++        lines = result.stdout.rstrip("\r\n").splitlines()
++        self.assertEqual(len(lines), 1)
++
++        data = json.loads(lines[0])
++        self.assertEqual(
++            set(data.keys()),
++            {"cpu_nanoseconds", "forecast_count", "peak_traced_bytes", "wall_nanoseconds"},
++        )
++        self.assertEqual(data["forecast_count"], 1000)
++
++        # Assert no new files created in repo root working directory
++        self.assertEqual(after_files - before_files, set())
++
++
++if __name__ == "__main__":
++    unittest.main()

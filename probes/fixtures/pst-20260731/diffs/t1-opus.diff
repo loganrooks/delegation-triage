@@ -1,0 +1,193 @@
+diff --git a/tests/test_gate.py b/tests/test_gate.py
+index 183f161..87c82a7 100644
+--- a/tests/test_gate.py
++++ b/tests/test_gate.py
+@@ -15,6 +15,8 @@ import os
+ import subprocess
+ import sys
+ import tempfile
++import threading
++import time
+ import unittest
+ 
+ HERE = os.path.dirname(os.path.abspath(__file__))
+@@ -1547,5 +1549,179 @@ class TestAgentFleetEnforce(unittest.TestCase):
+             self.assertEqual(p.stdout.strip(), "")
+ 
+ 
++class TestFleetCountConcurrency(unittest.TestCase):
++    """Concurrency stress for fleet_count — the rolling-window burst counter.
++
++    fleet_count's own comment claims the O_APPEND write IS the registration ("atomic append =
++    this call's claim on the burst"). These tests hold it to that under a barrier-released
++    thread burst and a clock-aligned multi-process burst: every call must leave exactly one
++    intact line (no lost updates, no torn appends), the window arithmetic must stay correct
++    with a stale prefix present, and sessions must not cross-count.
++
++    The exactness of `max(counts) == n` is not a timing assumption: whichever caller appends
++    LAST necessarily reads a file that already contains every other append, so the burst peak
++    is exact however the interleaving falls. The barrier is what makes the calls overlap; it is
++    deliberately NOT asserted on, since a loaded machine can serialize them and the invariants
++    above hold either way.
++    """
++
++    WINDOW = 3600.0  # wide enough that nothing ages out mid-test
++
++    # Runs fleet_count in a separate PROCESS: argv = hooks_dir, dd, session, window, start, iters.
++    # Children spin to a shared wall-clock `start` so the appends actually contend.
++    CHILD = (
++        "import sys, time\n"
++        "sys.path.insert(0, sys.argv[1])\n"
++        "import preflight_gate as pg\n"
++        "dd, sid = sys.argv[2], sys.argv[3]\n"
++        "window, start, iters = float(sys.argv[4]), float(sys.argv[5]), int(sys.argv[6])\n"
++        "while time.time() < start:\n"
++        "    time.sleep(0.001)\n"
++        "print(','.join(str(pg.fleet_count(dd, sid, window)) for _ in range(iters)))\n"
++    )
++
++    def _log_path(self, dd, session_id):
++        return os.path.join(dd, f"_fleet_{session_id or 'nosession'}.log")
++
++    def _lines(self, dd, session_id):
++        with open(self._log_path(dd, session_id)) as fh:
++            return [ln for ln in fh.read().splitlines() if ln != ""]
++
++    def _thread_burst(self, dd, session_id, n, window=None, iters=1):
++        """n threads x iters fleet_count calls, all released together; returns every count."""
++        window = self.WINDOW if window is None else window
++        barrier = threading.Barrier(n)
++        counts, errors, lock = [], [], threading.Lock()
++
++        def worker():
++            try:
++                barrier.wait(timeout=30)
++                mine = [pg.fleet_count(dd, session_id, window) for _ in range(iters)]
++            except Exception as exc:  # incl. a broken barrier — never silently under-count
++                with lock:
++                    errors.append(repr(exc))
++                return
++            with lock:
++                counts.extend(mine)
++
++        threads = [threading.Thread(target=worker) for _ in range(n)]
++        for t in threads:
++            t.start()
++        for t in threads:
++            t.join(timeout=60)
++        self.assertEqual(errors, [])
++        self.assertFalse(any(t.is_alive() for t in threads), "worker did not finish")
++        self.assertEqual(len(counts), n * iters)
++        return counts
++
++    def test_threaded_burst_registers_every_call(self):
++        # No lost updates: 32 concurrent registrations -> 32 lines, and the peak count is exact.
++        n = 32
++        sid = "conc-threads"
++        with tempfile.TemporaryDirectory() as dd:
++            counts = self._thread_burst(dd, sid, n)
++            self.assertEqual(len(self._lines(dd, sid)), n)
++            self.assertNotIn(0, counts)  # 0 is fleet_count's fail-open value, not a real count
++            self.assertEqual(max(counts), n)
++            self.assertTrue(all(1 <= c <= n for c in counts), counts)
++            # the window stays coherent for the next caller
++            self.assertEqual(pg.fleet_count(dd, sid, self.WINDOW), n + 1)
++
++    def test_concurrent_appends_are_not_torn(self):
++        # 48 threads x 4 calls: every line must still be a lone parseable timestamp. A torn or
++        # interleaved append would show up as an unparseable line — which fleet_count SILENTLY
++        # skips, so it would under-count in production without ever raising.
++        n, iters = 48, 4
++        sid = "conc-torn"
++        with tempfile.TemporaryDirectory() as dd:
++            t0 = time.time()
++            self._thread_burst(dd, sid, n, iters=iters)
++            t1 = time.time()
++            lines = self._lines(dd, sid)
++            self.assertEqual(len(lines), n * iters)
++            for ln in lines:
++                try:
++                    ts = float(ln)
++                except ValueError:
++                    self.fail(f"torn append: {ln!r}")
++                self.assertGreaterEqual(ts, t0 - 1.0)
++                self.assertLessEqual(ts, t1 + 1.0)
++
++    def test_process_burst_registers_every_call(self):
++        # Cross-PROCESS contention — the case threads cannot cover, since separate processes
++        # share no GIL and only the O_APPEND guarantee keeps the appends whole.
++        procs, iters = 6, 8
++        total = procs * iters
++        sid = "conc-procs"
++        with tempfile.TemporaryDirectory() as dd:
++            start = time.time() + 1.0  # release instant; leaves room for interpreter startup
++            argv = [
++                sys.executable,
++                "-c",
++                self.CHILD,
++                os.path.join(ROOT, "hooks"),
++                dd,
++                sid,
++                str(self.WINDOW),
++                str(start),
++                str(iters),
++            ]
++            kids = [
++                subprocess.Popen(
++                    argv, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
++                )
++                for _ in range(procs)
++            ]
++            counts = []
++            for k in kids:
++                out, err = k.communicate(timeout=120)
++                self.assertEqual(k.returncode, 0, err)
++                counts.extend(int(x) for x in out.strip().split(","))
++            self.assertEqual(len(counts), total)
++            self.assertEqual(len(self._lines(dd, sid)), total)
++            self.assertNotIn(0, counts)
++            self.assertEqual(max(counts), total)
++            self.assertTrue(all(1 <= c <= total for c in counts), counts)
++
++    def test_stale_entries_excluded_under_concurrent_burst(self):
++        # A concurrent burst must count only what is INSIDE the window: a 40-line stale prefix
++        # is neither counted nor truncated away.
++        n, stale = 16, 40
++        sid = "conc-window"
++        with tempfile.TemporaryDirectory() as dd:
++            old = time.time() - 10000.0
++            with open(self._log_path(dd, sid), "a") as fh:
++                fh.write("".join(f"{old + i}\n" for i in range(stale)))
++            counts = self._thread_burst(dd, sid, n, window=60.0)
++            self.assertEqual(len(self._lines(dd, sid)), stale + n)
++            self.assertEqual(max(counts), n)
++            self.assertTrue(all(1 <= c <= n for c in counts), counts)
++
++    def test_concurrent_sessions_do_not_cross_count(self):
++        # Two sessions bursting at once keep separate logs and separate counts.
++        na, nb = 12, 20
++        with tempfile.TemporaryDirectory() as dd:
++            barrier = threading.Barrier(na + nb)
++            got = {"sess-a": [], "sess-b": []}
++            lock = threading.Lock()
++
++            def worker(sid):
++                barrier.wait(timeout=30)
++                c = pg.fleet_count(dd, sid, self.WINDOW)
++                with lock:
++                    got[sid].append(c)
++
++            threads = [threading.Thread(target=worker, args=("sess-a",)) for _ in range(na)]
++            threads += [threading.Thread(target=worker, args=("sess-b",)) for _ in range(nb)]
++            for t in threads:
++                t.start()
++            for t in threads:
++                t.join(timeout=60)
++            self.assertEqual(len(self._lines(dd, "sess-a")), na)
++            self.assertEqual(len(self._lines(dd, "sess-b")), nb)
++            self.assertEqual(max(got["sess-a"]), na)
++            self.assertEqual(max(got["sess-b"]), nb)
++
++
+ if __name__ == "__main__":
+     unittest.main(verbosity=2)

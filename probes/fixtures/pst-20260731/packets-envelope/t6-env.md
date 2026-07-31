@@ -1,0 +1,8 @@
+DELEGATOR ANSWER to your prior BLOCKED: workspace-not-found | NEED: correct workspace path — your workspace is /private/tmp/claude-501/-Users-rookslog-Projects-delegation-triage/c4ca9689-0893-4843-a0d8-d541bcc832f1/scratchpad/pst/t6-flash . cd into it before anything else; all work happens inside it. The frozen task packet follows VERBATIM below the line.
+---
+REPORT PREAMBLE (mandatory, before anything else): your report MUST open with (a) the output of `pwd` and (b) the output of `ls` in it. If the directory does not contain the repository described below (a git checkout with the named files), STOP and report BLOCKED: workspace-not-found | NEED: correct workspace path | TRIED: <your pwd/ls output>.
+
+Objective: add a subprocess smoke test for scripts/measure_overhead.py asserting: exit 0; stdout is a single line of valid JSON; exact key set {"cpu_nanoseconds","forecast_count","peak_traced_bytes","wall_nanoseconds"}; forecast_count == 1000; and no files created in the working directory (contract documented in docs/OPERATIONAL-OVERHEAD.md). Run it with PYTHONPATH=src.
+Owned files: tests/test_measure_overhead.py (new file).
+Validation: PYTHONPATH=src python3 -m unittest discover -s tests   (baseline: 261 tests, OK, skipped=1)
+Return shape: the preamble, then files touched, every command run in order with exit codes (including failed attempts), validation output quoted verbatim (final summary line included), and any DEVIATION items (what, why, your fix) if something cannot work as written. Allowed effects: ONLY the owned files, inside this workspace. Non-goals: refactors, formatting changes, or edits beyond the objective. If blocked on something only the delegator can decide: BLOCKED: <what> | NEED: <input> | TRIED: <attempts> — and stop.
