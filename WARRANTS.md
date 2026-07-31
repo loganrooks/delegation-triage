@@ -28,6 +28,9 @@ a row** [W-019].
 | `routing-evidence:` | (no remote — local-only, flagged) | ~/Projects/routing-evidence |
 | `delegation-runtime:` | (no remote yet — local-only, flagged; Product 2 of the 2026-07-24 split, moved out per portfolio-review D-3) | ~/Projects/delegation-runtime |
 | `storage-advisor:` | (no remote — local-only, flagged) | ~/Development/storage-advisor |
+| `lectern:` | (no remote — local-only, flagged) | ~/Development/lectern |
+| `bibliometa-cli:` | (no remote — local-only, flagged) | ~/Development/bibliometa-cli |
+| `chatgpt-cli:` | (no remote — local-only, flagged) | ~/Development/chatgpt-cli |
 
 **Sol instrument identity (D-2 RATIFIED 2026-07-24 — external overlay, cited by hash, never by mutable name):**
 the three cross-vendor instruments live in the operator's Claude deployment dir (`claude-user-dir:agents/`),
@@ -747,4 +750,15 @@ grading time; leg findings spot-checked firsthand before this amendment):**
   is therefore to a lane-scoped CANDIDATE→Provisional overlay surfaced as an operator decision,
   never an automatic row change. Single attested severe event (fabricated completion / silent
   scope violation / undetected omission) after cause adjudication → lane retired, counter here.
-- **Probe tally:** 0 attested (2026-07-26). Pilot records feed this tally.
+- **Probe tally (updated 2026-07-31, backfill pass):** FP-A **native-adapter** lane: **8
+  attested accepted, zero rework, zero adjudicated-severe events** (wave 1: 2, root-verified
+  reports untracked — P-20260728-fp-wave1-codex-native; wave 2: 6, committed reports +
+  reran validation — P-20260728-fp-wave2-native-sol). **Flip condition MET for this lane** →
+  a lane-scoped CANDIDATE→Provisional overlay is due as an operator decision (never
+  automatic). Caution-side, tally unchanged: wave 3 (P-20260728-fp-wave3-chatgpt-cli) — 2
+  gate-caught omissions (severe code adjudicated as MISLABELED detected-at-gate; C-5
+  vocabulary gap), 1 error terminal; executor reporting-fidelity defects in waves 2–3
+  (miscounts, omitted attempts) mean acceptance is the orchestrator-gate SYSTEM's property.
+  **Loopback/gateway surface: still 0 implementation outcomes** (FP-0d smoke only) — the
+  deployed flash-* pins target that surface and extrapolate across it; FP-B as ratified
+  (planted ambiguity, blinded gate): UNRUN.
