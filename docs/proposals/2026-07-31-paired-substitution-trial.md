@@ -7,7 +7,8 @@ a metric tie; 0 severe events both arms). Full results: probe record
 `probes/fixtures/pst-20260731/`. Blinded quality: incumbent better 5/6, T4 control
 equivalent; arms byte-identical on fully-specified edits, separated entirely on open-ended
 test authoring (flash: vacuous-green tests on all 4 discriminable test-authoring tasks).
-Operator countersign PENDING at recording.**
+Operator COUNTERSIGNED 2026-07-31 (as-is; second concordant blind read also on file:
+`docs/reviews/2026-07-31-pst-blinded-adjudication-second-read.md`).**
 
 Was: PRE-REGISTERED 2026-07-31 under the operator-ratified pilot-closure package (C′).
 **HOLD UPDATE 2026-07-31: FP-B produced one severe event (t3, fabricated-completion —

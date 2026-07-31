@@ -117,5 +117,5 @@ repo-root execution, the two amendment-required findings) · within-file constra
 
 ## Countersign
 
-Pre-registered: operator countersigns adjudication outcomes. Status at recording: PENDING —
-surfaced in-session 2026-07-31 evening.
+Pre-registered: operator countersigns adjudication outcomes. **COUNTERSIGNED 2026-07-31
+(operator, in-session, as-is — after both concordant blind reads were on file).**

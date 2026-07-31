@@ -812,4 +812,6 @@ grading time; leg findings spot-checked firsthand before this amendment):**
   need the proposed G5 mutation check before any flash acceptance is meaningful. FP-0a
   remained unresolved at trial end (moot for the no-row outcome; still gates any future
   effort-cell naming). Severe counter unchanged at 1 (the FP-B t3 event; disposition (ii)
-  stands). Operator countersign of the trial adjudication: PENDING at recording.
+  stands). Operator COUNTERSIGNED the trial adjudication 2026-07-31 (as-is, with both
+  concordant blind reads on file — second read:
+  `docs/reviews/2026-07-31-pst-blinded-adjudication-second-read.md`).
