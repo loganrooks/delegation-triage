@@ -27,6 +27,7 @@ a row** [W-019].
 | `claude-user-dir:` | (untracked user dir — deployment target, weakest provenance class) | ~/.claude |
 | `routing-evidence:` | (no remote — local-only, flagged) | ~/Projects/routing-evidence |
 | `delegation-runtime:` | (no remote yet — local-only, flagged; Product 2 of the 2026-07-24 split, moved out per portfolio-review D-3) | ~/Projects/delegation-runtime |
+| `storage-advisor:` | (no remote — local-only, flagged) | ~/Development/storage-advisor |
 
 **Sol instrument identity (D-2 RATIFIED 2026-07-24 — external overlay, cited by hash, never by mutable name):**
 the three cross-vendor instruments live in the operator's Claude deployment dir (`claude-user-dir:agents/`),

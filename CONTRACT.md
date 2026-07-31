@@ -43,17 +43,81 @@ override and rebills on the session model — prefer relaunch + transcript-minin
 can mislead; the transcript JSONL is ground truth
 (`grep -oE '"model":"claude-[^"]*"' <task-output.jsonl> | sort | uniq -c`).
 
+### §3a Does the work need to TALK BACK? (added 2026-07-25)
+
+The table above answers *which knobs a surface can pin*. This one answers a question that
+precedes it — **how many times does information need to cross between you and the delegate?**
+Get this wrong and the model/effort pin is irrelevant.
+
+| Shape | Surface | Signature |
+|---|---|---|
+| One question, one answer | **plain subagent** (Agent tool) | reports to the parent only; no cross-talk; own file under `<session>/subagents/` |
+| You steer, it works, it never answers | **one-way SendMessage** to a named background agent | `SendMessage` out, no reciprocal `agentName` traffic back |
+| Two roles iterate to convergence | **agent team** | shared `teamName`, reciprocal messaging, each teammate owns a top-level session file with `agentName` set |
+| Fixed control flow over N items | **Workflow** | deterministic loops/fan-out; per-call `{model, effort}`; resumable by `runId` |
+
+**Chose a team? Load the `agent-teams` skill** — sizing, the convergence signature, lifecycle
+costs, and the paired-lane pattern live there, kept out of this file because genuine team use is
+rare (measured below) and would otherwise tax every spawn decision.
+
+**Measured base rates** (corpus scan 2026-07-25, this account, 3,122 transcripts —
+verified independently, not relayed): **47 files** contain a `SendMessage` call; only
+**~5 distinct `teamName` lineages** exist corpus-wide. So the *majority* of SendMessage traffic
+is row 2, not row 3 — one-way steering that resembles a team and is not one. An explorer
+grepped every steer-target name as a potential message SENDER and got zero hits.
+
+**Why the distinction is worth a row:** the most available error here is not picking the wrong
+surface, it is **believing you are running a team when you are running a steered subagent** —
+you get none of the iteration benefit and pay the coordination overhead anyway. Discriminate
+mechanically, not by intent: teammates have `teamName` + `agentName`; plain subagents live
+under `subagents/` with neither.
+
+**Hazards that change the choice, all measured:**
+- **`TaskStop` is irreversible.** A stopped teammate cannot be resumed by SendMessage, only
+  respawned with reconstructed context. Observed cost: a failed reviewer respawned ~25s later
+  with its brief rebuilt from scratch (2026-07-25, chatgpt-cli).
+- **External cutoff kills lead and teammates together.** An account usage limit ended one
+  audiobookify team-lead session mid-task with a teammate's fix unlanded; the limit text is the
+  last line of both transcripts. Long team runs need checkpointing, not optimism.
+- **Teams require `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`.** Verify before designing around
+  them.
+- **Team identity is not stable and the docs overstate cleanup.** Membership state lives at
+  `~/.claude/teams/<teamName>/config.json`; dirs outlive their sessions, a team can outlive its
+  own lead session's transcript entirely, and `teamName` has been observed changing mid-session.
+  Never build on `teamName` stability — read the config dir. Detail in `agent-teams`.
+
 A deployed PreToolUse guard (Claude Code only) enforces the single invariant "a decision was
 made": explicit models and pinned types pass silently; a pinless, model-less spawn gets an
 overridable prompt when it would inherit a premium session model (always, under
 budget-conscious). It reads STATE.md's `Active:` line; it never second-guesses an explicit
 choice; fail-open on internal error.
 
+### §3b Who owns the authoritative artifact? (added 2026-07-27)
+
+Choose this before launch, together with the surface:
+
+| Deliverable | Authoritative owner | Transport | Root integration |
+|---|---|---|---|
+| One durable review/report from one delegate | delegate | verbatim materialization, or one exact owned path | finding-ID delta ledger only |
+| Direct implementation | delegate | owned checkout/worktree | inspect diff + verify |
+| Synthesis across multiple independent artifacts | root | preserve each source artifact first | synthesis is the named deliverable |
+
+A reviewer owns the full review; the root owns whether to accept it. Do not turn that separation
+into two copies of the same prose. The root ledger contains only `accept`, `qualify`, `park`, or
+`reject`, plus new evidence, disagreement, or integration action. Never ask a reviewer to write the
+root's disposition.
+
+For a read-only worker, prefer a harness that materializes the successful structured result
+verbatim. For direct authorship, expose no broader write surface than one exact artifact or isolated
+output directory. If the available surface cannot preserve a required durable artifact within the
+authorized boundary, change the surface or keep the task at root.
+
 ## §4 State the fit; record it; scarcity-check it
 
 One line per spawn, in the visible plan BEFORE the call: **agent/type · model · effort (+ how the
 effort arises: pin vs inheritance vs per-call) · surface · task class · one-line why citing the
-ROUTES row or W-ID.** Check STATE.md's scarcity mode: in fable-window, a fable spawn must be an
+ROUTES row or W-ID.** For a durable delegated artifact, append **artifact owner · transport ·
+integration mode**. Check STATE.md's scarcity mode: in fable-window, a fable spawn must be an
 enumerated class AND pass the durable-artifact test (output outlives fable access); expired STATE
 = Unchecked (re-verify or take the fallback). Record the spawn (model, effort, type, harness,
 task class, tokens if observable, outcome proxy, **and the router: the deciding driver's own
@@ -116,3 +180,52 @@ general ones.
    the tradeoff — per the north star's four-status separation, worldings are design probes,
    status 4. The B-3 panel's practice was exactly this; this sentence is the documented
    authority it lacked.)*
+9. **Project-originated orchestration friction:** preserve the project and artifact locator in a
+   probe record and include a Signal Layer observation ID when one exists. A human-approved
+   contract amendment may land from one strong incident, but it remains reversible and receives a
+   later outcome check. Do not query raw signal stores or change routing automatically per spawn.
+
+## Prompt contract for delegated agents (migrated 2026-07-25)
+
+*Was in `~/.claude/delegation.md`, always-loaded. Moved here on the doctor pass
+because it applies only at spawn time — the one moment this skill is already
+loaded. If a spawn goes out without it, that is a load-failure worth recording,
+not a style lapse: it is what makes a delegated result auditable instead of
+merely believable.*
+
+Every delegated research prompt MUST include:
+
+- **Today's date**, and: "do not rely on training data for anything post-cutoff —
+  search and verify."
+- **Claim tagging**, every claim marked **[CONFIRMED — URL or path:line + short
+  quote]**, **[REPORTED — source]**, or **[UNCERTAIN]**; shipped vs announced vs
+  rumored separated explicitly. This is the clause that earns the delegation:
+  tagged output can be spot-checked in one command without redoing the work.
+- **A source file path (and short quote) for every claim**, for local-file
+  exploration.
+- **Output bounds** (e.g. 1200–2500 words, structured by numbered points). A
+  closing "N strongest implications, in your judgment" section ONLY for
+  synthesis/review-tier agents — explorer-tier agents (explorer,
+  explorer-light) report facts plus follow-up pointers (control readings), never
+  judgments, verdicts, or recommendations (operator correction 2026-07-10).
+- **A warning about SEO/AI-content sites**; check sensational specifics against
+  primary sources.
+
+**One defect this contract does not yet cover** (observed 2026-07-25,
+chatgpt-cli): *the reviewee wrote the reviewer's brief.* A cross-vendor review
+of my own proposal was framed by me — I chose which inferences to flag as weak
+and which files to point at. It still found what I did not want found, so it was
+not worthless, but a review whose brief is curated by its subject is not
+structurally independent. Where the stakes justify it, route the brief unfiltered
+or have a third party write it.
+
+### Process (migrated with the above)
+
+- Launch independent agents **in parallel in one block**; don't re-run their
+  searches yourself.
+- SendMessage is exposed (verified 2026-07-02); still design delegations
+  self-contained by default — continue an agent only when its accumulated
+  context genuinely carries value. `TaskStop` is irreversible: a stopped
+  teammate cannot be resumed, only respawned with reconstructed context.
+- Treat subagent output as *Reported, not verified*: spot-check load-bearing
+  claims against primary sources (fetch them) before building on it.
