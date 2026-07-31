@@ -1,5 +1,13 @@
 # PROBE — 2026-07-28 Flash pilot wave 2 (Sol-orchestrated, native adapter, 6 runs)
 
+> **AMENDED 2026-07-31 (panel adjudication, three legs concordant):** "wave 2" here is a
+> chronological label from the run_ids, NOT the ratified pilot's "wave-2 paired substitution
+> trial" (§6: identical frozen tasks, flash vs `anthropic:opus-5@medium` incumbent,
+> counterbalanced, vendor-blinded). These six runs are Flash-only; the paired instrument has
+> never run. Per XV-1 this record licenses feasibility + paired-trial ELIGIBILITY, nothing
+> routing-operative. The tally sentence below overstated ("flip condition MET") — see the
+> corrected W-026 tally and docs/reviews/2026-07-31-pilot-closure-panel-adjudication.md.
+
 - probe_id: P-20260728-fp-wave2-native-sol
 - task class / ROUTES row: FP-A bounded implementation (pilot lane, W-026; route_id `FP-A`
   stamped on every intent)

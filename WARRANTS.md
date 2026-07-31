@@ -743,19 +743,30 @@ grading time; leg findings spot-checked firsthand before this amendment):**
   Day-3 corpus `~/Downloads/day3_flash_routing_revision_request.md` + `day3_local_traces/` +
   `Fable_Opus_Day3_Gemini_Flash_Update/` (operator-held, off-package) · gateway
   `claude-user-dir: gateway/README.md` (served ids; effort-knob status; exit-0-empty failure).
-- **Flip condition (= the pilot's promotion rule, panel-amended):** ≥2 attested concordant
-  positive terminal outcomes per lane (accepted OR accepted-after-rework with `rework_actor`
-  recorded), oracle-attested at ≥ third-party-verified, with FP-0a resolved (effort cell named)
-  and zero severe-failure events — which at pilot n bounds the severe rate only weakly; promotion
-  is therefore to a lane-scoped CANDIDATE→Provisional overlay surfaced as an operator decision,
-  never an automatic row change. Single attested severe event (fabricated completion / silent
-  scope violation / undetected omission) after cause adjudication → lane retired, counter here.
-- **Probe tally (updated 2026-07-31, backfill pass):** FP-A **native-adapter** lane: **8
-  attested accepted, zero rework, zero adjudicated-severe events** (wave 1: 2, root-verified
-  reports untracked — P-20260728-fp-wave1-codex-native; wave 2: 6, committed reports +
-  reran validation — P-20260728-fp-wave2-native-sol). **Flip condition MET for this lane** →
-  a lane-scoped CANDIDATE→Provisional overlay is due as an operator decision (never
-  automatic). Caution-side, tally unchanged: wave 3 (P-20260728-fp-wave3-chatgpt-cli) — 2
+- **Flip condition (SUPERSEDED IN PLACE 2026-07-31 — the prior text here was a stale mirror
+  of pilot v2; the operator-ratified v3 (XV-1) governs, panel 2026-07-31 F1/C1, all three
+  legs concordant):** ≥2 attested concordant positive terminal outcomes per lane
+  (accepted OR accepted-after-rework with `rework_actor` recorded), oracle-attested at
+  ≥ third-party-verified, with FP-0a resolved (effort cell named) and zero severe-failure
+  events — and meeting this conjunction makes the lane **ELIGIBLE for the wave-2 paired
+  substitution trial** (identical frozen tasks run by both `google:gemini-3.6-flash-high`
+  and incumbent `anthropic:opus-5@medium`, symmetric stopping/retirement, order
+  counterbalanced, patches vendor-blinded at adjudication — pilot §6), **nothing more.
+  ONLY the paired trial can produce an overlay-row proposal**, itself surfaced as an
+  operator decision. Single attested severe event (fabricated completion / silent scope
+  violation / undetected omission) after cause adjudication → lane retired, counter here.
+- **Probe tally (corrected 2026-07-31 by panel adjudication — the same-day backfill pass
+  asserted "flip condition MET"; that overstated: one conjunct was open and the clause
+  itself was stale v2 language):** FP-A **native-adapter** lane: **8/8 accepted, zero
+  rework** (wave 1: 2, root-verified reports untracked — P-20260728-fp-wave1-codex-native;
+  wave 2: 6, committed reports + reran validation — P-20260728-fp-wave2-native-sol).
+  Attestation split (panel F9): **6 transcript/provider-attested, 2 ui-label** (wg-wave2
+  pair) — strongly-attested n=6, rule-of-three severe bound ~39% not ~31%. Conjunction
+  status: outcomes ✓ · third-party validation ✓ · **FP-0a UNRESOLVED (half-open —
+  gateway→provider mapping unattested; native `agy --effort` not verifiable below the
+  interface, V-M7) ✗** · severe events: zero adjudicated (wave-3 codes adjudicated
+  detected-at-gate, operator countersign pending) — **conjunction NOT met**; and per XV-1
+  even a met conjunction licenses only paired-trial ELIGIBILITY. Caution-side: wave 3 (P-20260728-fp-wave3-chatgpt-cli) — 2
   gate-caught omissions (severe code adjudicated as MISLABELED detected-at-gate; C-5
   vocabulary gap), 1 error terminal; executor reporting-fidelity defects in waves 2–3
   (miscounts, omitted attempts) mean acceptance is the orchestrator-gate SYSTEM's property.
