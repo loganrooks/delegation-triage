@@ -20,7 +20,8 @@
   The d2 implementation chain ended in `error` with validator
   `partial-artifact-unverified` — a failed fix round left standing, honestly terminalized
   (the liveness-discipline pattern, not a silent drop).
-- **severe-code tension, adjudicated here (operator countersign requested):** both first-pass
+- **severe-code tension, adjudicated here (COUNTERSIGNED: operator, 2026-07-31 in-session —
+  "yes" to the closure package whose first item was this countersign ask):** both first-pass
   rejections carry friction code `undetected-omission` — a code in the crosswalk's SEVERE
   set, whose W-026 clause retires the lane on a single adjudicated severe event. But the
   dispositions show both omissions were **detected at the root gate** (revise, validator

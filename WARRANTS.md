@@ -32,6 +32,22 @@ a row** [W-019].
 | `bibliometa-cli:` | (no remote — local-only, flagged) | ~/Development/bibliometa-cli |
 | `chatgpt-cli:` | (no remote — local-only, flagged) | ~/Development/chatgpt-cli |
 
+**Gateway-pin external-overlay register, extension of D-2 (operator-ratified 2026-07-31,
+pilot-closure package A′ — gateway-only pins stay out of the public package; identity =
+content hash; availability predicate: gateway (`claudex`) session; on hash mismatch the
+citing evidence reads Unchecked until re-verified):** hashed 2026-07-31 post-amendment —
+flash-executor-high `868bff77fc142c8457f5f26d500307affce6f9f6ef412211c7e8e7a1b402ed23` ·
+flash-implementer `8b2b2db356c9392c143c658363be908b021f564dd3b1b42cc5a659784df7aa98` ·
+sol-orchestrator `ab55d1db1f330d482c72d7eb13d9a982e41a353438be842e9465d9cee250e777` ·
+luna-explorer `7ae47189f63d4875e765a0dd32f3ba60a7d31ad4311a0d89566d73505a8135e9` ·
+terra-explorer `5f211c8428bf094da126d6a577e7aef38633300d397b9300ed0e72dbb5875375`.
+**flash-executor-medium QUARANTINED 2026-07-31** (moved to `claude-user-dir:
+agents-quarantine/`, hash `92364a33977ca465023deebe906036f8f5403eb38a5487e1db4a65cbc56f8a59`;
+reason: only attested medium-specific result is adverse — census plugin-title leak; release
+condition: one clean medium-tier probe on its own surface). The four pilot pins were minted
+2026-07-28 WITHOUT provenance records (panel adjudication 2026-07-31 + signal) — this
+register is the retroactive cure; future gateway pins register here at mint time.
+
 **Sol instrument identity (D-2 RATIFIED 2026-07-24 — external overlay, cited by hash, never by mutable name):**
 the three cross-vendor instruments live in the operator's Claude deployment dir (`claude-user-dir:agents/`),
 NOT in this package. Identity = content hash; a citing route's evidence holds only while the deployed

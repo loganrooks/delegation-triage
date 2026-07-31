@@ -141,7 +141,8 @@ is controlled, harness is the manipulated variable).
   `result` = final block, not final message — reassemble multi-block outputs from
   transcripts before hashing.
 
-## R1–R4 scoring (2026-07-28, author-with-disclosure — operator countersign pending)
+## R1–R4 scoring (2026-07-28, author-with-disclosure — COUNTERSIGNED: operator, 2026-07-31
+in-session, "yes" to the pilot-closure package whose first item was this countersign ask)
 
 Verification bar for R1: a finding counts if (i) byte-checked true by the author
 against primary source this session, or (ii) independently concordant with one of
