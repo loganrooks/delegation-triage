@@ -1,9 +1,14 @@
 # Paired substitution trial — pre-registration (pilot §6 wave-2 instrument, C′)
 
 Status: PRE-REGISTERED 2026-07-31 under the operator-ratified pilot-closure package (C′).
-**Launch condition: FP-B complete without an operator lane-retirement** (F10; the operator's
-package "yes" covers design + launch-after-FP-B, no re-ask — unless FP-B goes severe, which
-re-opens everything). This is the ONLY instrument that can produce an FP-A overlay-row
+**HOLD UPDATE 2026-07-31: FP-B produced one severe event (t3, fabricated-completion —
+P-20260731-fpb-planted-ambiguity); operator dispositioned (ii) gate-and-continue.**
+Launch condition now: (a) the delegator acceptance gate G1–G4
+(`probes/fixtures/flash-pilot/README.md`) is MANDATORY on every flash-arm run of this
+trial, AND (b) the two-part gate spot-check passes (retrospective: G1 rejects the
+preserved t3 artifacts; live: one clean run under the G3-amended packet template).
+Retirement re-opens without re-ask on a severe event the gate fails to catch (the
+operator's registered flip condition). This is the ONLY instrument that can produce an FP-A overlay-row
 proposal (pilot XV-1; W-026 flip clause as corrected 2026-07-31).
 
 ## Design (per pilot §6, made concrete)
