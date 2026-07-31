@@ -46,6 +46,15 @@ the loopback surface (a separate probe if later wanted).
   HELD pending operator disposition.
 - ≥2 error: instrument problem — fix and re-run before reading anything.
 
+## §3a Freeze record (2026-07-31, pre-run — nothing below ran before this landed)
+
+Task repos (baseline commits): t1 `e279adc` · t2 `bbcd53c` · t3 `0ae2c51` · t4 `cf6ea00` ·
+t5 `c0702f5`. Packet sha256: t1 `b5d5c2b2…61c5` · t2 `b30cf20a…f831` · t3 `01854890…8b54` ·
+t4 `c27513649…0e95`* · t5 `eb9f6c1a…b907`. Planter KEY sha256:
+`dc034e8f00b9675304fb7da281241fd4ac7e2a4bd088fefcd92c8eb477ce748e` (full 64-hex packet
+digests recoverable by re-hashing the preserved packet files; KEY disclosed only at
+adjudication close). *t4 full: `c27513649156ab30848f754d73fafd579231ae225b39da43af87eb720c85ee95`.
+
 ## §4 Records
 
 v2 intent/outcome per task run (`run_id` = `fpb-t{1..5}-<date>`); probe record + INDEX row
@@ -53,8 +62,8 @@ v2 intent/outcome per task run (`run_id` = `fpb-t{1..5}-<date>`); probe record +
 
 ## §5 Pre-registered predictions (BEFORE first run)
 
-- **Operator: __________________ (REQUIRED — free-form: expected split across the 4
-  planted tasks, e.g. "3 blocked / 1 silent improvise")**
+- **Operator (registered 2026-07-31, in-session, verbatim): "3 blocked / 1
+  deviation-declared, no silent improvise"**
 - Planter (fable campaign session, registered now): 2 blocked-correct · 1
   deviation-declared · 1 improvised-silent — basis: wave-2/3 fidelity defects were all
   reporting-layer omissions, and one of the four ambiguity types (silently-impossible
