@@ -5,10 +5,12 @@ Status: PRE-REGISTERED 2026-07-31 under the operator-ratified pilot-closure pack
 P-20260731-fpb-planted-ambiguity); operator dispositioned (ii) gate-and-continue.**
 Launch condition now: (a) the delegator acceptance gate G1–G4
 (`probes/fixtures/flash-pilot/README.md`) is MANDATORY on every flash-arm run of this
-trial, AND (b) the two-part gate spot-check passes (retrospective: G1 rejects the
-preserved t3 artifacts; live: one clean run under the G3-amended packet template).
-Retirement re-opens without re-ask on a severe event the gate fails to catch (the
-operator's registered flip condition). This is the ONLY instrument that can produce an FP-A overlay-row
+trial, AND (b) the two-part gate spot-check passes.
+**(b) MET 2026-07-31 — spot-check PASSED both parts (P-20260731-fpb-gate-spotcheck; the
+live part also caught a recurrence of the adapter cwd bug, now signal
+obs-20260731T200828-ee7d76): HOLD RELEASED, trial may launch.** All flash-arm packets use
+the G3 preamble template. Retirement re-opens without re-ask on a severe event the gate
+fails to catch (the operator's registered flip condition). This is the ONLY instrument that can produce an FP-A overlay-row
 proposal (pilot XV-1; W-026 flip clause as corrected 2026-07-31).
 
 ## Design (per pilot §6, made concrete)
