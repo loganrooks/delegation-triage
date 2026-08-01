@@ -1,6 +1,8 @@
 # Passive-first reprioritization — the ordinary run is the product
 
-Status: **v2 (panel-revised) 2026-07-31, awaiting operator ratification.** v1 (42cf94c)
+Status: **RATIFIED AS REVISED 2026-07-31 (operator, in-session) — binding priority order
+for the control-plane initiative's next phase, including the three named doctrine
+revisions in the header and the two reframe guards.** v1 (42cf94c)
 was reviewed by a three-leg panel — unanimous CONCUR_WITH_CHANGES; adjudication and
 finding-by-finding dispositions:
 [`docs/reviews/2026-07-31-passive-first-panel-adjudication.md`](../reviews/2026-07-31-passive-first-panel-adjudication.md).
