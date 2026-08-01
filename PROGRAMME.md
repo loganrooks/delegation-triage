@@ -3,15 +3,18 @@
 role: charter-by-pointer (direction + pace + adoption; fast state lives in [LANES.md](LANES.md))
 adopts: SEAS ADR-0023 (the programme-charter pattern) — adoption record §3; repo lineage is
 SEAS ADR-0022/0024 ([LINEAGE.md](LINEAGE.md)), a different decision
-lifecycle: **draft-for-ratification v2** (v1 2026-07-31; v2 2026-08-01 after two-leg review —
+lifecycle: **ratified** (v1 2026-07-31; v2 2026-08-01 after two-leg review —
 Claude-lineage pointer/thinness leg + cross-vendor sol×xhigh design leg, both
-CONCUR_WITH_CHANGES: [docs/reviews/2026-08-01-programme-charter-reviews.md](docs/reviews/2026-08-01-programme-charter-reviews.md))
+CONCUR_WITH_CHANGES: [docs/reviews/2026-08-01-programme-charter-reviews.md](docs/reviews/2026-08-01-programme-charter-reviews.md);
+ratified by operator 2026-08-01, in-session)
 review_by: **2026-08-31** — past this date with no re-ratification, §1 reads as Unchecked
 direction (the STATE expiry discipline, applied to this file): keep working the last-ratified
 order but mark [LANES.md](LANES.md) `decision_due` and surface at next operator contact
 ratification log (the canonical amendment record — one dated line per §0-governed change):
 - 2026-07-31 · §1 direction · operator, in-session ("ratified as revised") · passive-first
   priority order + its three named doctrine revisions
+- 2026-08-01 · charter v2 (whole document, §0–§4 + LANES.md split) · operator, in-session
+  ("ratified.") · adoption of the SEAS ADR-0023 pattern becomes effective
 
 This document is deliberately thin: pointers, never copies. This repo has measured what a
 second copy costs (route values in a pointer file drifted within days — the note stands in
