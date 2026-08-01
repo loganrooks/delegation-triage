@@ -19,6 +19,10 @@
                            list all candidates when mixed; name the check that licenses it -->
 - detection timing:   <!-- at-the-time / later / unknown — when was the failure (if any)
                            first detected relative to the outcome disposition -->
+- passive-signal alternative considered:  <!-- reframe guard (passive-first ratification
+                            2026-07-31; convention-only per B-4): could passive signal
+                            PROMOTE this claim under H3's discipline? If yes, why run the
+                            probe? Falsifier-testing probes are exempt. -->
 - verdict:
 - unique catches (per leg):
 - tokens / cost (if observable):

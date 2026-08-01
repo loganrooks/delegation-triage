@@ -13,6 +13,13 @@ note an expired STATE.md entry fails CI by design). Public repo (`loganrooks/del
 MIT); releases are tag-driven (`v*` → CI builds the Cowork plugin and attaches it). `dist/` and
 `.planning/` are untracked (generated output / maintainer drafts).
 
+## Programme charter (boot surface)
+
+Direction and pace rules live in [`PROGRAMME.md`](PROGRAMME.md); current fast state in
+[`LANES.md`](LANES.md). Read both at session start, after compaction/resume, and before any
+lane-affecting change. The ratified priority order (PROGRAMME §1, passive-first 2026-07-31)
+supersedes the handoff below on priority; the handoff remains context, not direction.
+
 ## Active initiative handoff
 
 Before planning or implementing the multi-harness control-plane initiative, read the
@@ -123,5 +130,6 @@ manifest table in the same commit.
 - **A deploy from a dirty worktree is a preview, not a release** — its bytes are not reconstructable
   from the stamped commit. Say so in the `agents/MANIFEST.md` stamp.
 - Known open items live in `STATE.md` (Scheduled items) and `agents/MANIFEST.md` (e.g. the
-  unreconciled Cowork-plugin fork, and the unowned deployed `sol-*` definitions); check both before
+  unreconciled Cowork-plugin fork; the `sol-*` trio is ratified external overlay per D-2, not
+  unowned — corrected 2026-08-01); check both before
   touching roster or scarcity entries.

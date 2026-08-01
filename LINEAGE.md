@@ -17,6 +17,13 @@ routing doctrine (ROUTES/STATE/WARRANTS/CONTRACT/EPISTEMICS), roster (`agents/`)
   `harness/agents/TRIAGE.md` (2026-06-12) — the two drifted homes this package reunifies; the
   old table is archived (not deleted) at the `~/.claude` deployment.
 
+**Adopted patterns (cite-vs-adopt — each with a local adoption record):**
+- SEAS **ADR-0023** (programme-charter pattern) → [`PROGRAMME.md`](PROGRAMME.md) §3,
+  adopted 2026-08-01 (drafted 2026-07-31; two-leg review incl. cross-vendor sol×xhigh —
+  `docs/reviews/2026-08-01-programme-charter-reviews.md`). SEAS-side lane-board note: owed
+  ([`LANES.md`](LANES.md) charter-propagation row) — cross-repo, closed by commit id when
+  landed.
+
 **Relationship going forward (the §4 graduation model):** this repo is its own selection
 environment — new routing evidence accumulates in `probes/` here; SEAS keeps the genealogy and
 receives feedback, not control. Deployments (`~/.claude`, the Cowork plugin, any Codex consumer)

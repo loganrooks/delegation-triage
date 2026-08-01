@@ -36,14 +36,15 @@ concrete inhabited situations and states what breaks without each design commitm
 are orientation, not implementation contracts; the north star's §6 constraint awaits
 operator disposition alongside the portfolio review's decisions.
 
-**Priority overlay (2026-07-31, awaiting operator ratification):** the
+**Priority overlay (RATIFIED 2026-07-31):** the
 [passive-first reprioritization](2026-07-31-passive-first-reprioritization.md) — panel-revised v2
 ([adjudication](../reviews/2026-07-31-passive-first-panel-adjudication.md), three legs unanimous
 CONCUR_WITH_CHANGES) — proposes ranking ledger consumption (route-evidence rollup, enum-first) and
 the average-user capture surface ahead of the remaining interchange work and of new experiments,
-which become a graded contribution tier with falsifier-testing exempt. If ratified, every row below
-is read under that priority order; the paired-trial channel's cadence is re-decided at the first §9
-evaluation.
+which become a graded contribution tier with falsifier-testing exempt. Every row below is read
+under that priority order; the paired-trial channel's cadence is re-decided at the first §9
+evaluation. The programme charter ([`PROGRAMME.md`](../../PROGRAMME.md) + [`LANES.md`](../../LANES.md))
+carries the ratified direction and current lanes.
 
 ## Recommended read order
 
@@ -55,7 +56,7 @@ evaluation.
 | [Capability-based Claude execution profiles](2026-07-19-capability-based-claude-execution-profiles.md) | Historical profile and runtime-probe baseline, partially superseded by the composable policy. | Retain as evidence; do not treat its fixed profiles as the final public configuration model. |
 | [Deferred provider-neutral router](2026-07-20-provider-neutral-multi-harness-delegation-router-deferred.md) | Earlier decision to preserve an extension seam without building a router. Its reopening triggers now require reassessment. | Decide what the consolidated proposal supersedes and what adapter invariants remain. |
 | [Codex-managed Antigravity adapter](2026-07-20-codex-managed-antigravity-gemini-flash-adapter.md) | Implemented temporary provider slice and evidence about cross-provider reuse. | Treat as migration evidence and a later extension, not the immediate product center. |
-| [Gemini 3.6 Flash pilot](2026-07-26-gemini-flash-36-pilot.md) | **DRAFT v3, awaiting operator D-FP-1/2/3.** Two review rounds (Claude panel + cross-vendor sol) fully disposed; wave 1 feasibility-only, wave-2 paired incumbent trial is the sole routing-operative path. W-026 is its warrant. | The first live consumer of the intent-writer + crosswalk; its schema-level sol findings seed C-5's interchange-hardening list. |
+| [Gemini 3.6 Flash pilot](2026-07-26-gemini-flash-36-pilot.md) | **v3 RATIFIED (D-FP-1/2/3, 2026-07-25, two riders) — pilot EXECUTED AND CLOSED 2026-07-31:** paired trial produced NO overlay row (acceptance tie; `probes/records/P-20260731-pst-paired-trial.md`). W-026 is its warrant; XV-1 remains the promotion discipline. | The first live consumer of the intent-writer + crosswalk; its schema-level sol findings seed C-5's interchange-hardening list. |
 
 ## Supporting evidence
 
